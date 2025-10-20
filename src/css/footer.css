@@ -1,0 +1,187 @@
+/* ===============================
+   Footer CTA Section
+=============================== */
+.footer-cta-section {
+    padding: 2rem 5rem;
+    margin-bottom: -100px;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-cta-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-cta-box {
+    background: #000000; /* fundo preto fixo */
+    border-radius: 12px;
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.footer-cta-text {
+    flex: 1;
+}
+
+.footer-cta-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #ffffff; /* branco fixo */
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.footer-cta-button {
+    background: #ffffff; /* branco fixo */
+    color: #000000;       /* preto fixo */
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.footer-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+.footer-cta-image {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d5d5d5; /* cinza claro fixo */
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* ===============================
+   Footer
+=============================== */
+.footer {
+    background: #000000; /* fundo preto fixo */
+    color: #ffffff;       /* branco fixo */
+    padding: 3rem 2rem;
+    font-family: 'Atkinson-HP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 4rem;
+}
+
+/* ==== Footer Brand ==== */
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-brand img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.footer-brand h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #42d4f5; /* azul fixo */
+}
+
+.footer-brand p {
+    margin: 0.5rem 0 0;
+    color: #cccccc; /* cinza fixo */
+}
+
+/* ==== Footer Links ==== */
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-links h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #42d4f5; /* azul fixo */
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links ul li a {
+    color: #cccccc; /* cinza fixo */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: #00bfff; /* azul hover fixo */
+}
+
+/* ==== Social Icons ==== */
+.social-icons li {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid #333333; /* cinza escuro fixo */
+    padding-top: 1rem;
+    text-align: center;
+    color: #777777; /* cinza médio fixo */
+    font-size: 0.875rem;
+}
+
+/* ===============================
+   Responsividade
+=============================== */
+@media (max-width: 900px) {
+    .footer-cta-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-cta-image {
+        margin-top: 2rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-brand {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-brand img {
+        width: 64px;
+        height: 64px;
+    }
+}

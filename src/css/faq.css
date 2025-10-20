@@ -1,0 +1,94 @@
+.faq-section {
+    padding: clamp(3rem, 5vw, 5rem) clamp(1rem, 5vw, 2rem);
+}
+
+.faq-container {
+    max-width: 100%;
+    width: min(1200px, 95%);
+    margin: 0 auto;
+    display: flex;
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+.faq-title {
+    font-size: clamp(1.75rem, 4vw, var(--font-size-h2));
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin-bottom: clamp(0.5rem, 2vw, 1rem);
+}
+
+.faq-intro {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--color-text-medium);
+    margin-bottom: clamp(1.5rem, 3vw, 3rem);
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.faq-item {
+    border: 0.0625rem solidrgba(224, 224, 224, 0.66);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: var(--color-background-white);
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 clamp(2px, 0.2vw, 4px) clamp(6px, 0.5vw, 12px) rgba(0, 0, 0, 0.05);
+}
+
+.faq-item.active {
+    border-color: var(--color-text-dark);
+}
+
+.faq-question {
+    width: 100%;
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-weight: 500;
+    color: var(--color-text-dark);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s ease;
+}
+
+.faq-question:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.faq-icon {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-weight: 300;
+    color: var(--color-text-medium);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 clamp(0.75rem, 2vw, 1.5rem);
+    font-size: clamp(0.75rem, 1.5vw, 0.9375rem);
+    line-height: 1.7;
+    color: var(--color-text-medium);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 100vh; 
+    padding: 0 clamp(0.75rem, 2vw, 1.5rem) clamp(0.75rem, 2vw, 1.5rem);
+    opacity: 1;
+}
