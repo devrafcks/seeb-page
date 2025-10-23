@@ -80,7 +80,6 @@
   grid-row: 3 / 4;
 }
 
-/* === Tema Escuro === */
 html[dark] .gallery-section {
   background: var(--color-background-dark);
 }

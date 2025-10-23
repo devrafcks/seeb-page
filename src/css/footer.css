@@ -80,7 +80,7 @@
 .footer {
     background: #000000;
     color: #ffffff;
-    padding: 3rem 2rem;
+    padding: 3rem 3rem;
     font-family: 'Atkinson-HP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -150,7 +150,7 @@
 }
 
 .social-icons li {
-    display: inline-block;
+    display:  flex;
     margin-right: 1rem;
 }
 
@@ -158,7 +158,7 @@
     border-top: 1px solid #333333;
     padding-top: 1rem;
     text-align: center;
-    color: #777777;
+    color:rgb(188, 188, 188);
     font-size: 0.875rem;
 }
 
