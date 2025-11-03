@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SeeB</title>
+        <meta name="description" content="SeeB é uma extensão de navegador que promove acessibilidade, tornando a web inclusiva para pessoas com deficiência visual. Funcional, gratuita e fácil de usar.">
+        <meta name="keywords" content="acessibilidade web, extensão de navegador, usabilidade, projeto SeeB">
+        <meta name="author" content="SeeB">
+        <meta name="robots" content="index, follow">
+        
+        <link rel="shortcut icon" href="./src/assets/icons/favicon.ico" type="image/x-icon">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+        <link rel="stylesheet" href="./src/css/global.css">
+    </head>
+    
+
+<body>
+    <div id="loader">
+        <img src="./src/assets/images/Logo.png" alt="Carregando..." class="loader-logo">
+    </div>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+
+   <div id="chatbot-container">
+        <button id="chatbot-button" aria-label="Abrir chat">
+            <span class="material-symbols-outlined">chat_bubble</span>
+        </button>
+
+        <div id="chatbot-window" role="dialog" aria-label="Assistente virtual do SeeB">
+            <div id="chat-header">
+            <span class="material-symbols-outlined">visibility</span>
+            <h4>Assistente SeeB</h4>
+            <button id="close-chat" aria-label="Fechar chat">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            </div>
+
+            <div id="messages" aria-live="polite"></div>
+
+            <div id="quick-questions">
+            <button class="quick-btn">O que é o SeeB?</button>
+            <button class="quick-btn">Como instalar a extensão?</button>
+            <button class="quick-btn">É gratuito?</button>
+            <button class="quick-btn">Como o SeeB ajuda na acessibilidade?</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div>
+
+                <img class="navbar-logo" src="./src/assets/images/Logo.png" alt="SeeB">
+            </div>
+            <ul class="navbar-links">
+                <li><a href="#hero-section" class="nav-link">Início</a></li>
+                <li><a href="#features-section" class="nav-link">Recursos</a></li>
+                <li><a href="#gallery-section" class="nav-link">Galeria</a></li>
+                <li><a href="#faq-section" class="nav-link">FAQ</a></li>
+            </ul>
+            <div class="navbar-buttons" >
+                <button id="theme-toggle" aria-label="Alternar tema" class="theme-toggle">
+                    <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+                </button>                          
+                <button class="navbar-button"><a href="https://marina-crud.vercel.app" target="_blank" class="navbar-button-link">Instalar Agora </a></button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero-section" class="hero-section">
+        <div class="hero-content">
+            <span class="hero-label-tag">Texto</span>
+            
+            <h1 class="hero-title">Headline principal</h1>
+            <p class="hero-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nulla quis ultricies congue,
+                elit eros euismod magna, ac porta justo nibh ut sem. Phasellus interdum, justo et scelerisque
+            </p>
+            <a href="#features-section" class="hero-subtitle-tag-button">texto simples</a>
+        </div>
+        
+        <div class="hero-media">
+            <video 
+                src="./src/assets/videos/video-placeholder.mp4"
+                class="media-video"
+                width="100%" 
+                height="100%"
+                controls
+                muted
+                playsinline
+                preload="auto"
+                aria-label="Demonstração visual do funcionamento do SeeB"
+            ></video>
+        </div>        
+    </section>
+
+    <section id="features-section" class="features-section">
+        <div class="features-content">
+            <div class="features-text">
+                <div class="feature-label">Texto de apoio</div>
+                <h2 class="feature-title">Lorem ipsum<br>Lorem Ipsum</h2>
+                <p class="feature-description">
+                    What is this ipsum gremio sur qui ad virgo loca in dis deis increpans in deis dis virum
+                    me tempus eratium lorem dis virum me tempus deis
+                </p>
+                
+                <div class="feature-actions">
+                    <button class="feature-action-button">Começar Agora</button>
+                    <button class="feature-action-button secondary">Ver Mais</button>
+                </div>
+                
+                <div class="feature-boxes">
+                    <span class="feature-box material-symbols-outlined">lightbulb</span> 
+                    <span class="feature-box material-symbols-outlined">bolt</span>
+                    <span class="feature-box material-symbols-outlined">lock</span>
+                    <span class="feature-box material-symbols-outlined">groups</span>
+                    <span class="feature-box material-symbols-outlined">monitoring</span>
+                    <span class="feature-box material-symbols-outlined">accessibility</span>
+                </div>
+            </div>
+            <img loading="lazy" src="./src/assets/images/Sprites-hero.png" class="features-image">
+         
+        </div>
+    </section>
+
+    <section class="testimonial-section">
+    <div class="testimonial-content">
+        <div class="testimonial-text-container" id="text-spotlight-container">
+        <p class="testimonial-text-base">
+            I'm a selectively skilled product designer with strong focus on producing high quality & impactful digital experience.
+        </p>
+        <p class="testimonial-text-reveal" id="reveal-text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aliquid vero perspiciatis numquam facere, earum fugiat ipsa odio! Velit voluptatem atque quisquam consequatur accusantium est aliquam quibusdam laborum nesciunt modi?
+        </p>
+        </div>
+    </div>
+    </section>
+
+
+    <section id="gallery-section" class="gallery-section">
+            <div class="gallery-header">
+                <h2 class="gallery-title">Lorem ipsum lorem ipsum</h2>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item gallery-item-1">
+                    <video 
+                    src="./src/assets/videos/video-placeholder.mp4" 
+                    class="gallery-media"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    preload="auto"
+                    aria-label="Vídeo mostrando o funcionamento do recurso 2"
+                ></video>
+                </div>
+
+                <div class="gallery-item gallery-item-2">
+                    <img 
+                        src="https://imgs.search.brave.com/Fzwm45YpdKG9MZTtjikor6m6UYPw8qUHzUDtdHsXZXU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/d2hlcmUtdGhlLWxh/bmQtZW5kcy0zODQw/eDIxNjAtMzQ0MHgx/NDQwLXdpdGgtYW5k/LXdpdGhvdXQtdjAt/eXB6b2x5OGx5M3Rj/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OWJmNzBjOTk1/ZGFiNGZjMTM2M2M3/YmVlZTdlODc1MmFj/ODYwMTE1Nw" 
+                        alt="Demonstração visual do recurso 1 do SeeB"
+                        class="gallery-media"
+                    >
+                </div>
+            
+                <div class="gallery-item gallery-item-3">
+                    <img 
+                        src="https://imgs.search.brave.com/Fzwm45YpdKG9MZTtjikor6m6UYPw8qUHzUDtdHsXZXU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/d2hlcmUtdGhlLWxh/bmQtZW5kcy0zODQw/eDIxNjAtMzQ0MHgx/NDQwLXdpdGgtYW5k/LXdpdGhvdXQtdjAt/eXB6b2x5OGx5M3Rj/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OWJmNzBjOTk1/ZGFiNGZjMTM2M2M3/YmVlZTdlODc1MmFj/ODYwMTE1Nw" 
+                        alt="Demonstração visual do recurso 3 do SeeB"
+                        class="gallery-media"
+                    >
+                </div>
+            
+                <div class="gallery-item gallery-item-4">
+                    <img 
+                        src="https://imgs.search.brave.com/DvjB60S-cvSLj8R31jKHvvNR1FHTb1rFVwVeEYV7tr4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvaHVu/dGVyLXgtaHVudGVy/LXNwaWRlci1waGFu/dG9tLXRyb3VwZS1z/aWxob3VldHRlLWx1/bmhhcG1wMWNtdnVj/OGMuanBn" 
+                        alt="Imagem ilustrando a interface do SeeB"
+                        class="gallery-media"
+                    >
+                </div>
+            
+                <div class="gallery-item gallery-item-5">
+                    <img 
+                        src="https://imgs.search.brave.com/Fzwm45YpdKG9MZTtjikor6m6UYPw8qUHzUDtdHsXZXU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/d2hlcmUtdGhlLWxh/bmQtZW5kcy0zODQw/eDIxNjAtMzQ0MHgx/NDQwLXdpdGgtYW5k/LXdpdGhvdXQtdjAt/eXB6b2x5OGx5M3Rj/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OWJmNzBjOTk1/ZGFiNGZjMTM2M2M3/YmVlZTdlODc1MmFj/ODYwMTE1Nw" 
+                        alt="Imagem ilustrando a interface do SeeB"
+                        class="gallery-media"
+                    >
+                </div>
+
+                <div class="gallery-item gallery-item-6">
+                    <video 
+                    src="./src/assets/videos/video-placeholder.mp4" 
+                    class="gallery-media"
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline
+                    aria-label="Vídeo mostrando o funcionamento do recurso 2"
+                ></video>
+                </div>
+            
+            </div>
+            
+    </section>
+    
+    <section class="browsers-section" style="text-align: center;">
+        <h2 class="title-browser">Browsers Disponíveis</h2>
+        <div class="browser-icons" id="browser-icons">
+            <div class="browser-icon chrome">
+                <img loading="lazy" src="./src/assets/browsers/chrome.png" alt="Chrome">
+                <span class="browser-label">Chrome</span>
+            </div>
+            <div class="browser-icon safari">
+                <img loading="lazy" src="./src/assets/browsers/vivaldi.png" alt="vivaldi">
+                <span class="browser-label">Vivaldi</span>
+            </div>
+            <div class="browser-icon brave">
+                <img loading="lazy" src="./src/assets/browsers/brave.png" alt="Brave">
+                <span class="browser-label">Brave</span>
+            </div>
+            <div class="browser-icon edge">
+                <img loading="lazy" src="./src/assets/browsers/edge.png" alt="Edge">
+                <span class="browser-label">Edge</span>
+            </div>
+            <div class="browser-icon opera">
+                <img loading="lazy" src="./src/assets/browsers/opera.png" alt="Opera">
+                <span class="browser-label">Opera GX</span>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="faq-section" class="faq-section">
+        <div class="faq-container">
+            <div class="faq-header">
+                <h2 class="faq-title">FAQ</h2>
+                <div class="faq-intro">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing
+                </div>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nulla quis ultricies congue, elit eros euismod magna, ac porta justo nibh ut sem.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer-cta-section">
+        <div class="footer-cta-content">
+            <div class="footer-cta-box">
+                <div class="footer-cta-text">
+                    <h3 class="footer-cta-title">Lorem ipsum lorem</h3>
+                            <p class="text-muted">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            </p>
+                    <button class="footer-cta-button">Botão de chamada</button>
+                </div>
+                <img class="footer-cta-image" loading="lazy" src="./src/assets/images/Sprites-footer.png">
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="./src/assets/images/Logo.png" alt="logo seeb">
+                <h2>SeeB</h2>
+            </div>
+    
+            <div class="footer-links">
+                <div style="max-width: 250px;">
+                    <h3>Sobre nós</h3>
+                    <p style="color: #cccccc; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">
+                        SeeB é uma extensão de navegador focada em acessibilidade, tornando a web mais inclusiva e fácil de usar para todos.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3>Desenvolvedores</h3>
+                    <ul>
+                        <li><a href="https://www.instagram.com/rafaxsz.log/" target="_blank">Rafael Blanco</a></li>
+                        <li><a href="https://www.instagram.com/mahh_cq/" target="_blank">Massiel Condori</a></li>
+                        <li><a href="https://www.instagram.com/behzwo/" target="_blank">Belinda Camila</a></li>
+                        <li><a href="https://www.instagram.com/maria_eduarda_marquexx/" target="_blank">Maria Eduarda</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h3>Social</h3>
+                    <ul class="social-icons">
+                        <li>
+                            <a href="https://github.com/devrafcks/seeb-extension" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/seeb_openproject/" target="_blank">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="footer-bottom">
+                <p>© 2025 SeeB. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+      <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      </script>
+      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="./src/js/script.js" defer></script>
+</body>
+</html>
