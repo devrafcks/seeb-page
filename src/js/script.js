@@ -65,22 +65,26 @@ document.addEventListener("DOMContentLoaded", function () {
   
     const respostas = {
       "O que é o SeeB?":
-        "O SeeB é uma extensão gratuita que torna sites mais acessíveis para pessoas com deficiência visual, ajustando contraste, tamanho de fonte e leitura automática.",
-      "Como instalar a extensão?":
-        "Você pode instalar o SeeB diretamente pela Chrome Web Store. Basta buscar por 'SeeB - Acessibilidade Web' e clicar em 'Adicionar ao Chrome'.",
-      "É gratuito?":
-        "Sim! O SeeB é 100% gratuito e sempre será. Nosso objetivo é democratizar a acessibilidade na web.",
-      "Como o SeeB ajuda na acessibilidade?":
-        "O SeeB identifica elementos de baixa visibilidade e melhora contraste, tipografia e leitura de tela para usuários com deficiência visual parcial ou total.",
+        "O SeeB é uma extensão de acessibilidade que adapta qualquer site para melhorar leitura, contraste e foco diretamente no navegador.",
+
+      "Por que ser open source importa?":
+        "Por ser open source, todo o código do SeeB é público e auditável. Isso garante transparência total, elimina riscos de coleta oculta de dados e permite que desenvolvedores externos revisem, corrijam e aprimorem a extensão continuamente.",
+
+      "Como o Seeb faz as alterações?":
+        "O Seeb atua apenas na camada de apresentação do site. Ele injeta regras de estilo diretamente no DOM através do próprio navegador, utilizando CSS dinâmico e observadores de mutação para acompanhar mudanças na página. Nada do código original do site é modificado ou sobrescrito.",
+
+      "Como posso ajudar?":
+        "Você pode contribuir com melhorias, correções ou sugestões no repositório oficial do projeto. O link para o GitHub está disponível ao final da página.",
     };
-  
+
+
     if (chatbotButton && chatbotWindow && closeChat && messages) {
       chatbotButton.addEventListener("click", () => {
         chatbotWindow.style.display = "flex";
         chatbotButton.style.display = "none";
         addMessage(
           "bot",
-          "👋 Olá! Eu sou o assistente do SeeB. Posso te explicar como o projeto funciona ou ajudar com dúvidas rápidas. Selecione uma das opções abaixo:"
+          "👋 Olá! Sou o assistente do SeeB. Estou aqui para explicar como a extensão funciona e responder dúvidas rápidas. Escolha uma das opções abaixo para continuar:"
         );
       });
   
@@ -141,6 +145,6 @@ window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
     setTimeout(() => {
         loader.classList.add("hidden");
-    }, 2000);
+    }, 1500);
 });
 

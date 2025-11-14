@@ -51,45 +51,44 @@
             <div id="messages" aria-live="polite"></div>
 
             <div id="quick-questions">
-            <button class="quick-btn">O que é o SeeB?</button>
-            <button class="quick-btn">Como instalar a extensão?</button>
-            <button class="quick-btn">É gratuito?</button>
-            <button class="quick-btn">Como o SeeB ajuda na acessibilidade?</button>
+                <button class="quick-btn" aria-label="Pergunta: O que é o SeeB?">O que é o SeeB?</button>
+                <button class="quick-btn" aria-label="Pergunta: Por que ser open source importa?">Por que ser open source importa?</button>
+                <button class="quick-btn" aria-label="Pergunta: Como o Seeb faz as alterações?">Como o Seeb faz as alterações?</button>
+                <button class="quick-btn" aria-label="Pergunta: Como posso ajudar?">Como posso ajudar?</button>
             </div>
         </div>
     </div>
 
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Menu de navegação principal">
         <div class="navbar-content">
             <div>
 
-                <img class="navbar-logo" src="./src/assets/images/Logo.png" alt="SeeB">
+                <img class="navbar-logo" src="./src/assets/images/Logo.png" alt="Logo SeeB">
             </div>
-            <ul class="navbar-links">
-                <li><a href="#hero-section" class="nav-link">Início</a></li>
-                <li><a href="#features-section" class="nav-link">Recursos</a></li>
-                <li><a href="#gallery-section" class="nav-link">Galeria</a></li>
-                <li><a href="#faq-section" class="nav-link">FAQ</a></li>
+            <ul class="navbar-links" role="menubar">
+                <li role="none"><a href="#hero-section" class="nav-link" role="menuitem">Início</a></li>
+                <li role="none"><a href="#features-section" class="nav-link" role="menuitem">Recursos</a></li>
+                <li role="none"><a href="#gallery-section" class="nav-link" role="menuitem">Galeria</a></li>
+                <li role="none"><a href="#faq-section" class="nav-link" role="menuitem">FAQ</a></li>
             </ul>
             <div class="navbar-buttons" >
-                <button id="theme-toggle" aria-label="Alternar tema" class="theme-toggle">
-                    <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+                <button id="theme-toggle" aria-label="Alternar tema escuro/claro" class="theme-toggle">
+                    <span class="material-symbols-outlined" id="theme-icon" aria-hidden="true">dark_mode</span>
                 </button>                          
-                <button class="navbar-button"><a href="https://marina-crud.vercel.app" target="_blank" class="navbar-button-link">Instalar Agora </a></button>
+                <button class="navbar-button"><a href="https://github.com/devrafcks/seeb-extension" target="_blank" rel="noopener noreferrer" class="navbar-button-link" aria-label="Instalar SeeB agora (abre em nova aba)">Instalar Agora</a></button>
             </div>
         </div>
     </nav>
 
-    <section id="hero-section" class="hero-section">
-        <div class="hero-content">
-            <span class="hero-label-tag">Texto</span>
+    <section id="hero-section" class="hero-section" role="main" aria-label="Seção principal: A web mais acessível começa aqui">
+        <div class="hero-content" role="region" aria-labelledby="hero-title">
             
-            <h1 class="hero-title">Headline principal</h1>
+            <h1 id="hero-title" class="hero-title">A web mais acessível começa aqui</h1>
             <p class="hero-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nulla quis ultricies congue,
-                elit eros euismod magna, ac porta justo nibh ut sem. Phasellus interdum, justo et scelerisque
+                Cada página que você acessa pode ficar mais confortável de ler. O SeeB oferece um painel de acessibilidade simples e direto, para você ajustar a experiência do seu jeito.
             </p>
-            <a href="#features-section" class="hero-subtitle-tag-button">texto simples</a>
+
+            <a href="#features-section" class="hero-subtitle-tag-button">Descubra como funciona</a>
         </div>
         
         <div class="hero-media">
@@ -102,60 +101,71 @@
                 muted
                 playsinline
                 preload="auto"
-                aria-label="Demonstração visual do funcionamento do SeeB"
+                aria-label="Vídeo: demonstração visual do funcionamento do SeeB"
             ></video>
         </div>        
     </section>
 
-    <section id="features-section" class="features-section">
-        <div class="features-content">
+    <section id="features-section" class="features-section" aria-labelledby="features-title">
+        <div class="features-content" role="region" aria-label="Recursos disponíveis">
             <div class="features-text">
-                <div class="feature-label">Texto de apoio</div>
-                <h2 class="feature-title">Lorem ipsum<br>Lorem Ipsum</h2>
-                <p class="feature-description">
-                    What is this ipsum gremio sur qui ad virgo loca in dis deis increpans in deis dis virum
-                    me tempus eratium lorem dis virum me tempus deis
-                </p>
-                
-                <div class="feature-actions">
-                    <button class="feature-action-button">Começar Agora</button>
-                    <button class="feature-action-button secondary">Ver Mais</button>
-                </div>
-                
-                <div class="feature-boxes">
-                    <span class="feature-box material-symbols-outlined">lightbulb</span> 
-                    <span class="feature-box material-symbols-outlined">bolt</span>
-                    <span class="feature-box material-symbols-outlined">lock</span>
-                    <span class="feature-box material-symbols-outlined">groups</span>
-                    <span class="feature-box material-symbols-outlined">monitoring</span>
-                    <span class="feature-box material-symbols-outlined">accessibility</span>
-                </div>
-            </div>
-            <img loading="lazy" src="./src/assets/images/Sprites-hero.png" class="features-image">
-         
-        </div>
-    </section>
 
-    <section class="testimonial-section">
-    <div class="testimonial-content">
+            <div class="feature-label">Acessibilidade sem complicação</div>
+
+            <h2 id="features-title" class="feature-title">Recursos que fazem diferença no seu dia a dia</h2>
+
+            <p class="feature-description">
+                O SeeB adapta qualquer página para uma leitura mais clara e confortável.
+                Ele identifica problemas de contraste, melhora fontes, reduz distrações e ajusta
+                detalhes que passam despercebidos, enquanto você apenas navega.
+            </p>
+
+        <div class="feature-actions links" role="group" aria-label="Ações principais">
+            <a href="#" class="feature-action-button">
+                Começar Agora
+            </a>
+
+            <a href="#gallery-section" class="feature-action-button secondary">
+                Ver Galeria
+            </a>
+        </div>
+
+
+            <div class="feature-boxes" aria-hidden="true">
+                <span class="feature-box material-symbols-outlined" aria-hidden="true">tune</span>
+                <span class="feature-box material-symbols-outlined" aria-hidden="true">visibility</span>
+                <span class="feature-box material-symbols-outlined" aria-hidden="true">contrast</span>
+                <span class="feature-box material-symbols-outlined" aria-hidden="true">palette</span>
+                <span class="feature-box material-symbols-outlined" aria-hidden="true">visibility_off</span>
+                <span class="feature-box material-symbols-outlined" aria-hidden="true">security</span>
+            </div>
+
+            </div>
+
+            <img loading="lazy" src="./src/assets/images/Sprites-hero.png" class="features-image" alt="Ilustração mostrando os principais recursos do SeeB: personalização, visibilidade e segurança">
+        </div>
+        </section>
+
+    <section class="testimonial-section" aria-labelledby="testimonial-title">
+    <div class="testimonial-content" role="region" aria-label="Depoimentos sobre o SeeB">
         <div class="testimonial-text-container" id="text-spotlight-container">
-        <p class="testimonial-text-base">
-            I'm a selectively skilled product designer with strong focus on producing high quality & impactful digital experience.
+        <p id="testimonial-title" class="testimonial-text-base">
+            Feito para quem busca uma experiência online mais fluida, clara e agradável em qualquer momento do dia.
         </p>
         <p class="testimonial-text-reveal" id="reveal-text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aliquid vero perspiciatis numquam facere, earum fugiat ipsa odio! Velit voluptatem atque quisquam consequatur accusantium est aliquam quibusdam laborum nesciunt modi?
+            O SeeB nasce da ideia de que tecnologia deve se moldar às pessoas não o contrário. Cada detalhe foi pensado para simplificar, aproximar e tornar o digital um espaço mais humano.
         </p>
         </div>
     </div>
     </section>
 
 
-    <section id="gallery-section" class="gallery-section">
+    <section id="gallery-section" class="gallery-section" aria-labelledby="gallery-title">
             <div class="gallery-header">
-                <h2 class="gallery-title">Lorem ipsum lorem ipsum</h2>
+                <h2 id="gallery-title" class="gallery-title">Exemplos visuais do SeeB em ação</h2>
             </div>
             
-            <div class="gallery-grid">
+            <div class="gallery-grid" role="region" aria-label="Galeria de imagens e vídeos">
                 <div class="gallery-item gallery-item-1">
                     <video 
                     src="./src/assets/videos/video-placeholder.mp4" 
@@ -165,14 +175,14 @@
                     muted
                     playsinline
                     preload="auto"
-                    aria-label="Vídeo mostrando o funcionamento do recurso 2"
+                    aria-label="Vídeo: demonstração do recurso de personalização"
                 ></video>
                 </div>
 
                 <div class="gallery-item gallery-item-2">
                     <img 
                         src="https://imgs.search.brave.com/Fzwm45YpdKG9MZTtjikor6m6UYPw8qUHzUDtdHsXZXU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/d2hlcmUtdGhlLWxh/bmQtZW5kcy0zODQw/eDIxNjAtMzQ0MHgx/NDQwLXdpdGgtYW5k/LXdpdGhvdXQtdjAt/eXB6b2x5OGx5M3Rj/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OWJmNzBjOTk1/ZGFiNGZjMTM2M2M3/YmVlZTdlODc1MmFj/ODYwMTE1Nw" 
-                        alt="Demonstração visual do recurso 1 do SeeB"
+                        alt="Exemplo de página com aumento de contraste aplicado pelo SeeB"
                         class="gallery-media"
                     >
                 </div>
@@ -180,7 +190,7 @@
                 <div class="gallery-item gallery-item-3">
                     <img 
                         src="https://imgs.search.brave.com/Fzwm45YpdKG9MZTtjikor6m6UYPw8qUHzUDtdHsXZXU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/d2hlcmUtdGhlLWxh/bmQtZW5kcy0zODQw/eDIxNjAtMzQ0MHgx/NDQwLXdpdGgtYW5k/LXdpdGhvdXQtdjAt/eXB6b2x5OGx5M3Rj/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OWJmNzBjOTk1/ZGFiNGZjMTM2M2M3/YmVlZTdlODc1MmFj/ODYwMTE1Nw" 
-                        alt="Demonstração visual do recurso 3 do SeeB"
+                        alt="Exemplo de filtro de daltonismo aplicado pelo SeeB"
                         class="gallery-media"
                     >
                 </div>
@@ -188,7 +198,7 @@
                 <div class="gallery-item gallery-item-4">
                     <img 
                         src="https://imgs.search.brave.com/DvjB60S-cvSLj8R31jKHvvNR1FHTb1rFVwVeEYV7tr4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvaHVu/dGVyLXgtaHVudGVy/LXNwaWRlci1waGFu/dG9tLXRyb3VwZS1z/aWxob3VldHRlLWx1/bmhhcG1wMWNtdnVj/OGMuanBn" 
-                        alt="Imagem ilustrando a interface do SeeB"
+                        alt="Interface do painel de controle do SeeB com opções de acessibilidade"
                         class="gallery-media"
                     >
                 </div>
@@ -196,7 +206,7 @@
                 <div class="gallery-item gallery-item-5">
                     <img 
                         src="https://imgs.search.brave.com/Fzwm45YpdKG9MZTtjikor6m6UYPw8qUHzUDtdHsXZXU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/d2hlcmUtdGhlLWxh/bmQtZW5kcy0zODQw/eDIxNjAtMzQ0MHgx/NDQwLXdpdGgtYW5k/LXdpdGhvdXQtdjAt/eXB6b2x5OGx5M3Rj/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OWJmNzBjOTk1/ZGFiNGZjMTM2M2M3/YmVlZTdlODc1MmFj/ODYwMTE1Nw" 
-                        alt="Imagem ilustrando a interface do SeeB"
+                        alt="Demonstração de modo de foco para auxiliar concentração"
                         class="gallery-media"
                     >
                 </div>
@@ -209,7 +219,7 @@
                     muted 
                     loop 
                     playsinline
-                    aria-label="Vídeo mostrando o funcionamento do recurso 2"
+                    aria-label="Vídeo: demonstração do modo escuro e modo de leitura"
                 ></video>
                 </div>
             
@@ -217,134 +227,134 @@
             
     </section>
     
-    <section class="browsers-section" style="text-align: center;">
-        <h2 class="title-browser">Browsers Disponíveis</h2>
-        <div class="browser-icons" id="browser-icons">
-            <div class="browser-icon chrome">
-                <img loading="lazy" src="./src/assets/browsers/chrome.png" alt="Chrome">
+    <section class="browsers-section" aria-labelledby="browsers-title" style="text-align: center;">
+        <h2 id="browsers-title" class="title-browser">Navegadores Disponíveis</h2>
+        <div class="browser-icons" id="browser-icons" role="region" aria-label="Lista de navegadores compatíveis">
+            <div class="browser-icon chrome" role="img" aria-label="Chrome disponível">
+                <img loading="lazy" src="./src/assets/browsers/chrome.png" alt="Ícone do navegador Chrome">
                 <span class="browser-label">Chrome</span>
             </div>
-            <div class="browser-icon safari">
-                <img loading="lazy" src="./src/assets/browsers/vivaldi.png" alt="vivaldi">
+            <div class="browser-icon safari" role="img" aria-label="Vivaldi disponível">
+                <img loading="lazy" src="./src/assets/browsers/vivaldi.png" alt="Ícone do navegador Vivaldi">
                 <span class="browser-label">Vivaldi</span>
             </div>
-            <div class="browser-icon brave">
-                <img loading="lazy" src="./src/assets/browsers/brave.png" alt="Brave">
+            <div class="browser-icon brave" role="img" aria-label="Brave disponível">
+                <img loading="lazy" src="./src/assets/browsers/brave.png" alt="Ícone do navegador Brave">
                 <span class="browser-label">Brave</span>
             </div>
-            <div class="browser-icon edge">
-                <img loading="lazy" src="./src/assets/browsers/edge.png" alt="Edge">
+            <div class="browser-icon edge" role="img" aria-label="Edge disponível">
+                <img loading="lazy" src="./src/assets/browsers/edge.png" alt="Ícone do navegador Edge">
                 <span class="browser-label">Edge</span>
             </div>
-            <div class="browser-icon opera">
-                <img loading="lazy" src="./src/assets/browsers/opera.png" alt="Opera">
+            <div class="browser-icon opera" role="img" aria-label="Opera GX disponível">
+                <img loading="lazy" src="./src/assets/browsers/opera.png" alt="Ícone do navegador Opera GX">
                 <span class="browser-label">Opera GX</span>
             </div>
         </div>
     </section>
     
 
-    <section id="faq-section" class="faq-section">
+    <section id="faq-section" class="faq-section" aria-label="Seção de Perguntas Frequentes (FAQ)">
         <div class="faq-container">
             <div class="faq-header">
                 <h2 class="faq-title">FAQ</h2>
                 <div class="faq-intro">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing
+                    Respostas diretas para as principais dúvidas sobre o SeeB
                 </div>
             </div>
-            <div class="faq-list">
+            <div class="faq-list" role="region" aria-label="Lista de perguntas e respostas">
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                        <span class="faq-icon">+</span>
+                    <button class="faq-question" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+                        <span>Como instalo a extensão Seeb no meu navegador?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nulla quis ultricies congue, elit eros euismod magna, ac porta justo nibh ut sem.
+                    <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
+                        Basta acessar a loja de extensões do seu navegador (como Chrome Web Store), procurar por Seeb e clicar em "Adicionar ao navegador". Siga as instruções na tela para concluir a instalação.
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                        <span class="faq-icon">+</span>
+                    <button class="faq-question" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+                        <span>A extensão funciona em todos os sites?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
-                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                    <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
+                        Ela funciona na maioria, especialmente nos mais simples, onde a estrutura do código é mais padronizada. Em páginas complexas ou que usam tecnologias mais fechadas, alguns recursos podem não responder como esperado.
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                        <span class="faq-icon">+</span>
+                    <button class="faq-question" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+                        <span>A extensão é gratuita?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
-                        Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+                    <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
+                        Sim, a extensão é gratuita e também é open source. Você pode baixá-la e usá-la sem nenhum custo.
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                        <span class="faq-icon">+</span>
+                    <button class="faq-question" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+                        <span>Quais tipos de acessibilidade a extensão oferece?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
-                        Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
+                    <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4">
+                        A extensão oferece recursos como aumento de fonte, ajuste de espaçamento e largura do texto, filtros para vários tipos de daltonismo, modo de foco para auxiliar pessoas com TDAH e opções de contraste para melhorar a leitura.
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                        <span class="faq-icon">+</span>
+                    <button class="faq-question" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+                        <span>Meus dados ficam seguros ao usar a extensão?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
-                        Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
+                    <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5">
+                        Sim. A extensão não coleta, armazena ou envia informações pessoais. Todo o processamento acontece no próprio navegador, garantindo que seus dados permaneçam sob seu controle o tempo todo.
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                        <span class="faq-icon">+</span>
+                    <button class="faq-question" id="faq-q6" aria-expanded="false" aria-controls="faq-a6">
+                        <span>Como posso ativar e desativar os recursos de acessibilidade?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
-                        Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                    <div class="faq-answer" id="faq-a6" role="region" aria-labelledby="faq-q6">
+                        Você pode ativar ou desativar os recursos diretamente pelo painel da extensão. Basta abrir o menu, escolher a função desejada e alternar o controle correspondente. As mudanças são aplicadas na hora e podem ser revertidas quando quiser.
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                        <span class="faq-icon">+</span>
+                    <button class="faq-question" id="faq-q7" aria-expanded="false" aria-controls="faq-a7">
+                        <span>Quais são os requisitos para a usabilidade da extensão?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
-                        Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                    <div class="faq-answer" id="faq-a7" role="region" aria-labelledby="faq-q7">
+                        A extensão funciona em qualquer navegador compatível com o Manifest V3 do Chrome, como Chrome, Edge e outros baseados em Chromium. Se o navegador suporta esse padrão, a extensão roda normalmente.
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="footer-cta-section">
-        <div class="footer-cta-content">
+    <section class="footer-cta-section" aria-labelledby="footer-cta-title">
+        <div class="footer-cta-content" role="region" aria-label="Chamada para ação final">
             <div class="footer-cta-box">
                 <div class="footer-cta-text">
-                    <h3 class="footer-cta-title">Lorem ipsum lorem</h3>
+                    <h3 id="footer-cta-title" class="footer-cta-title">Pronto para começar?</h3>
                             <p class="text-muted">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                Ative o painel do SeeB e personalize sua leitura em segundos. 
                             </p>
-                    <button class="footer-cta-button">Botão de chamada</button>
+                    <button class="footer-cta-button" aria-label="Instalar SeeB agora">Instalar Agora</button>
                 </div>
-                <img class="footer-cta-image" loading="lazy" src="./src/assets/images/Sprites-footer.png">
+                <img class="footer-cta-image" loading="lazy" src="./src/assets/images/Sprites-footer.png" alt="Ilustração convite para instalar SeeB">
             </div>
         </div>
     </section>
     
-    <footer class="footer">
-        <div class="footer-container">
+    <footer class="footer" role="contentinfo" aria-label="Rodapé do site">
+        <div class="footer-container" role="region" aria-label="Informações e links do rodapé">
             <div class="footer-brand">
-                <img src="./src/assets/images/Logo.png" alt="logo seeb">
+                <img src="./src/assets/images/Logo.png" alt="Logo SeeB">
                 <h2>SeeB</h2>
             </div>
     
@@ -359,10 +369,10 @@
                 <div>
                     <h3>Desenvolvedores</h3>
                     <ul>
-                        <li><a href="https://www.instagram.com/rafaxsz.log/" target="_blank">Rafael Blanco</a></li>
-                        <li><a href="https://www.instagram.com/mahh_cq/" target="_blank">Massiel Condori</a></li>
-                        <li><a href="https://www.instagram.com/behzwo/" target="_blank">Belinda Camila</a></li>
-                        <li><a href="https://www.instagram.com/maria_eduarda_marquexx/" target="_blank">Maria Eduarda</a></li>
+                        <li><a href="https://www.instagram.com/rafaxsz.log/" target="_blank" rel="noopener noreferrer" aria-label="Rafael Blanco no Instagram">Rafael Blanco</a></li>
+                        <li><a href="https://www.instagram.com/mahh_cq/" target="_blank" rel="noopener noreferrer" aria-label="Massiel Condori no Instagram">Massiel Condori</a></li>
+                        <li><a href="https://www.instagram.com/behzwo/" target="_blank" rel="noopener noreferrer" aria-label="Belinda Camila no Instagram">Belinda Camila</a></li>
+                        <li><a href="https://www.instagram.com/maria_eduarda_marquexx/" target="_blank" rel="noopener noreferrer" aria-label="Maria Eduarda no Instagram">Maria Eduarda</a></li>
                     </ul>
                 </div>
     
@@ -370,13 +380,13 @@
                     <h3>Social</h3>
                     <ul class="social-icons">
                         <li>
-                            <a href="https://github.com/devrafcks/seeb-extension" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
+                            <a href="https://github.com/devrafcks/seeb-extension" target="_blank" rel="noopener noreferrer" aria-label="Visite nosso repositório no GitHub">
+                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/seeb_openproject/" target="_blank">
-                                <i class="fab fa-instagram"></i> Instagram
+                            <a href="https://www.instagram.com/seeb_openproject/" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram">
+                                <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
                             </a>
                         </li>
                     </ul>
