@@ -40,7 +40,7 @@
 
 .widget-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: clamp(1.5rem, 3vw, 2.5rem);
     margin-bottom: clamp(2rem, 4vw, 3rem);
 }
@@ -217,4 +217,100 @@ html[dark] .widget-card:hover {
     background: var(--color-primary-dark);
     transform: translateY(-2px);
     box-shadow: 0 clamp(4px, 0.5vw, 8px) clamp(12px, 1vw, 20px) rgba(99, 102, 241, 0.2);
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .widget-content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .widget-card {
+        padding: clamp(1.25rem, 2.5vw, 2rem);
+    }
+
+    .widget-code {
+        padding: clamp(1.25rem, 2vw, 1.5rem);
+        padding-right: clamp(4rem, 6vw, 5rem);
+        font-size: 0.8rem;
+    }
+
+    .widget-code-copy {
+        padding: clamp(0.4rem, 1vw, 0.6rem) clamp(0.6rem, 1.2vw, 1rem);
+        font-size: 0.8rem;
+    }
+
+    .copy-icon {
+        font-size: 1rem;
+    }
+
+    .widget-benefits {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: clamp(0.75rem, 1.5vw, 1rem);
+    }
+
+    .widget-benefit {
+        gap: clamp(0.5rem, 1vw, 0.75rem);
+    }
+
+    .widget-benefit-title {
+        font-size: clamp(0.85rem, 1.8vw, 1rem);
+    }
+
+    .widget-benefit-description {
+        font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .widget-section {
+        padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 3vw, 1.5rem);
+    }
+
+    .widget-content {
+        grid-template-columns: 1fr;
+    }
+
+    .widget-card {
+        padding: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .widget-label {
+        font-size: 0.8rem;
+    }
+
+    .widget-title {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+
+    .widget-description {
+        font-size: clamp(0.875rem, 1.8vw, 1rem);
+    }
+
+    .widget-card-icon {
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+    }
+
+    .widget-card-title {
+        font-size: clamp(1rem, 1.8vw, 1.125rem);
+    }
+
+    .widget-card-description {
+        font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+    }
+
+    .widget-code {
+        padding: 1rem;
+        padding-right: clamp(3.5rem, 5vw, 4rem);
+        font-size: 0.75rem;
+    }
+
+    .widget-benefits {
+        grid-template-columns: 1fr;
+    }
+
+    .widget-cta-button {
+        padding: clamp(0.6rem, 1.2vw, 0.8rem) clamp(1.2rem, 2.5vw, 2rem);
+        font-size: 0.9rem;
+    }
 }
