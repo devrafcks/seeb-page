@@ -148,3 +148,40 @@ window.addEventListener("load", () => {
     }, 1500);
 });
 
+// Widget Code Copy
+document.addEventListener("DOMContentLoaded", function () {
+    const copyBtn = document.getElementById("widget-copy-btn");
+    const codeBlock = document.getElementById("widget-code-block");
+
+    if (copyBtn && codeBlock) {
+        copyBtn.addEventListener("click", function () {
+            const codeText = codeBlock.innerText;
+            
+            navigator.clipboard.writeText(codeText).then(() => {
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<span class="material-symbols-outlined copy-icon">check</span><span class="copy-text">Copiado!</span>';
+                copyBtn.style.background = "var(--color-accent)";
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                }, 2000);
+            }).catch(() => {
+                // Fallback para navegadores mais antigos
+                const textArea = document.createElement("textarea");
+                textArea.value = codeText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textArea);
+                
+                copyBtn.innerHTML = '<span class="material-symbols-outlined copy-icon">check</span><span class="copy-text">Copiado!</span>';
+                copyBtn.style.background = "var(--color-accent)";
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<span class="material-symbols-outlined copy-icon">content_copy</span><span class="copy-text">Copiar</span>';
+                }, 2000);
+            });
+        });
+    }
+});
+
