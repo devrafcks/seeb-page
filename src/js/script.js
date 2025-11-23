@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // FAQ 
+    
     const faqItems = document.querySelectorAll(".faq-item");
   
     faqItems.forEach((item) => {
@@ -15,13 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   
-    // Scroll 
+    
     document.querySelectorAll('a.nav-link[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute("href"));
         if (target) {
-          // Usar GSAP se disponível, senão usar scroll nativo
+          
           if (typeof gsap !== 'undefined' && gsap.to) {
             gsap.to(window, {
               duration: 1,
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   
-    // Efeito de Texto 
+    
     const revealText = document.getElementById("reveal-text");
     const container = document.getElementById("text-spotlight-container");
     let size = 0;
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
   
-    // Chatbot
+    
     const chatbotButton = document.getElementById("chatbot-button");
     const chatbotWindow = document.getElementById("chatbot-window");
     const closeChat = document.getElementById("close-chat");
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   
-    // Tema
+    
     const html = document.documentElement;
     const toggleBtn = document.getElementById("theme-toggle");
     const icon = document.getElementById("theme-icon");
@@ -157,7 +157,7 @@ window.addEventListener("load", () => {
     }, 1200);
 });
 
-// Widget Code Copy
+ 
 document.addEventListener("DOMContentLoaded", function () {
     const copyBtn = document.getElementById("widget-copy-btn");
     const codeBlock = document.getElementById("widget-code-block");

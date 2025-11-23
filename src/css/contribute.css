@@ -13,6 +13,7 @@
     margin-bottom: clamp(3rem, 5vw, 4rem);
 }
 
+
 .contribute-title {
     font-size: clamp(2rem, 4.5vw, var(--font-size-h2));
     font-weight: 700;
@@ -53,6 +54,18 @@
 .contribute-icon {
     font-size: clamp(2rem, 4vw, 3rem);
     color: var(--color-accent);
+    height: clamp(150px, 15vw, 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.contribute-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-width: 200px;
 }
 
 .contribute-card-title {

@@ -18,9 +18,9 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="./src/css/global.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
     </head>
     
 
@@ -63,9 +63,9 @@
             <ul class="navbar-links" role="menubar">
                 <li role="none"><a href="#hero-section" class="nav-link" role="menuitem">Início</a></li>
                 <li role="none"><a href="#features-section" class="nav-link" role="menuitem">Recursos</a></li>
-                <li role="none"><a href="#gallery-section" class="nav-link" role="menuitem">Galeria</a></li>
-                <li role="none"><a href="#contribute-section" class="nav-link" role="menuitem">Contribua</a></li>
                 <li role="none"><a href="#widget-section" class="nav-link" role="menuitem">Widget</a></li>
+                <li role="none"><a href="#contribute-section" class="nav-link" role="menuitem">Contribua</a></li>
+                <li role="none"><a href="#gallery-section" class="nav-link" role="menuitem">Galeria</a></li>
                 <li role="none"><a href="#faq-section" class="nav-link" role="menuitem">FAQ</a></li>
             </ul>
             <div class="navbar-buttons" >
@@ -141,185 +141,8 @@
 
             <img loading="lazy" src="./src/assets/images/Sprites-hero.png" class="features-image" alt="Ilustração mostrando os principais recursos do SeeB: personalização, visibilidade e segurança">
         </div>
-        </section>
 
-    <section class="testimonial-section" aria-labelledby="testimonial-title">
-    <div class="testimonial-content" role="region" aria-label="Depoimentos sobre o SeeB">
-        <div class="testimonial-text-container" id="text-spotlight-container">
-        <p id="testimonial-title" class="testimonial-text-base">
-            Feito para quem busca uma experiência online mais fluida, clara e agradável em qualquer momento do dia.
-        </p>
-        <p class="testimonial-text-reveal" id="reveal-text">
-            O SeeB nasce da ideia de que tecnologia deve se moldar às pessoas não o contrário. Cada detalhe foi pensado para simplificar, aproximar e tornar o digital um espaço mais humano.
-        </p>
-        </div>
-    </div>
-    </section>
-
-
-    <section id="gallery-section" class="gallery-section" aria-labelledby="gallery-title">
-            <div class="gallery-header">
-                <h2 id="gallery-title" class="gallery-title">Exemplos visuais do SeeB em ação</h2>
-            </div>
-            
-            <div class="gallery-grid" role="region" aria-label="Galeria de imagens e vídeos">
-                <div class="gallery-item gallery-item-1">
-                    <video 
-                    src="./src/assets/videos/video-placeholder.mp4" 
-                    class="gallery-media"
-                    autoplay
-                    loop
-                    muted
-                    playsinline
-                    preload="auto"
-                    aria-label="Vídeo: demonstração do recurso de personalização"
-                ></video>
-                </div>
-
-                <div class="gallery-item gallery-item-2">
-                    <img 
-                        src="https://imgs.search.brave.com/Fzwm45YpdKG9MZTtjikor6m6UYPw8qUHzUDtdHsXZXU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/d2hlcmUtdGhlLWxh/bmQtZW5kcy0zODQw/eDIxNjAtMzQ0MHgx/NDQwLXdpdGgtYW5k/LXdpdGhvdXQtdjAt/eXB6b2x5OGx5M3Rj/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OWJmNzBjOTk1/ZGFiNGZjMTM2M2M3/YmVlZTdlODc1MmFj/ODYwMTE1Nw" 
-                        alt="Exemplo de página com aumento de contraste aplicado pelo SeeB"
-                        class="gallery-media"
-                    >
-                </div>
-            
-                <div class="gallery-item gallery-item-3">
-                    <img 
-                        src="https://imgs.search.brave.com/Fzwm45YpdKG9MZTtjikor6m6UYPw8qUHzUDtdHsXZXU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/d2hlcmUtdGhlLWxh/bmQtZW5kcy0zODQw/eDIxNjAtMzQ0MHgx/NDQwLXdpdGgtYW5k/LXdpdGhvdXQtdjAt/eXB6b2x5OGx5M3Rj/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OWJmNzBjOTk1/ZGFiNGZjMTM2M2M3/YmVlZTdlODc1MmFj/ODYwMTE1Nw" 
-                        alt="Exemplo de filtro de daltonismo aplicado pelo SeeB"
-                        class="gallery-media"
-                    >
-                </div>
-            
-                <div class="gallery-item gallery-item-4">
-                    <img 
-                        src="https://imgs.search.brave.com/DvjB60S-cvSLj8R31jKHvvNR1FHTb1rFVwVeEYV7tr4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvaHVu/dGVyLXgtaHVudGVy/LXNwaWRlci1waGFu/dG9tLXRyb3VwZS1z/aWxob3VldHRlLWx1/bmhhcG1wMWNtdnVj/OGMuanBn" 
-                        alt="Interface do painel de controle do SeeB com opções de acessibilidade"
-                        class="gallery-media"
-                    >
-                </div>
-            
-                <div class="gallery-item gallery-item-5">
-                    <img 
-                        src="https://imgs.search.brave.com/Fzwm45YpdKG9MZTtjikor6m6UYPw8qUHzUDtdHsXZXU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/d2hlcmUtdGhlLWxh/bmQtZW5kcy0zODQw/eDIxNjAtMzQ0MHgx/NDQwLXdpdGgtYW5k/LXdpdGhvdXQtdjAt/eXB6b2x5OGx5M3Rj/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OWJmNzBjOTk1/ZGFiNGZjMTM2M2M3/YmVlZTdlODc1MmFj/ODYwMTE1Nw" 
-                        alt="Demonstração de modo de foco para auxiliar concentração"
-                        class="gallery-media"
-                    >
-                </div>
-
-                <div class="gallery-item gallery-item-6">
-                    <video 
-                    src="./src/assets/videos/video-placeholder.mp4" 
-                    class="gallery-media"
-                    autoplay 
-                    muted 
-                    loop 
-                    playsinline
-                    aria-label="Vídeo: demonstração do modo escuro e modo de leitura"
-                ></video>
-                </div>
-            
-            </div>
-            
-    </section>
-    
-    <section class="browsers-section" aria-labelledby="browsers-title" style="text-align: center;">
-        <h2 id="browsers-title" class="title-browser">Navegadores Disponíveis</h2>
-        <div class="browser-icons" id="browser-icons" role="region" aria-label="Lista de navegadores compatíveis">
-            <div class="browser-icon chrome" role="img" aria-label="Chrome disponível">
-                <img loading="lazy" src="./src/assets/browsers/chrome.png" alt="Ícone do navegador Chrome">
-                <span class="browser-label">Chrome</span>
-            </div>
-            <div class="browser-icon safari" role="img" aria-label="Vivaldi disponível">
-                <img loading="lazy" src="./src/assets/browsers/vivaldi.png" alt="Ícone do navegador Vivaldi">
-                <span class="browser-label">Vivaldi</span>
-            </div>
-            <div class="browser-icon brave" role="img" aria-label="Brave disponível">
-                <img loading="lazy" src="./src/assets/browsers/brave.png" alt="Ícone do navegador Brave">
-                <span class="browser-label">Brave</span>
-            </div>
-            <div class="browser-icon edge" role="img" aria-label="Edge disponível">
-                <img loading="lazy" src="./src/assets/browsers/edge.png" alt="Ícone do navegador Edge">
-                <span class="browser-label">Edge</span>
-            </div>
-            <div class="browser-icon opera" role="img" aria-label="Opera GX disponível">
-                <img loading="lazy" src="./src/assets/browsers/opera.png" alt="Ícone do navegador Opera GX">
-                <span class="browser-label">Opera GX</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="contribute-section" class="contribute-section" aria-label="Seção contribuir">
-        <div class="contribute-container">
-            <div class="contribute-header">
-                <h2 id="contribute-title" class="contribute-title">Quer Contribuir?</h2>
-                <p class="contribute-description">
-                    SeeB é um projeto colaborativo. Toda contribuição, grande ou pequena, ajuda a tornar a web mais acessível.
-                </p>
-            </div>
-
-            <div class="contribute-content" role="region" aria-label="Maneiras de contribuir com o SeeB">
-                <div class="contribute-card">
-                    <div class="contribute-icon">
-                        <span class="material-symbols-outlined">code</span>
-                    </div>
-                    <h3 class="contribute-card-title">Desenvolver</h3>
-                    <p class="contribute-card-description">
-                        Implemente novas funcionalidades, corrija bugs ou otimize o código. Crie um Pull Request e ajude a tornar a web mais acessível.
-                    </p>
-                    <a href="https://github.com/devrafcks/seeb-extension/pulls" target="_blank" rel="noopener noreferrer" class="contribute-link" aria-label="Criar Pull Request no GitHub">
-                        Criar Pull Request
-                        <span class="material-symbols-outlined">arrow_outward</span>
-                    </a>
-                </div>
-
-                <div class="contribute-card">
-                    <div class="contribute-icon">
-                        <span class="material-symbols-outlined">bug_report</span>
-                    </div>
-                    <h3 class="contribute-card-title">Relatar Problemas</h3>
-                    <p class="contribute-card-description">
-                        Encontrou um bug ou tem uma sugestão? Abra uma issue descrevendo detalhadamente o problema encontrado.
-                    </p>
-                    <a href="https://github.com/devrafcks/seeb-extension/issues" target="_blank" rel="noopener noreferrer" class="contribute-link" aria-label="Abrir issue no GitHub">
-                        Abrir Issue
-                        <span class="material-symbols-outlined">arrow_outward</span>
-                    </a>
-                </div>
-
-                <div class="contribute-card">
-                    <div class="contribute-icon">
-                        <span class="material-symbols-outlined">translate</span>
-                    </div>
-                    <h3 class="contribute-card-title">Outras Contribuições</h3>
-                    <p class="contribute-card-description">
-                        Leia nossas diretrizes de contribuição, compartilhe ideias, traduza ou ajude na documentação do projeto.
-                    </p>
-                    <a href="https://github.com/devrafcks/seeb-extension/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="contribute-link" aria-label="Ler diretrizes de contribuição">
-                        Ver Diretrizes
-                        <span class="material-symbols-outlined">arrow_outward</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="contribute-cta">
-                <a href="https://github.com/devrafcks/seeb-extension" target="_blank" rel="noopener noreferrer" class="contribute-button" aria-label="Visitar repositório do SeeB no GitHub (abre em nova aba)">
-                    <span class="material-symbols-outlined">code</span>
-                    Começar a Contribuir
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="stats-section" class="stats-section" aria-label="Seção de estatísticas">
         <div class="stats-container">
-            <div class="stats-header">
-                <h2 id="stats-title" class="stats-title">Números que Importam</h2>
-                <p class="stats-description">
-                    SeeB está crescendo e impactando a acessibilidade web de verdade.
-                </p>
-            </div>
 
             <div class="stats-grid" role="region" aria-label="Estatísticas de acessibilidade web">
                 <div class="stat-card">
@@ -347,8 +170,8 @@
                 </div>
             </div>
         </div>
-    </section>
-
+        </section>
+    
     <section id="widget-section" class="widget-section" aria-label="Seção sobre o widget SeeB">
         <div class="widget-container">
             <div class="widget-header">
@@ -456,6 +279,184 @@
             </div>
         </div>
     </section>
+
+       <section class="testimonial-section" aria-labelledby="testimonial-title">
+    <div class="testimonial-content" role="region" aria-label="Depoimentos sobre o SeeB">
+        <div class="testimonial-text-container" id="text-spotlight-container">
+        <p id="testimonial-title" class="testimonial-text-base">
+            Feito para quem busca uma experiência online mais fluida, clara e agradável em qualquer momento do dia.
+        </p>
+        <p class="testimonial-text-reveal" id="reveal-text">
+            O SeeB nasce da ideia de que tecnologia deve se moldar às pessoas não o contrário. Cada detalhe foi pensado para simplificar, aproximar e tornar o digital um espaço mais humano.
+        </p>
+        </div>
+    </div>
+    </section>
+
+    <section id="contribute-section" class="contribute-section" aria-label="Seção contribuir">
+        <div class="contribute-container">
+                <div class="contribute-header">
+                    <div class="contribute-label stats-label">Faça parte</div>
+                    <h2 id="contribute-title" class="contribute-title">Quer Contribuir?</h2>
+                    <p class="contribute-subtitle contribute-description ">
+                        SeeB é um projeto colaborativo. Toda contribuição, grande ou pequena, ajuda a tornar a web mais acessível.
+                    </p>
+                </div>
+
+            <div class="contribute-content" role="region" aria-label="Maneiras de contribuir com o SeeB">
+                <div class="contribute-card">
+                    <div class="contribute-icon">
+                        <img src="./src/assets/images/undraw_dev-focus.svg" alt="Ilustração de programação" class="contribute-svg">
+                    </div>
+                    <h3 class="contribute-card-title">Desenvolver</h3>
+                    <p class="contribute-card-description">
+                        Implemente novas funcionalidades, corrija bugs ou otimize o código. Crie um Pull Request e ajude a tornar a web mais acessível.
+                    </p>
+                    <a href="https://github.com/devrafcks/seeb-extension/pulls" target="_blank" rel="noopener noreferrer" class="contribute-link" aria-label="Criar Pull Request no GitHub">
+                        Criar Pull Request
+                        <span class="material-symbols-outlined">arrow_outward</span>
+                    </a>
+                </div>
+
+                <div class="contribute-card">
+                    <div class="contribute-icon">
+                        <img src="./src/assets/images/undraw_code-review.svg" alt="Ilustração de correção de bugs" class="contribute-svg">
+                    </div>
+                    <h3 class="contribute-card-title">Relatar Problemas</h3>
+                    <p class="contribute-card-description">
+                        Encontrou um bug ou tem uma sugestão? Abra uma issue descrevendo detalhadamente o problema encontrado.
+                    </p>
+                    <a href="https://github.com/devrafcks/seeb-extension/issues" target="_blank" rel="noopener noreferrer" class="contribute-link" aria-label="Abrir issue no GitHub">
+                        Abrir Issue
+                        <span class="material-symbols-outlined">arrow_outward</span>
+                    </a>
+                </div>
+
+                <div class="contribute-card">
+                    <div class="contribute-icon">
+                        <img src="./src/assets/images/undraw_idea.svg" alt="Ilustração de código aberto" class="contribute-svg">
+                    </div>
+                    <h3 class="contribute-card-title">Outras Contribuições</h3>
+                    <p class="contribute-card-description">
+                        Leia nossas diretrizes de contribuição, compartilhe ideias, traduza ou ajude na documentação do projeto.
+                    </p>
+                    <a href="https://github.com/devrafcks/seeb-extension/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="contribute-link" aria-label="Ler diretrizes de contribuição">
+                        Ver Diretrizes
+                        <span class="material-symbols-outlined">arrow_outward</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contribute-cta">
+                <a href="https://github.com/devrafcks/seeb-extension" target="_blank" rel="noopener noreferrer" class="contribute-button" aria-label="Visitar repositório do SeeB no GitHub (abre em nova aba)">
+                    <span class="material-symbols-outlined">code</span>
+                    Começar a Contribuir
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="gallery-section" class="gallery-section" aria-labelledby="gallery-title">
+            <div class="gallery-header">
+                <h2 id="gallery-title" class="gallery-title">Exemplos visuais do SeeB em ação</h2>
+            </div>
+            
+            <div class="gallery-grid" role="region" aria-label="Galeria de imagens e vídeos">
+                <div class="gallery-item gallery-item-1">
+                    <video 
+                    src="./src/assets/videos/video-placeholder.mp4" 
+                    class="gallery-media"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    preload="auto"
+                    aria-label="Vídeo: demonstração do recurso de personalização"
+                ></video>
+                </div>
+
+                <div class="gallery-item gallery-item-2">
+                    <img 
+                        src="https://imgs.search.brave.com/Fzwm45YpdKG9MZTtjikor6m6UYPw8qUHzUDtdHsXZXU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/d2hlcmUtdGhlLWxh/bmQtZW5kcy0zODQw/eDIxNjAtMzQ0MHgx/NDQwLXdpdGgtYW5k/LXdpdGhvdXQtdjAt/eXB6b2x5OGx5M3Rj/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OWJmNzBjOTk1/ZGFiNGZjMTM2M2M3/YmVlZTdlODc1MmFj/ODYwMTE1Nw" 
+                        alt="Exemplo de página com aumento de contraste aplicado pelo SeeB"
+                        class="gallery-media"
+                    >
+                </div>
+            
+                <div class="gallery-item gallery-item-3">
+                    <img 
+                        src="https://imgs.search.brave.com/Fzwm45YpdKG9MZTtjikor6m6UYPw8qUHzUDtdHsXZXU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/d2hlcmUtdGhlLWxh/bmQtZW5kcy0zODQw/eDIxNjAtMzQ0MHgx/NDQwLXdpdGgtYW5k/LXdpdGhvdXQtdjAt/eXB6b2x5OGx5M3Rj/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OWJmNzBjOTk1/ZGFiNGZjMTM2M2M3/YmVlZTdlODc1MmFj/ODYwMTE1Nw" 
+                        alt="Exemplo de filtro de daltonismo aplicado pelo SeeB"
+                        class="gallery-media"
+                    >
+                </div>
+            
+                <div class="gallery-item gallery-item-4">
+                    <img 
+                        src="https://imgs.search.brave.com/DvjB60S-cvSLj8R31jKHvvNR1FHTb1rFVwVeEYV7tr4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvaHVu/dGVyLXgtaHVudGVy/LXNwaWRlci1waGFu/dG9tLXRyb3VwZS1z/aWxob3VldHRlLWx1/bmhhcG1wMWNtdnVj/OGMuanBn" 
+                        alt="Interface do painel de controle do SeeB com opções de acessibilidade"
+                        class="gallery-media"
+                    >
+                </div>
+            
+                <div class="gallery-item gallery-item-5">
+                    <img 
+                        src="https://imgs.search.brave.com/Fzwm45YpdKG9MZTtjikor6m6UYPw8qUHzUDtdHsXZXU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/d2hlcmUtdGhlLWxh/bmQtZW5kcy0zODQw/eDIxNjAtMzQ0MHgx/NDQwLXdpdGgtYW5k/LXdpdGhvdXQtdjAt/eXB6b2x5OGx5M3Rj/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OWJmNzBjOTk1/ZGFiNGZjMTM2M2M3/YmVlZTdlODc1MmFj/ODYwMTE1Nw" 
+                        alt="Demonstração de modo de foco para auxiliar concentração"
+                        class="gallery-media"
+                    >
+                </div>
+
+                <div class="gallery-item gallery-item-6">
+                    <video 
+                    src="./src/assets/videos/video-placeholder.mp4" 
+                    class="gallery-media"
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline
+                    aria-label="Vídeo: demonstração do modo escuro e modo de leitura"
+                ></video>
+                </div>
+            
+            </div>
+            
+    </section>
+
+        <section class="browsers-section" aria-labelledby="browsers-title">
+        <div class="browsers-container">
+            <div class="browsers-header">
+                <h2 id="browsers-title" class="title-browser">Navegadores Compatíveis</h2>
+                <p class="browsers-description">
+                    O SeeB funciona em qualquer navegador baseado em Chromium. Instale agora e aproveite acessibilidade em tempo real.
+                </p>
+            </div>
+            <div class="browser-icons" id="browser-icons" role="region" aria-label="Lista de navegadores compatíveis">
+                <div class="browser-icon chrome" role="img" aria-label="Chrome disponível">
+                    <img loading="lazy" src="./src/assets/browsers/chrome.png" alt="Ícone do navegador Chrome">
+                    <span class="browser-label">Chrome</span>
+                </div>
+                <div class="browser-icon safari" role="img" aria-label="Vivaldi disponível">
+                    <img loading="lazy" src="./src/assets/browsers/vivaldi.png" alt="Ícone do navegador Vivaldi">
+                    <span class="browser-label">Vivaldi</span>
+                </div>
+                <div class="browser-icon brave" role="img" aria-label="Brave disponível">
+                    <img loading="lazy" src="./src/assets/browsers/brave.png" alt="Ícone do navegador Brave">
+                    <span class="browser-label">Brave</span>
+                </div>
+                <div class="browser-icon edge" role="img" aria-label="Edge disponível">
+                    <img loading="lazy" src="./src/assets/browsers/edge.png" alt="Ícone do navegador Edge">
+                    <span class="browser-label">Edge</span>
+                </div>
+                <div class="browser-icon opera" role="img" aria-label="Opera GX disponível">
+                    <img loading="lazy" src="./src/assets/browsers/opera.png" alt="Ícone do navegador Opera GX">
+                    <span class="browser-label">Opera GX</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <section id="faq-section" class="faq-section" aria-label="Seção de Perguntas Frequentes (FAQ)">
         <div class="faq-container">

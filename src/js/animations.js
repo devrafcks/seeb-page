@@ -1,31 +1,7 @@
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 document.addEventListener("DOMContentLoaded", function () {
-    let lastScrollTop = 0;
-    const navbar = document.querySelector("nav");
-
-    if (navbar) {
-        window.addEventListener("scroll", function () {
-            let currentScroll = window.pageYOffset;
-
-            if (currentScroll > lastScrollTop + 80) {
-                gsap.to(navbar, {
-                    duration: 0.3,
-                    y: -100,
-                    ease: "power2.in",
-                });
-            } else if (currentScroll < lastScrollTop - 80) {
-                gsap.to(navbar, {
-                    duration: 0.3,
-                    y: 0,
-                    ease: "power2.out",
-                });
-            }
-
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-        });
-    }
-
+    
     gsap.to("#stats-section .stat-card", {
         scrollTrigger: {
             trigger: "#stats-section",
@@ -74,25 +50,4 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     });
 
-    const cards = document.querySelectorAll(
-        ".feature-card, .contribute-card, .stat-card, .widget-card"
-    );
-
-    cards.forEach((card) => {
-        card.addEventListener("mouseenter", function () {
-            gsap.to(this, {
-                duration: 0.4,
-                scale: 1.05,
-                ease: "power2.out",
-            });
-        });
-
-        card.addEventListener("mouseleave", function () {
-            gsap.to(this, {
-                duration: 0.4,
-                scale: 1,
-                ease: "power2.out",
-            });
-        });
-    });
 });

@@ -1,27 +1,42 @@
 .browsers-section {
-    padding: 80px 20px;
-    text-align: center;
+    padding: clamp(3rem, 5vw, 5rem) clamp(1rem, 5vw, 2rem);
     position: relative;
+}
+
+.browsers-container {
+    max-width: 100%;
+    width: min(1200px, 95%);
+    margin: 0 auto;
+}
+
+.browsers-header {
+    text-align: center;
+    margin-bottom: clamp(2rem, 5vw, 4rem);
 }
 
 .title-browser {
     color: var(--color-text-dark);
-    font-size: var(--font-size-h2);
-    font-weight: 600;
-    margin-bottom: 60px;
+    font-size: clamp(1.75rem, 4vw, var(--font-size-h2));
+    font-weight: 700;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
     letter-spacing: -0.5px;
     font-family: var(--font-family-primary);
 }
 
+.browsers-description {
+    font-size: clamp(0.95rem, 2vw, 1.125rem);
+    color: var(--color-text-medium);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
 .browser-icons {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 60px 40px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
     align-items: center;
     justify-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
 }
 
 .browser-icon {
@@ -29,7 +44,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: clamp(0.75rem, 1.5vw, 1rem);
     opacity: 0.85;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -37,26 +52,26 @@
 
 .browser-icon:hover {
     opacity: 1;
-    transform: translateY(-5px);
+    transform: translateY(-8px);
 }
 
 .browser-icon img {
-    width: 80px;
-    height: 80px;
+    width: clamp(60px, 10vw, 80px);
+    height: clamp(60px, 10vw, 80px);
     object-fit: contain;
     filter: grayscale(0%) brightness(1);
     transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .browser-icon:hover img {
-    filter: drop-shadow(0 4px 12px rgba(66, 212, 245, 0.3));
-    transform: scale(1.05);
+    filter: drop-shadow(0 4px 12px rgba(58, 214, 249, 0.4));
+    transform: scale(1.08);
 }
 
 .browser-label {
-    color: var(--color-text-medium);
-    font-size: 0.95rem;
-    font-weight: 500;
+    color: var(--color-text-dark);
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    font-weight: 600;
     letter-spacing: 0.3px;
     font-family: var(--font-family-primary);
     transition: color 0.3s ease;
@@ -64,6 +79,18 @@
 
 .browser-icon:hover .browser-label {
     color: var(--color-accent);
+}
+
+.browser-status {
+    display: none;
+}
+
+html[dark] .browser-icon {
+    opacity: 0.85;
+}
+
+html[dark] .browser-icon:hover {
+    opacity: 1;
 }
 
 @media (max-width: 768px) {

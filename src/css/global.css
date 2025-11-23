@@ -12,3 +12,5 @@
 @import url(./faq.css);
 @import url(./footer.css);
 @import url(./responsive.css);
+.section-label{display:inline-block;background:linear-gradient(135deg,var(--color-accent),var(--color-primary-light));color:#fff;padding:0.35rem 1.75rem;border-radius:9999px;font-size:clamp(0.8rem,1.8vw,0.95rem);font-weight:700;margin-bottom:clamp(1rem,2vw,1.5rem);text-transform:uppercase;letter-spacing:0.1em;box-shadow:0 4px 12px rgba(58,214,249,0.3)}
+.section-subtitle{font-size:clamp(1rem,2vw,1.15rem);color:var(--color-text-medium);max-width:650px;margin:0 auto;line-height:1.7}
