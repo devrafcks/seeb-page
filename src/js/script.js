@@ -21,10 +21,19 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute("href"));
         if (target) {
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
+          // Usar GSAP se disponível, senão usar scroll nativo
+          if (typeof gsap !== 'undefined' && gsap.to) {
+            gsap.to(window, {
+              duration: 1,
+              scrollTo: target,
+              ease: "power2.inOut"
+            });
+          } else {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
         }
       });
     });
@@ -145,7 +154,7 @@ window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
     setTimeout(() => {
         loader.classList.add("hidden");
-    }, 1500);
+    }, 1200);
 });
 
 // Widget Code Copy
@@ -166,7 +175,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     copyBtn.innerHTML = originalText;
                 }, 2000);
             }).catch(() => {
-                // Fallback para navegadores mais antigos
                 const textArea = document.createElement("textarea");
                 textArea.value = codeText;
                 document.body.appendChild(textArea);
