@@ -1,53 +1,29 @@
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+gsap.utils.toArray("#features-section .stat-number").forEach((element) => {
+    const finalText = element.textContent.trim();
+    const isPercentage = finalText.includes("%");
 
-document.addEventListener("DOMContentLoaded", function () {
-    
-    gsap.to("#stats-section .stat-card", {
+    const cleanNumber = finalText.replace("%", "");
+    const finalValue = parseFloat(cleanNumber);
+    const decimalMatch = cleanNumber.match(/\.(\d+)/);
+    const decimals = decimalMatch ? decimalMatch[1].length : 0;
+
+    const counter = { value: 0 };
+
+    gsap.to(counter, {
         scrollTrigger: {
-            trigger: "#stats-section",
-            start: "top 70%",
-            toggleActions: "play none none reverse",
+            trigger: element,
+            start: "top 85%",
+            once: true,
         },
-        duration: 1,
-        y: 0,
-        opacity: 1,
-        ease: "back.out",
-        stagger: 0.15,
+        value: finalValue,
+        duration: 2.2, 
+        ease: "power2.out",
+        onUpdate: () => {
+            const current = counter.value.toFixed(decimals);
+            element.textContent = isPercentage ? current + "%" : current;
+        },
+        onComplete: () => {
+            element.textContent = finalText; 
+        }
     });
-
-    gsap.set("#stats-section .stat-card", {
-        y: 50,
-        opacity: 0,
-    });
-
-    gsap.utils.toArray("#stats-section .stat-number").forEach((element) => {
-        const text = element.textContent;
-        const isPercentage = text.includes("%");
-        const numericValue = parseFloat(text);
-
-        gsap.to(
-            { value: 0 },
-            {
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 80%",
-                    once: true,
-                },
-                value: numericValue,
-                duration: 2,
-                ease: "power2.out",
-                onUpdate: function () {
-                    if (isPercentage) {
-                        element.textContent = this.targets()[0].value.toFixed(1) + "%";
-                    } else {
-                        element.textContent = this.targets()[0].value.toFixed(2);
-                    }
-                },
-                onComplete: function () {
-                    element.textContent = text;
-                },
-            }
-        );
-    });
-
 });

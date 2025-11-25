@@ -64,65 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
     
-  
-    
-    const chatbotButton = document.getElementById("chatbot-button");
-    const chatbotWindow = document.getElementById("chatbot-window");
-    const closeChat = document.getElementById("close-chat");
-    const messages = document.getElementById("messages");
-    const quickButtons = document.querySelectorAll(".quick-btn");
-  
-    const respostas = {
-      "O que é o SeeB?":
-        "O SeeB é uma extensão de acessibilidade que adapta qualquer site para melhorar leitura, contraste e foco diretamente no navegador.",
-
-      "Por que ser open source importa?":
-        "Por ser open source, todo o código do SeeB é público e auditável. Isso garante transparência total, elimina riscos de coleta oculta de dados e permite que desenvolvedores externos revisem, corrijam e aprimorem a extensão continuamente.",
-
-      "Como o Seeb faz as alterações?":
-        "O Seeb atua apenas na camada de apresentação do site. Ele injeta regras de estilo diretamente no DOM através do próprio navegador, utilizando CSS dinâmico e observadores de mutação para acompanhar mudanças na página. Nada do código original do site é modificado ou sobrescrito.",
-
-      "Como posso ajudar?":
-        "Você pode contribuir com melhorias, correções ou sugestões no repositório oficial do projeto. O link para o GitHub está disponível ao final da página.",
-    };
-
-
-    if (chatbotButton && chatbotWindow && closeChat && messages) {
-      chatbotButton.addEventListener("click", () => {
-        chatbotWindow.style.display = "flex";
-        chatbotButton.style.display = "none";
-        addMessage(
-          "bot",
-          "👋 Olá! Sou o assistente do SeeB. Estou aqui para explicar como a extensão funciona e responder dúvidas rápidas. Escolha uma das opções abaixo para continuar:"
-        );
-      });
-  
-      closeChat.addEventListener("click", () => {
-        chatbotWindow.style.display = "none";
-        chatbotButton.style.display = "block";
-        messages.innerHTML = "";
-      });
-  
-      quickButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const pergunta = btn.textContent;
-          addMessage("user", pergunta);
-          setTimeout(() => {
-            addMessage("bot", respostas[pergunta]);
-          }, 600);
-        });
-      });
-  
-      function addMessage(sender, text) {
-        const msg = document.createElement("div");
-        msg.classList.add("message", sender);
-        msg.textContent = text;
-        messages.appendChild(msg);
-        messages.scrollTop = messages.scrollHeight;
-      }
-    }
-  
-    
     const html = document.documentElement;
     const toggleBtn = document.getElementById("theme-toggle");
     const icon = document.getElementById("theme-icon");
@@ -157,7 +98,6 @@ window.addEventListener("load", () => {
     }, 1200);
 });
 
- 
 document.addEventListener("DOMContentLoaded", function () {
     const copyBtn = document.getElementById("widget-copy-btn");
     const codeBlock = document.getElementById("widget-code-block");
