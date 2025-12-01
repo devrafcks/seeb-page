@@ -31,7 +31,7 @@
 
 body {
     font-family: var(--font-family-primary); 
-    scroll-behavior: smooth;
+    scroll-behavior:smooth;
     line-height: 1.6;
     color: var(--color-text-dark); 
     background: var(--color-background-white); 
