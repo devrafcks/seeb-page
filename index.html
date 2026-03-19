@@ -31,10 +31,17 @@
 
     <nav class="navbar" role="navigation" aria-label="Menu de navegação principal">
         <div class="navbar-content">
-            <div>
-
+            <div class="navbar-brand">
                 <img class="navbar-logo" src="./src/assets/images/Logo.png" alt="Logo SeeB">
+                <button id="theme-toggle" aria-label="Alternar tema escuro/claro" class="theme-toggle">
+                    <span class="material-symbols-outlined" id="theme-icon" aria-hidden="true">light_mode</span>
+                </button>
             </div>
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
             <ul class="navbar-links" role="menubar">
                 <li role="none"><a href="#hero-section" class="nav-link" role="menuitem">Início</a></li>
                 <li role="none"><a href="#features-section" class="nav-link" role="menuitem">Recursos</a></li>
@@ -43,10 +50,11 @@
                 <li role="none"><a href="#gallery-section" class="nav-link" role="menuitem">Galeria</a></li>
                 <li role="none"><a href="#faq-section" class="nav-link" role="menuitem">FAQ</a></li>
             </ul>
-            <div class="navbar-buttons" >
-                <button id="theme-toggle" aria-label="Alternar tema escuro/claro" class="theme-toggle">
-                    <span class="material-symbols-outlined" id="theme-icon" aria-hidden="true">dark_mode</span>
-                </button>                          
+            <div class="navbar-buttons">
+                <a href="docs.html" class="navbar-docs-btn" aria-label="Documentação para desenvolvedores">
+                    <span class="material-symbols-outlined" aria-hidden="true">description</span>
+                    Docs
+                </a>
                 <button class="navbar-button"><a href="https://chromewebstore.google.com/detail/faoblfaonpejepiealfiogalnkoakdni?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer" class="navbar-button-link" aria-label="Instalar SeeB agora (abre em nova aba)">Instalar Agora</a></button>
             </div>
         </div>
@@ -154,6 +162,13 @@
                 <p class="widget-description">
                     Uma única linha de código integra acessibilidade completa em seu projeto.
                 </p>
+                <div class="widget-compat-row" aria-label="Frameworks compatíveis">
+                    <span class="widget-compat-chip"><span class="widget-compat-dot" aria-hidden="true"></span>React</span>
+                    <span class="widget-compat-chip"><span class="widget-compat-dot" aria-hidden="true"></span>Next.js</span>
+                    <span class="widget-compat-chip"><span class="widget-compat-dot" aria-hidden="true"></span>Vite</span>
+                    <span class="widget-compat-chip"><span class="widget-compat-dot" aria-hidden="true"></span>Vue</span>
+                    <span class="widget-compat-chip"><span class="widget-compat-dot" aria-hidden="true"></span>HTML Estático</span>
+                </div>
             </div>
 
             <div class="widget-content" role="region" aria-label="Recursos do widget SeeB">
@@ -247,8 +262,23 @@
                 <p style="margin-bottom: clamp(1rem, 2vw, 1.5rem); color: var(--color-text-medium); font-size: clamp(0.95rem, 2vw, 1rem);">
                     Comece a oferecer acessibilidade em seu projeto agora mesmo:
                 </p>
-                <a href="https://github.com/devrafcks/seeb-widget" target="_blank" rel="noopener noreferrer" class="widget-cta-button" aria-label="Ir para o repositório do widget SeeB (abre em nova aba)">
-                    Saiba Mais sobre o Widget
+
+                <a href="./docs.html" class="widget-docs-card" aria-label="Ver documentação completa para desenvolvedores">
+                    <div class="widget-docs-card-icon" aria-hidden="true">
+                        <span class="material-symbols-outlined">integration_instructions</span>
+                    </div>
+                    <div class="widget-docs-card-content">
+                        <div class="widget-docs-card-title">
+                            Documentação do Widget
+                            <span class="widget-docs-card-badge">Para Desenvolvedores</span>
+                        </div>
+                        <div class="widget-docs-card-desc">
+                            Guia completo de integração com HTML, Vite, Vue, Angular e Next.js. Evite erros de hydration, conflitos de DOM e implemente corretamente em qualquer stack.
+                        </div>
+                    </div>
+                    <div class="widget-docs-card-arrow" aria-hidden="true">
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -564,7 +594,7 @@
             </div>
     
             <div class="footer-bottom">
-                <p>© 2025 SeeB. Todos os direitos reservados.</p>
+                <p>© <span id="footer-year"></span> SeeB. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>

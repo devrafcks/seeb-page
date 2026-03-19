@@ -1,5 +1,39 @@
 document.addEventListener("DOMContentLoaded", function () {
-    
+    const hamburgerBtn = document.getElementById("hamburger-btn");
+    const navbar = document.querySelector(".navbar");
+
+    if (hamburgerBtn && navbar) {
+        hamburgerBtn.addEventListener("click", () => {
+            const isOpen = navbar.classList.toggle("open");
+            hamburgerBtn.classList.toggle("open", isOpen);
+            hamburgerBtn.setAttribute("aria-expanded", isOpen);
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!navbar.contains(e.target)) {
+                navbar.classList.remove("open");
+                hamburgerBtn.classList.remove("open");
+                hamburgerBtn.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        document.querySelectorAll(".nav-link").forEach((link) => {
+            link.addEventListener("click", () => {
+                navbar.classList.remove("open");
+                hamburgerBtn.classList.remove("open");
+                hamburgerBtn.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 1024) {
+                navbar.classList.remove("open");
+                hamburgerBtn.classList.remove("open");
+                hamburgerBtn.setAttribute("aria-expanded", "false");
+            }
+        });
+    }
+
     const faqItems = document.querySelectorAll(".faq-item");
   
     faqItems.forEach((item) => {
@@ -70,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     if (toggleBtn && icon) {
       const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark") {
+      if (savedTheme !== "light") {
         html.setAttribute("dark", "");
         icon.textContent = "light_mode";
       }
@@ -90,6 +124,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   });
+
+document.getElementById("footer-year").textContent = new Date().getFullYear();
 
 window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
