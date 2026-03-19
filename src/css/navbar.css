@@ -43,6 +43,34 @@
     border-bottom: 2px solid var(--color-text-dark);
 }
 
+.navbar-docs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    text-decoration: none;
+    color: var(--color-accent);
+    border: 1.5px solid rgba(62, 181, 208, 0.4);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.navbar-docs-btn .material-symbols-outlined {
+    font-size: 1.05rem;
+}
+
+.navbar-docs-btn:hover {
+    background: rgba(62, 181, 208, 0.08);
+    border-color: var(--color-accent);
+}
+
+html[dark] .navbar-docs-btn {
+    border-color: rgba(77, 163, 255, 0.35);
+}
+
 .navbar-buttons {
     display: flex;
     align-items: center;
@@ -82,7 +110,6 @@
     justify-content: center;
     font-size: 1.5rem;
     padding: 0.5rem;
-    margin-left: 1rem;
     border-radius: 8px;
     transition: background 0.3s ease, color 0.3s ease;
 }
@@ -90,4 +117,48 @@
 .theme-toggle:hover {
     background: var(--color-background-light);
     color: var(--color-text-dark);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+    color: var(--color-text-medium);
+}
+
+.hamburger-btn:hover {
+    background: var(--color-background-light);
+}
+
+.hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger-btn.open .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn.open .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.open .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
