@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação do Widget — SeeB</title>
+    <meta name="description" content="Documentação completa do widget de acessibilidade SeeB: instalação básica, compatibilidade com React, Next.js App Router, Vue, Angular e guias por framework.">
+    <meta name="robots" content="index, follow">
+
+    <link rel="shortcut icon" href="./src/assets/icons/favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./src/css/base.css">
+    <link rel="stylesheet" href="./src/css/docs.css">
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="docs-header">
+        <div class="docs-header-content">
+            <a href="index.html" class="docs-back-btn" aria-label="Voltar para a página principal do SeeB">
+                <span class="material-symbols-outlined" style="font-size:1rem;">arrow_back</span>
+                Voltar para o SeeB
+            </a>
+
+            <div class="docs-header-divider" aria-hidden="true"></div>
+
+            <a href="index.html" class="docs-header-logo" aria-label="Página principal SeeB">
+                <img src="./src/assets/images/Logo.png" alt="SeeB">
+                <span class="docs-header-logo-text">SeeB</span>
+                <span class="docs-header-logo-badge">Docs</span>
+            </a>
+
+            <div class="docs-header-spacer"></div>
+
+            <button id="docs-theme-toggle" class="docs-theme-toggle" aria-label="Alternar tema escuro/claro">
+                <span class="material-symbols-outlined" id="docs-theme-icon" style="font-size:1.125rem;">light_mode</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== MAIN LAYOUT ===== -->
+    <div class="docs-layout">
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="docs-sidebar" aria-label="Navegação da documentação">
+            <div class="docs-sidebar-inner">
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Introdução</div>
+                    <ul class="sidebar-nav" role="list">
+                        <li><a href="#introducao" class="sidebar-link">O que é o SeeB Widget</a></li>
+                        <li><a href="#quando-usar" class="sidebar-link">Quando usar</a></li>
+                        <li><a href="#quando-nao-usar" class="sidebar-link">Quando não usar</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-divider" aria-hidden="true"></div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Instalação</div>
+                    <ul class="sidebar-nav" role="list">
+                        <li><a href="#instalacao" class="sidebar-link">Instalação Básica</a></li>
+                        <li><a href="#funcionamento" class="sidebar-link">Como funciona internamente</a></li>
+                        <li><a href="#compatibilidade" class="sidebar-link">Compatibilidade</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-divider" aria-hidden="true"></div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Guia por Framework</div>
+                    <ul class="sidebar-nav" role="list">
+                        <li><a href="#html-puro" class="sidebar-link">HTML Puro</a></li>
+                        <li><a href="#vite" class="sidebar-link">Vite</a></li>
+                        <li>
+                            <a href="#nextjs" class="sidebar-link">Next.js (App Router)</a>
+                            <ul class="sidebar-nav-sub" role="list">
+                                <li><a href="#nextjs-problemas" class="sidebar-link">Por que quebra</a></li>
+                                <li><a href="#nextjs-solucao" class="sidebar-link">Solução completa</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#vue" class="sidebar-link">Vue</a></li>
+                        <li><a href="#angular" class="sidebar-link">Angular</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-divider" aria-hidden="true"></div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Referência</div>
+                    <ul class="sidebar-nav" role="list">
+                        <li><a href="#problemas" class="sidebar-link">Problemas Conhecidos</a></li>
+                        <li><a href="#boas-praticas" class="sidebar-link">Boas Práticas</a></li>
+                        <li><a href="#filosofia" class="sidebar-link">Filosofia do Projeto</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-divider" aria-hidden="true"></div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Links</div>
+                    <ul class="sidebar-nav" role="list">
+                        <li><a href="https://github.com/devrafcks/seeb-widget" target="_blank" rel="noopener noreferrer" class="sidebar-link">Repositório GitHub ↗</a></li>
+                        <li><a href="index.html#widget-section" class="sidebar-link">Página do Widget</a></li>
+                        <li><a href="index.html#faq-section" class="sidebar-link">FAQ</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="docs-main" id="main-content">
+
+            <!-- Breadcrumb -->
+            <nav class="docs-breadcrumb" aria-label="Caminho de navegação">
+                <a href="index.html">SeeB</a>
+                <span class="docs-breadcrumb-sep" aria-hidden="true">/</span>
+                <a href="index.html#widget-section">Widget</a>
+                <span class="docs-breadcrumb-sep" aria-hidden="true">/</span>
+                <span>Documentação</span>
+            </nav>
+
+            <h1 class="docs-page-title">Documentação Oficial do Widget</h1>
+            <p class="docs-page-subtitle">
+                Guia completo de integração do widget de acessibilidade SeeB — da instalação básica em HTML estático até frameworks modernos com SSR. Inclui causas, soluções e exemplos de código prontos para produção.
+            </p>
+
+            <div class="docs-page-divider" aria-hidden="true"></div>
+
+
+            <!-- ============================================================
+                 SEÇÃO 1 — INTRODUÇÃO
+            ============================================================ -->
+            <section class="docs-section" aria-labelledby="introducao-title">
+                <span class="docs-section-anchor" id="introducao" aria-hidden="true"></span>
+                <h2 class="docs-h2" id="introducao-title">
+                    <span class="material-symbols-outlined section-icon" aria-hidden="true">info</span>
+                    Introdução
+                </h2>
+
+                <span class="docs-section-anchor" id="o-que-e" aria-hidden="true"></span>
+                <h3 class="docs-h3">O que é o SeeB Widget</h3>
+                <p class="docs-p">
+                    O SeeB Widget é um painel de acessibilidade <strong>client-side</strong> que você adiciona a qualquer site com uma única tag <code class="docs-inline-code">&lt;script&gt;</code>. Ele injeta um Custom Element (<code class="docs-inline-code">&lt;seeb-widget&gt;</code>) no DOM, expondo controles de acessibilidade aos usuários finais: ajuste de tamanho de fonte, contraste, filtros de daltonismo, modo de foco e espaçamento de texto.
+                </p>
+                <p class="docs-p">
+                    Tudo acontece no navegador. O widget não faz chamadas externas durante o uso, não coleta dados e não depende de nenhum backend. As preferências do usuário são salvas em <code class="docs-inline-code">localStorage</code>.
+                </p>
+
+                <span class="docs-section-anchor" id="quando-usar" aria-hidden="true"></span>
+                <h3 class="docs-h3">Quando usar</h3>
+                <p class="docs-p">
+                    O widget é adequado para qualquer projeto que renderize HTML no browser sem restrições severas sobre manipulação do DOM global. Funciona bem em:
+                </p>
+                <ul class="docs-why-list">
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        Sites estáticos, blogs e landing pages
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        SPAs com React, Vue ou Svelte via Vite ou CRA
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        Next.js App Router — com os dois ajustes documentados neste guia
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        Aplicações Angular — com as ressalvas desta documentação
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        Qualquer projeto onde você controla o <code class="docs-inline-code">index.html</code>
+                    </li>
+                </ul>
+
+                <span class="docs-section-anchor" id="quando-nao-usar" aria-hidden="true"></span>
+                <h3 class="docs-h3">Quando não usar</h3>
+                <div class="docs-callout docs-callout-warning" role="note">
+                    <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">warning</span>
+                    <div class="docs-callout-body">
+                        <div class="docs-callout-title">Cenários com risco real de conflito</div>
+                        <div class="docs-callout-text">
+                            <ul>
+                                <li>Projetos que manipulam diretamente os filhos imediatos do <code class="docs-inline-code">&lt;body&gt;</code> por fora do framework — o widget cria um wrapper em torno deles e pode desorganizar referências DOM</li>
+                                <li>Ambientes com CSP (Content Security Policy) restritivo que bloqueia scripts de domínios externos sem allowlist explícita</li>
+                                <li>Microfrontends com múltiplos runtimes independentes gerenciando o mesmo <code class="docs-inline-code">&lt;body&gt;</code></li>
+                                <li>Projetos que já possuem outro widget de acessibilidade que também manipula o DOM global do body</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ============================================================
+                 SEÇÃO 2 — INSTALAÇÃO BÁSICA
+            ============================================================ -->
+            <section class="docs-section" aria-labelledby="instalacao-title">
+                <span class="docs-section-anchor" id="instalacao" aria-hidden="true"></span>
+                <h2 class="docs-h2" id="instalacao-title">
+                    <span class="material-symbols-outlined section-icon" aria-hidden="true">download</span>
+                    Instalação Básica
+                </h2>
+                <p class="docs-p">
+                    Para a maioria dos projetos, adicionar o script é suficiente. O widget se auto-inicializa quando o DOM estiver pronto.
+                </p>
+
+                <div class="docs-code-block" role="region" aria-label="Código de instalação básica">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">html</span>
+                        <span class="docs-code-filename">index.html</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-basico" aria-label="Copiar código de instalação">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-basico">&lt;<span class="tok-tag">!DOCTYPE</span> <span class="tok-plain">html</span>&gt;
+&lt;<span class="tok-tag">html</span> <span class="tok-attr">lang</span><span class="tok-punct">=</span><span class="tok-value">"pt-BR"</span>&gt;
+&lt;<span class="tok-tag">head</span>&gt;
+  &lt;<span class="tok-tag">meta</span> <span class="tok-attr">charset</span><span class="tok-punct">=</span><span class="tok-value">"UTF-8"</span>&gt;
+  &lt;<span class="tok-tag">title</span>&gt;Meu Site&lt;/<span class="tok-tag">title</span>&gt;
+
+  <span class="tok-comment">&lt;!-- Funciona no &lt;head&gt; com defer ou antes de &lt;/body&gt; --&gt;</span>
+  &lt;<span class="tok-tag">script</span>
+    <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-value">"https://seeb-widget.pages.dev/widget.js"</span>
+    <span class="tok-attr">defer</span>
+  &gt;&lt;/<span class="tok-tag">script</span>&gt;
+&lt;/<span class="tok-tag">head</span>&gt;
+&lt;<span class="tok-tag">body</span>&gt;
+  <span class="tok-comment">&lt;!-- Seu conteúdo aqui --&gt;</span>
+&lt;/<span class="tok-tag">body</span>&gt;
+&lt;/<span class="tok-tag">html</span>&gt;</pre>
+                    </div>
+                </div>
+
+                <div class="docs-callout docs-callout-info" role="note">
+                    <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">info</span>
+                    <div class="docs-callout-body">
+                        <div class="docs-callout-title">Por que usar <code class="docs-inline-code">defer</code></div>
+                        <div class="docs-callout-text">
+                            O atributo <code class="docs-inline-code">defer</code> faz o browser baixar o script em paralelo com o HTML, mas executa apenas após o parsing completo do documento. Isso evita bloqueio de render e garante que o DOM está disponível quando o widget inicializa. Colocar o script antes de <code class="docs-inline-code">&lt;/body&gt;</code> sem <code class="docs-inline-code">defer</code> tem efeito equivalente em HTML estático — mas <code class="docs-inline-code">defer</code> no <code class="docs-inline-code">&lt;head&gt;</code> é preferível porque permite que o download comece mais cedo.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ============================================================
+                 SEÇÃO 3 — FUNCIONAMENTO INTERNO
+            ============================================================ -->
+            <section class="docs-section" aria-labelledby="funcionamento-title">
+                <span class="docs-section-anchor" id="funcionamento" aria-hidden="true"></span>
+                <h2 class="docs-h2" id="funcionamento-title">
+                    <span class="material-symbols-outlined section-icon" aria-hidden="true">settings</span>
+                    Como funciona internamente
+                </h2>
+                <p class="docs-p">
+                    Entender o que o widget faz ao inicializar é essencial para prever e evitar conflitos em ambientes mais complexos.
+                </p>
+
+                <div class="docs-problem-list">
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">
+                            <div class="docs-problem-number" aria-label="Passo 1">1</div>
+                            Aguarda o <code class="docs-inline-code">DOMContentLoaded</code>
+                        </div>
+                        <p class="docs-problem-desc">
+                            O widget registra um listener para o evento <code class="docs-inline-code">DOMContentLoaded</code>. Quando dispara, ele verifica se um <code class="docs-inline-code">&lt;seeb-widget&gt;</code> já existe no DOM. Se não existir, cria e injeta no <code class="docs-inline-code">&lt;body&gt;</code>. Em HTML estático e SPAs com Vite, esse evento sempre dispara antes da execução do widget — não há problema. Em Next.js com SSR e carregamento tardio do script, o evento pode já ter disparado quando o script é finalmente executado.
+                        </p>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">
+                            <div class="docs-problem-number" aria-label="Passo 2">2</div>
+                            Cria o wrapper <code class="docs-inline-code">#seeb-content-wrapper</code>
+                        </div>
+                        <p class="docs-problem-desc">
+                            O widget chama <code class="docs-inline-code">wrapContent()</code>, que verifica se existe um <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code> no body. Se não existir, ele cria esse div e <strong>move todos os filhos atuais do <code class="docs-inline-code">&lt;body&gt;</code> para dentro dele</strong>. Isso isola o conteúdo da página para que estilos de acessibilidade possam ser aplicados de forma controlada. O problema surge quando os nós movidos são gerenciados por um framework — o React ou Angular ainda referencia as posições originais e falha ao tentar operá-los depois.
+                        </p>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">
+                            <div class="docs-problem-number" aria-label="Passo 3">3</div>
+                            Injeta o elemento <code class="docs-inline-code">&lt;seeb-widget&gt;</code>
+                        </div>
+                        <p class="docs-problem-desc">
+                            O Custom Element é adicionado diretamente ao <code class="docs-inline-code">&lt;body&gt;</code> — fora do wrapper. Ele contém o painel de controles via Shadow DOM e toda a lógica de persistência de preferências em <code class="docs-inline-code">localStorage</code>. Opera como overlay independente e não interfere com o conteúdo da página.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="docs-callout docs-callout-info" role="note">
+                    <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">lightbulb</span>
+                    <div class="docs-callout-body">
+                        <div class="docs-callout-title">O ponto crítico de todos os conflitos</div>
+                        <div class="docs-callout-text">
+                            A maioria dos problemas de integração vem do passo 2. A solução universal é <strong>pré-criar o <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code> antes que o widget inicialize</strong>. Com o div já existente, o widget encontra a condição <code class="docs-inline-code">if (!wrapper)</code> como <strong>false</strong> e não move nenhum nó do DOM.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ============================================================
+                 SEÇÃO 4 — COMPATIBILIDADE
+            ============================================================ -->
+            <section class="docs-section" aria-labelledby="compatibilidade-title">
+                <span class="docs-section-anchor" id="compatibilidade" aria-hidden="true"></span>
+                <h2 class="docs-h2" id="compatibilidade-title">
+                    <span class="material-symbols-outlined section-icon" aria-hidden="true">devices</span>
+                    Compatibilidade por ambiente
+                </h2>
+
+                <div class="docs-table-wrapper" role="region" aria-label="Tabela de compatibilidade por ambiente">
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Ambiente</th>
+                                <th scope="col">Funciona?</th>
+                                <th scope="col">Observação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>HTML Estático</strong></td>
+                                <td><span class="docs-badge docs-badge-yes">✓ Sim</span></td>
+                                <td>Adicione o <code class="docs-inline-code">&lt;script defer&gt;</code> no <code class="docs-inline-code">&lt;head&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>React + Vite / CRA</strong></td>
+                                <td><span class="docs-badge docs-badge-yes">✓ Sim</span></td>
+                                <td>Adicione no <code class="docs-inline-code">index.html</code> da raiz</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vue + Vite</strong></td>
+                                <td><span class="docs-badge docs-badge-yes">✓ Sim</span></td>
+                                <td>Adicione no <code class="docs-inline-code">index.html</code>; atenção se usar <code class="docs-inline-code">Teleport to="body"</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Astro</strong></td>
+                                <td><span class="docs-badge docs-badge-yes">✓ Sim</span></td>
+                                <td>Adicione no layout base com <code class="docs-inline-code">is:inline</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Next.js Pages Router</strong></td>
+                                <td><span class="docs-badge docs-badge-partial">~ Com ajuste</span></td>
+                                <td>Pre-criar o <code class="docs-inline-code">#seeb-content-wrapper</code> no <code class="docs-inline-code">_document.tsx</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Next.js App Router</strong></td>
+                                <td><span class="docs-badge docs-badge-partial">~ Com ajuste</span></td>
+                                <td>Requer componente Client + wrapper no layout — veja o guia completo abaixo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Angular</strong></td>
+                                <td><span class="docs-badge docs-badge-partial">~ Com ajuste</span></td>
+                                <td>Funciona na maioria dos casos; com SSR requer guard de plataforma</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SvelteKit (SSR)</strong></td>
+                                <td><span class="docs-badge docs-badge-partial">~ Com ajuste</span></td>
+                                <td>Use <code class="docs-inline-code">browser</code> guard do SvelteKit antes de injetar o script</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+            <!-- ============================================================
+                 SEÇÃO 5 — GUIA POR FRAMEWORK
+            ============================================================ -->
+            <section class="docs-section" aria-labelledby="frameworks-title">
+                <span class="docs-section-anchor" id="frameworks" aria-hidden="true"></span>
+                <h2 class="docs-h2" id="frameworks-title">
+                    <span class="material-symbols-outlined section-icon" aria-hidden="true">code</span>
+                    Guia por Framework
+                </h2>
+
+
+                <!-- ── 5.1 HTML PURO ──────────────────────────────────── -->
+                <span class="docs-section-anchor" id="html-puro" aria-hidden="true"></span>
+                <h3 class="docs-h3">5.1 — HTML Puro</h3>
+                <p class="docs-p">
+                    O caso mais simples. Adicione a tag <code class="docs-inline-code">&lt;script defer&gt;</code> no <code class="docs-inline-code">&lt;head&gt;</code>. Sem passos adicionais — o widget inicializa automaticamente quando o DOM estiver pronto e aparece no canto inferior da tela.
+                </p>
+
+                <div class="docs-code-block" role="region" aria-label="Integração em HTML puro">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">html</span>
+                        <span class="docs-code-filename">index.html</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-html-puro" aria-label="Copiar código HTML puro">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-html-puro">&lt;<span class="tok-tag">head</span>&gt;
+  <span class="tok-comment">&lt;!-- Demais tags meta, CSS, etc. --&gt;</span>
+  &lt;<span class="tok-tag">script</span>
+    <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-value">"https://seeb-widget.pages.dev/widget.js"</span>
+    <span class="tok-attr">defer</span>
+  &gt;&lt;/<span class="tok-tag">script</span>&gt;
+&lt;/<span class="tok-tag">head</span>&gt;</pre>
+                    </div>
+                </div>
+
+
+                <!-- ── 5.2 VITE ───────────────────────────────────────── -->
+                <span class="docs-section-anchor" id="vite" aria-hidden="true"></span>
+                <h3 class="docs-h3">5.2 — Vite (React, Vue, Svelte)</h3>
+                <p class="docs-p">
+                    Projetos Vite têm um <code class="docs-inline-code">index.html</code> na raiz que serve como ponto de entrada. Adicione o script diretamente nele — o Vite não processa essa tag, ela vai ao browser exatamente como está.
+                </p>
+
+                <div class="docs-code-block" role="region" aria-label="Integração com Vite">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">html</span>
+                        <span class="docs-code-filename">index.html (raiz do projeto)</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-vite" aria-label="Copiar código Vite">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-vite">&lt;<span class="tok-tag">!DOCTYPE</span> <span class="tok-plain">html</span>&gt;
+&lt;<span class="tok-tag">html</span> <span class="tok-attr">lang</span><span class="tok-punct">=</span><span class="tok-value">"pt-BR"</span>&gt;
+&lt;<span class="tok-tag">head</span>&gt;
+  &lt;<span class="tok-tag">meta</span> <span class="tok-attr">charset</span><span class="tok-punct">=</span><span class="tok-value">"UTF-8"</span>&gt;
+  &lt;<span class="tok-tag">title</span>&gt;Meu App&lt;/<span class="tok-tag">title</span>&gt;
+  &lt;<span class="tok-tag">script</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-value">"https://seeb-widget.pages.dev/widget.js"</span> <span class="tok-attr">defer</span>&gt;&lt;/<span class="tok-tag">script</span>&gt;
+&lt;/<span class="tok-tag">head</span>&gt;
+&lt;<span class="tok-tag">body</span>&gt;
+  &lt;<span class="tok-tag">div</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-value">"root"</span>&gt;&lt;/<span class="tok-tag">div</span>&gt;
+  &lt;<span class="tok-tag">script</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-value">"module"</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-value">"/src/main.tsx"</span>&gt;&lt;/<span class="tok-tag">script</span>&gt;
+&lt;/<span class="tok-tag">body</span>&gt;
+&lt;/<span class="tok-tag">html</span>&gt;</pre>
+                    </div>
+                </div>
+
+                <div class="docs-callout docs-callout-success" role="note">
+                    <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">check_circle</span>
+                    <div class="docs-callout-body">
+                        <div class="docs-callout-title">Por que funciona sem problemas</div>
+                        <div class="docs-callout-text">
+                            Scripts com <code class="docs-inline-code">defer</code> e scripts <code class="docs-inline-code">type="module"</code> são diferidos pelo browser. O widget inicializa no <code class="docs-inline-code">DOMContentLoaded</code> — que em projetos Vite dispara antes do bundle do framework executar. Na prática, o wrapper é criado antes que o React ou Vue montem, então não há nós gerenciados pelo framework para o widget mover.
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ── 5.3 NEXT.JS APP ROUTER ─────────────────────────── -->
+                <span class="docs-section-anchor" id="nextjs" aria-hidden="true"></span>
+                <h3 class="docs-h3">5.3 — Next.js (App Router)</h3>
+                <p class="docs-p">
+                    O App Router do Next.js tem um ciclo de vida que entra em conflito com a forma como o widget inicializa. São três problemas independentes — cada um com uma causa clara e uma solução pontual.
+                </p>
+
+                <span class="docs-section-anchor" id="nextjs-problemas" aria-hidden="true"></span>
+                <div class="docs-problem-list">
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">
+                            <div class="docs-problem-number" aria-label="Problema 1">1</div>
+                            <code class="docs-inline-code">DOMContentLoaded</code> não dispara para o widget
+                        </div>
+                        <p class="docs-problem-desc">
+                            Com <code class="docs-inline-code">strategy="afterInteractive"</code> do componente <code class="docs-inline-code">&lt;Script&gt;</code> do Next.js, o script só carrega <em>depois</em> da hydration do React. O evento <code class="docs-inline-code">DOMContentLoaded</code> já disparou quando o script chega — o listener do widget nunca executa e o <code class="docs-inline-code">&lt;seeb-widget&gt;</code> nunca é criado.
+                        </p>
+                        <div class="docs-code-block" role="region" aria-label="Código interno do widget">
+                            <div class="docs-code-header">
+                                <span class="docs-code-lang">js</span>
+                                <span class="docs-code-filename">widget.js (interno — não edite)</span>
+                                <button class="docs-code-copy-btn" data-copy-target="code-nextjs-interno-1" aria-label="Copiar código interno">
+                                    <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                                    Copiar
+                                </button>
+                            </div>
+                            <div class="docs-code-body">
+                                <pre id="code-nextjs-interno-1">document<span class="tok-punct">.</span><span class="tok-fn">addEventListener</span><span class="tok-punct">(</span><span class="tok-string">"DOMContentLoaded"</span><span class="tok-punct">, () => {</span>
+  <span class="tok-keyword">if</span> <span class="tok-punct">(!</span>document<span class="tok-punct">.</span><span class="tok-fn">querySelector</span><span class="tok-punct">(</span><span class="tok-string">"seeb-widget"</span><span class="tok-punct">))</span> <span class="tok-punct">{</span>
+    <span class="tok-keyword">const</span> widget <span class="tok-punct">=</span> document<span class="tok-punct">.</span><span class="tok-fn">createElement</span><span class="tok-punct">(</span><span class="tok-string">"seeb-widget"</span><span class="tok-punct">)</span>
+    document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>widget<span class="tok-punct">)</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">})</span></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">
+                            <div class="docs-problem-number" aria-label="Problema 2">2</div>
+                            Widget move nós gerenciados pelo React
+                        </div>
+                        <p class="docs-problem-desc">
+                            Quando o widget chama <code class="docs-inline-code">wrapContent()</code>, ele move todos os filhos do <code class="docs-inline-code">&lt;body&gt;</code> para dentro de um novo <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code>. Esses nós incluem o que o React criou e ainda referencia internamente. Quando o React tenta operar nesses nós (por exemplo, ao navegar entre rotas), não os encontra mais onde esperava:
+                        </p>
+                        <div class="docs-code-block" role="region" aria-label="Código wrapContent interno">
+                            <div class="docs-code-header">
+                                <span class="docs-code-lang">js</span>
+                                <span class="docs-code-filename">widget.js (interno — não edite)</span>
+                                <button class="docs-code-copy-btn" data-copy-target="code-nextjs-interno-2" aria-label="Copiar código interno wrapContent">
+                                    <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                                    Copiar
+                                </button>
+                            </div>
+                            <div class="docs-code-body">
+                                <pre id="code-nextjs-interno-2"><span class="tok-fn">wrapContent</span><span class="tok-punct">() {</span>
+  <span class="tok-keyword">let</span> wrapper <span class="tok-punct">=</span> document<span class="tok-punct">.</span><span class="tok-fn">getElementById</span><span class="tok-punct">(</span><span class="tok-string">"seeb-content-wrapper"</span><span class="tok-punct">)</span>
+  <span class="tok-keyword">if</span> <span class="tok-punct">(!</span>wrapper<span class="tok-punct">) {</span>
+    wrapper <span class="tok-punct">=</span> document<span class="tok-punct">.</span><span class="tok-fn">createElement</span><span class="tok-punct">(</span><span class="tok-string">"div"</span><span class="tok-punct">)</span>
+    wrapper<span class="tok-punct">.</span>id <span class="tok-punct">=</span> <span class="tok-string">"seeb-content-wrapper"</span>
+    <span class="tok-class">Array</span><span class="tok-punct">.</span><span class="tok-fn">from</span><span class="tok-punct">(</span>document<span class="tok-punct">.</span>body<span class="tok-punct">.</span>childNodes<span class="tok-punct">).</span><span class="tok-fn">forEach</span><span class="tok-punct">(</span>node <span class="tok-punct">=></span> <span class="tok-punct">{</span>
+      wrapper<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>node<span class="tok-punct">)</span> <span class="tok-comment">// move nós gerenciados pelo React</span>
+    <span class="tok-punct">})</span>
+    document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>wrapper<span class="tok-punct">)</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span></pre>
+                            </div>
+                        </div>
+                        <div class="docs-error-block" role="alert" aria-label="Erro gerado">
+                            <pre>Failed to execute 'removeChild' on 'Node':
+The node to be removed is not a child of this node.</pre>
+                        </div>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">
+                            <div class="docs-problem-number" aria-label="Problema 3">3</div>
+                            Hydration mismatch de atributos
+                        </div>
+                        <p class="docs-problem-desc">
+                            O componente <code class="docs-inline-code">&lt;Script&gt;</code> do Next.js injeta atributos como <code class="docs-inline-code">data-nscript</code> no HTML do servidor. Com a prop <code class="docs-inline-code">onLoad</code> (executada apenas no cliente), esses atributos divergem entre server e client durante a hydration:
+                        </p>
+                        <div class="docs-error-block" role="alert" aria-label="Erro de hydration">
+                            <pre>A tree hydrated but some attributes of the server rendered HTML
+didn't match the client properties.</pre>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Solução Next.js -->
+                <span class="docs-section-anchor" id="nextjs-solucao" aria-hidden="true"></span>
+                <p class="docs-p"><strong>Solução</strong>: dois ajustes pontuais que resolvem os três problemas acima.</p>
+
+                <div class="docs-step">
+                    <div class="docs-step-header">
+                        <span class="docs-step-num" aria-label="Passo 1">1</span>
+                        <span class="docs-step-label">Criar um Client Component com <code class="docs-inline-code">useEffect</code></span>
+                    </div>
+                    <p class="docs-p">
+                        Em vez do componente <code class="docs-inline-code">&lt;Script&gt;</code> do Next.js, crie um Client Component que retorna <code class="docs-inline-code">null</code> no servidor (zero HTML gerado) e injeta o script via <code class="docs-inline-code">useEffect</code> no cliente. O callback <code class="docs-inline-code">onload</code> do script cria o <code class="docs-inline-code">&lt;seeb-widget&gt;</code> manualmente — contornando o <code class="docs-inline-code">DOMContentLoaded</code> que não disparou.
+                    </p>
+                    <p class="docs-p"><strong>Resolve os problemas:</strong> <span class="docs-badge docs-badge-no" style="font-size:0.75rem;vertical-align:middle;" aria-label="Problema 1">1</span> e <span class="docs-badge docs-badge-no" style="font-size:0.75rem;vertical-align:middle;" aria-label="Problema 3">3</span></p>
+
+                    <div class="docs-code-block" role="region" aria-label="Componente AccessibilityWidget para Next.js">
+                        <div class="docs-code-header">
+                            <span class="docs-code-lang">tsx</span>
+                            <span class="docs-code-filename">src/components/accessibility-widget.tsx</span>
+                            <button class="docs-code-copy-btn" data-copy-target="code-nextjs-component" aria-label="Copiar código do componente">
+                                <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                                Copiar
+                            </button>
+                        </div>
+                        <div class="docs-code-body">
+                            <pre id="code-nextjs-component"><span class="tok-string">'use client'</span>
+
+<span class="tok-keyword">import</span> <span class="tok-punct">{</span> useEffect <span class="tok-punct">}</span> <span class="tok-keyword">from</span> <span class="tok-string">'react'</span>
+
+<span class="tok-keyword">export function</span> <span class="tok-fn">AccessibilityWidget</span><span class="tok-punct">() {</span>
+  <span class="tok-fn">useEffect</span><span class="tok-punct">(() => {</span>
+    <span class="tok-keyword">if</span> <span class="tok-punct">(</span>document<span class="tok-punct">.</span><span class="tok-fn">querySelector</span><span class="tok-punct">(</span><span class="tok-string">'seeb-widget'</span><span class="tok-punct">))</span> <span class="tok-keyword">return</span>
+
+    <span class="tok-keyword">const</span> script <span class="tok-punct">=</span> document<span class="tok-punct">.</span><span class="tok-fn">createElement</span><span class="tok-punct">(</span><span class="tok-string">'script'</span><span class="tok-punct">)</span>
+    script<span class="tok-punct">.</span>src <span class="tok-punct">=</span> <span class="tok-string">'https://seeb-widget.pages.dev/widget.js'</span>
+    script<span class="tok-punct">.</span>defer <span class="tok-punct">=</span> <span class="tok-keyword">true</span>
+    script<span class="tok-punct">.</span>onload <span class="tok-punct">= () => {</span>
+      <span class="tok-keyword">if</span> <span class="tok-punct">(!</span>document<span class="tok-punct">.</span><span class="tok-fn">querySelector</span><span class="tok-punct">(</span><span class="tok-string">'seeb-widget'</span><span class="tok-punct">)) {</span>
+        <span class="tok-keyword">const</span> widget <span class="tok-punct">=</span> document<span class="tok-punct">.</span><span class="tok-fn">createElement</span><span class="tok-punct">(</span><span class="tok-string">'seeb-widget'</span><span class="tok-punct">)</span>
+        document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>widget<span class="tok-punct">)</span>
+      <span class="tok-punct">}</span>
+    <span class="tok-punct">}</span>
+    document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>script<span class="tok-punct">)</span>
+  <span class="tok-punct">}, [])</span>
+
+  <span class="tok-keyword">return</span> <span class="tok-keyword">null</span>
+<span class="tok-punct">}</span></pre>
+                        </div>
+                    </div>
+
+                    <div class="docs-callout docs-callout-success" role="note">
+                        <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">check_circle</span>
+                        <div class="docs-callout-body">
+                            <div class="docs-callout-title">Por que funciona</div>
+                            <div class="docs-callout-text">
+                                <ul>
+                                    <li><code class="docs-inline-code">return null</code> → servidor não renderiza nada, cliente também não → <strong>zero hydration mismatch</strong></li>
+                                    <li><code class="docs-inline-code">useEffect</code> só roda no cliente, após a montagem → <strong>sem conflito com SSR</strong></li>
+                                    <li><code class="docs-inline-code">script.onload</code> cria o widget manualmente, contornando o <code class="docs-inline-code">DOMContentLoaded</code> que não disparou</li>
+                                    <li>Guard <code class="docs-inline-code">querySelector('seeb-widget')</code> evita duplicação no React StrictMode</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="docs-step">
+                    <div class="docs-step-header">
+                        <span class="docs-step-num" aria-label="Passo 2">2</span>
+                        <span class="docs-step-label">Pre-criar o <code class="docs-inline-code">seeb-content-wrapper</code> no layout</span>
+                    </div>
+                    <p class="docs-p">
+                        Adicione o <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code> diretamente no layout do servidor. Quando o widget inicializar no cliente e chamar <code class="docs-inline-code">wrapContent()</code>, o div já existe — a condição <code class="docs-inline-code">if (!wrapper)</code> é <strong>false</strong> e nenhum nó é movido.
+                    </p>
+                    <p class="docs-p"><strong>Resolve o problema:</strong> <span class="docs-badge docs-badge-no" style="font-size:0.75rem;vertical-align:middle;" aria-label="Problema 2">2</span></p>
+
+                    <div class="docs-code-block" role="region" aria-label="Layout Next.js com wrapper e componente">
+                        <div class="docs-code-header">
+                            <span class="docs-code-lang">tsx</span>
+                            <span class="docs-code-filename">src/app/layout.tsx</span>
+                            <button class="docs-code-copy-btn" data-copy-target="code-nextjs-layout" aria-label="Copiar código do layout">
+                                <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                                Copiar
+                            </button>
+                        </div>
+                        <div class="docs-code-body">
+                            <pre id="code-nextjs-layout"><span class="tok-keyword">import</span> type <span class="tok-punct">{</span> Metadata <span class="tok-punct">}</span> <span class="tok-keyword">from</span> <span class="tok-string">'next'</span>
+<span class="tok-keyword">import</span> <span class="tok-punct">{</span> AccessibilityWidget <span class="tok-punct">}</span> <span class="tok-keyword">from</span> <span class="tok-string">'@/components/accessibility-widget'</span>
+
+<span class="tok-keyword">export const</span> metadata<span class="tok-punct">:</span> <span class="tok-type">Metadata</span> <span class="tok-punct">= {</span>
+  title<span class="tok-punct">:</span> <span class="tok-string">'Minha Aplicação'</span><span class="tok-punct">,</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-keyword">export default function</span> <span class="tok-fn">RootLayout</span><span class="tok-punct">({</span>
+  children<span class="tok-punct">,</span>
+<span class="tok-punct">}:</span> <span class="tok-punct">{</span> children<span class="tok-punct">:</span> <span class="tok-type">React.ReactNode</span> <span class="tok-punct">}) {</span>
+  <span class="tok-keyword">return</span> <span class="tok-punct">(</span>
+    <span class="tok-tag">&lt;html</span> <span class="tok-attr">lang</span><span class="tok-punct">=</span><span class="tok-value">"pt-BR"</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;body&gt;</span>
+        <span class="tok-comment">{/* O wrapper deve existir ANTES do widget inicializar */}</span>
+        <span class="tok-tag">&lt;div</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-value">"seeb-content-wrapper"</span><span class="tok-tag">&gt;</span>
+          <span class="tok-punct">{</span>children<span class="tok-punct">}</span>
+        <span class="tok-tag">&lt;/div&gt;</span>
+        <span class="tok-tag">&lt;AccessibilityWidget</span> <span class="tok-tag">/&gt;</span>
+      <span class="tok-tag">&lt;/body&gt;</span>
+    <span class="tok-tag">&lt;/html&gt;</span>
+  <span class="tok-punct">)</span>
+<span class="tok-punct">}</span></pre>
+                        </div>
+                    </div>
+
+                    <div class="docs-callout docs-callout-success" role="note">
+                        <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">check_circle</span>
+                        <div class="docs-callout-body">
+                            <div class="docs-callout-title">Por que funciona</div>
+                            <div class="docs-callout-text">
+                                <ul>
+                                    <li>O <code class="docs-inline-code">seeb-content-wrapper</code> já existe no HTML quando o widget inicializa no cliente</li>
+                                    <li>O widget encontra o div, entra na condição <code class="docs-inline-code">if (!wrapper)</code> como <strong>false</strong> e não move nenhum nó</li>
+                                    <li>O React mantém todas as referências DOM intactas durante a navegação</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela resumo Next.js -->
+                <div class="docs-table-wrapper docs-summary-table" role="region" aria-label="Resumo dos problemas e soluções Next.js">
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Problema</th>
+                                <th scope="col">Causa</th>
+                                <th scope="col">Solução</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Widget não aparece</td>
+                                <td><code class="docs-inline-code">DOMContentLoaded</code> já disparou quando o script carrega</td>
+                                <td>Criar <code class="docs-inline-code">&lt;seeb-widget&gt;</code> manualmente no <code class="docs-inline-code">onload</code></td>
+                            </tr>
+                            <tr>
+                                <td><code class="docs-inline-code">removeChild</code> — node is not a child</td>
+                                <td>Widget move nós gerenciados pelo React para dentro do wrapper</td>
+                                <td>Pre-criar <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code> no layout</td>
+                            </tr>
+                            <tr>
+                                <td>Hydration mismatch de atributos</td>
+                                <td><code class="docs-inline-code">&lt;Script&gt;</code> do Next.js gera <code class="docs-inline-code">data-nscript</code> no servidor</td>
+                                <td><code class="docs-inline-code">useEffect</code> + <code class="docs-inline-code">createElement</code> em vez do componente <code class="docs-inline-code">Script</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <!-- ── 5.4 VUE ─────────────────────────────────────────── -->
+                <span class="docs-section-anchor" id="vue" aria-hidden="true"></span>
+                <h3 class="docs-h3">5.4 — Vue</h3>
+                <p class="docs-p">
+                    A maioria dos projetos Vue usa Vite. Nesses casos, a abordagem mais simples e confiável é adicionar o script diretamente no <code class="docs-inline-code">index.html</code> da raiz.
+                </p>
+
+                <div class="docs-code-block" role="region" aria-label="Vue via index.html">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">html</span>
+                        <span class="docs-code-filename">index.html</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-vue-html" aria-label="Copiar código Vue index.html">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-vue-html">&lt;<span class="tok-tag">head</span>&gt;
+  &lt;<span class="tok-tag">script</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-value">"https://seeb-widget.pages.dev/widget.js"</span> <span class="tok-attr">defer</span>&gt;&lt;/<span class="tok-tag">script</span>&gt;
+&lt;/<span class="tok-tag">head</span>&gt;
+&lt;<span class="tok-tag">body</span>&gt;
+  &lt;<span class="tok-tag">div</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-value">"app"</span>&gt;&lt;/<span class="tok-tag">div</span>&gt;
+  &lt;<span class="tok-tag">script</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-value">"module"</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-value">"/src/main.js"</span>&gt;&lt;/<span class="tok-tag">script</span>&gt;
+&lt;/<span class="tok-tag">body</span>&gt;</pre>
+                    </div>
+                </div>
+
+                <p class="docs-p">
+                    Se preferir injetar programaticamente após a montagem do app — para garantir que o Vue já assumiu o DOM antes do widget inicializar:
+                </p>
+
+                <div class="docs-code-block" role="region" aria-label="Vue via main.js">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">js</span>
+                        <span class="docs-code-filename">src/main.js</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-vue-main" aria-label="Copiar código Vue main.js">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-vue-main"><span class="tok-keyword">import</span> <span class="tok-punct">{</span> createApp <span class="tok-punct">}</span> <span class="tok-keyword">from</span> <span class="tok-string">'vue'</span>
+<span class="tok-keyword">import</span> App <span class="tok-keyword">from</span> <span class="tok-string">'./App.vue'</span>
+
+<span class="tok-keyword">const</span> app <span class="tok-punct">=</span> <span class="tok-fn">createApp</span><span class="tok-punct">(</span>App<span class="tok-punct">)</span>
+app<span class="tok-punct">.</span><span class="tok-fn">mount</span><span class="tok-punct">(</span><span class="tok-string">'#app'</span><span class="tok-punct">)</span>
+
+<span class="tok-comment">// Injetar após mount — Vue já controla o DOM nesse ponto</span>
+<span class="tok-keyword">const</span> script <span class="tok-punct">=</span> document<span class="tok-punct">.</span><span class="tok-fn">createElement</span><span class="tok-punct">(</span><span class="tok-string">'script'</span><span class="tok-punct">)</span>
+script<span class="tok-punct">.</span>src <span class="tok-punct">=</span> <span class="tok-string">'https://seeb-widget.pages.dev/widget.js'</span>
+script<span class="tok-punct">.</span>defer <span class="tok-punct">=</span> <span class="tok-keyword">true</span>
+document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>script<span class="tok-punct">)</span></pre>
+                    </div>
+                </div>
+
+                <div class="docs-callout docs-callout-warning" role="note">
+                    <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">warning</span>
+                    <div class="docs-callout-body">
+                        <div class="docs-callout-title">Cuidado com <code class="docs-inline-code">Teleport to="body"</code></div>
+                        <div class="docs-callout-text">
+                            Se sua aplicação usa <code class="docs-inline-code">&lt;Teleport to="body"&gt;</code> para modais ou overlays, esses elementos são filhos imediatos do <code class="docs-inline-code">&lt;body&gt;</code> — e o widget pode movê-los para dentro do wrapper, causando conflitos. A solução é pré-criar o <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code> no <code class="docs-inline-code">index.html</code> e usar <code class="docs-inline-code">&lt;Teleport to="#seeb-content-wrapper"&gt;</code> como destino em vez do <code class="docs-inline-code">body</code> diretamente.
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ── 5.5 ANGULAR ────────────────────────────────────── -->
+                <span class="docs-section-anchor" id="angular" aria-hidden="true"></span>
+                <h3 class="docs-h3">5.5 — Angular</h3>
+                <p class="docs-p">
+                    A abordagem com menor risco é adicionar o script diretamente no <code class="docs-inline-code">src/index.html</code> do projeto Angular. O widget inicializa antes do bootstrap do framework, o que evita conflitos com o ciclo de vida do Angular.
+                </p>
+
+                <div class="docs-code-block" role="region" aria-label="Angular via src/index.html">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">html</span>
+                        <span class="docs-code-filename">src/index.html</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-angular-html" aria-label="Copiar código Angular index.html">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-angular-html">&lt;<span class="tok-tag">head</span>&gt;
+  &lt;<span class="tok-tag">script</span>
+    <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-value">"https://seeb-widget.pages.dev/widget.js"</span>
+    <span class="tok-attr">defer</span>
+  &gt;&lt;/<span class="tok-tag">script</span>&gt;
+&lt;/<span class="tok-tag">head</span>&gt;
+&lt;<span class="tok-tag">body</span>&gt;
+  &lt;<span class="tok-tag">app-root</span>&gt;&lt;/<span class="tok-tag">app-root</span>&gt;
+&lt;/<span class="tok-tag">body</span>&gt;</pre>
+                    </div>
+                </div>
+
+                <p class="docs-p">
+                    Para controlar o carregamento via TypeScript — por exemplo, para evitar injeção em ambientes de teste ou aplicar condições específicas:
+                </p>
+
+                <div class="docs-code-block" role="region" aria-label="Angular via AppComponent ngOnInit">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">ts</span>
+                        <span class="docs-code-filename">src/app/app.component.ts</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-angular-ts" aria-label="Copiar código Angular TypeScript">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-angular-ts"><span class="tok-keyword">import</span> <span class="tok-punct">{</span> Component<span class="tok-punct">,</span> OnInit <span class="tok-punct">}</span> <span class="tok-keyword">from</span> <span class="tok-string">'@angular/core'</span>
+
+<span class="tok-fn">@Component</span><span class="tok-punct">({</span>
+  selector<span class="tok-punct">:</span> <span class="tok-string">'app-root'</span><span class="tok-punct">,</span>
+  templateUrl<span class="tok-punct">:</span> <span class="tok-string">'./app.component.html'</span><span class="tok-punct">,</span>
+<span class="tok-punct">})</span>
+<span class="tok-keyword">export class</span> <span class="tok-class">AppComponent</span> <span class="tok-keyword">implements</span> <span class="tok-type">OnInit</span> <span class="tok-punct">{</span>
+  <span class="tok-fn">ngOnInit</span><span class="tok-punct">():</span> <span class="tok-type">void</span> <span class="tok-punct">{</span>
+    <span class="tok-keyword">if</span> <span class="tok-punct">(</span>document<span class="tok-punct">.</span><span class="tok-fn">querySelector</span><span class="tok-punct">(</span><span class="tok-string">'seeb-widget'</span><span class="tok-punct">))</span> <span class="tok-keyword">return</span>
+
+    <span class="tok-keyword">const</span> script <span class="tok-punct">=</span> document<span class="tok-punct">.</span><span class="tok-fn">createElement</span><span class="tok-punct">(</span><span class="tok-string">'script'</span><span class="tok-punct">)</span>
+    script<span class="tok-punct">.</span>src <span class="tok-punct">=</span> <span class="tok-string">'https://seeb-widget.pages.dev/widget.js'</span>
+    script<span class="tok-punct">.</span>defer <span class="tok-punct">=</span> <span class="tok-keyword">true</span>
+    document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>script<span class="tok-punct">)</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span></pre>
+                    </div>
+                </div>
+
+                <p class="docs-p">Se o projeto usa Angular Universal (SSR), adicione um guard de plataforma antes de qualquer operação de DOM:</p>
+
+                <div class="docs-code-block" role="region" aria-label="Angular com SSR guard isPlatformBrowser">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">ts</span>
+                        <span class="docs-code-filename">app.component.ts (com guard SSR)</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-angular-ssr" aria-label="Copiar código Angular SSR">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-angular-ssr"><span class="tok-keyword">import</span> <span class="tok-punct">{</span> Component<span class="tok-punct">,</span> OnInit<span class="tok-punct">,</span> Inject<span class="tok-punct">,</span> PLATFORM_ID <span class="tok-punct">}</span> <span class="tok-keyword">from</span> <span class="tok-string">'@angular/core'</span>
+<span class="tok-keyword">import</span> <span class="tok-punct">{</span> isPlatformBrowser <span class="tok-punct">}</span> <span class="tok-keyword">from</span> <span class="tok-string">'@angular/common'</span>
+
+<span class="tok-fn">@Component</span><span class="tok-punct">({</span> selector<span class="tok-punct">:</span> <span class="tok-string">'app-root'</span><span class="tok-punct">,</span> templateUrl<span class="tok-punct">:</span> <span class="tok-string">'./app.component.html'</span> <span class="tok-punct">})</span>
+<span class="tok-keyword">export class</span> <span class="tok-class">AppComponent</span> <span class="tok-keyword">implements</span> <span class="tok-type">OnInit</span> <span class="tok-punct">{</span>
+  <span class="tok-fn">constructor</span><span class="tok-punct">(</span><span class="tok-fn">@Inject</span><span class="tok-punct">(</span>PLATFORM_ID<span class="tok-punct">)</span> <span class="tok-keyword">private</span> platformId<span class="tok-punct">:</span> <span class="tok-type">object</span><span class="tok-punct">)</span> <span class="tok-punct">{}</span>
+
+  <span class="tok-fn">ngOnInit</span><span class="tok-punct">():</span> <span class="tok-type">void</span> <span class="tok-punct">{</span>
+    <span class="tok-comment">// Nunca executar operações de DOM no servidor (Node.js)</span>
+    <span class="tok-keyword">if</span> <span class="tok-punct">(!</span><span class="tok-fn">isPlatformBrowser</span><span class="tok-punct">(</span><span class="tok-keyword">this</span><span class="tok-punct">.</span>platformId<span class="tok-punct">))</span> <span class="tok-keyword">return</span>
+    <span class="tok-keyword">if</span> <span class="tok-punct">(</span>document<span class="tok-punct">.</span><span class="tok-fn">querySelector</span><span class="tok-punct">(</span><span class="tok-string">'seeb-widget'</span><span class="tok-punct">))</span> <span class="tok-keyword">return</span>
+
+    <span class="tok-keyword">const</span> script <span class="tok-punct">=</span> document<span class="tok-punct">.</span><span class="tok-fn">createElement</span><span class="tok-punct">(</span><span class="tok-string">'script'</span><span class="tok-punct">)</span>
+    script<span class="tok-punct">.</span>src <span class="tok-punct">=</span> <span class="tok-string">'https://seeb-widget.pages.dev/widget.js'</span>
+    script<span class="tok-punct">.</span>defer <span class="tok-punct">=</span> <span class="tok-keyword">true</span>
+    document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>script<span class="tok-punct">)</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span></pre>
+                    </div>
+                </div>
+
+                <div class="docs-callout docs-callout-warning" role="note">
+                    <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">warning</span>
+                    <div class="docs-callout-body">
+                        <div class="docs-callout-title">Ressalvas específicas do Angular</div>
+                        <div class="docs-callout-text">
+                            <ul>
+                                <li><strong>Zone.js</strong>: scripts injetados via <code class="docs-inline-code">createElement</code> fora do contexto do Angular não são interceptados pelo zone.js. O widget não dispara detecção de mudanças do Angular — isso é esperado e inofensivo, pois o widget opera de forma completamente independente.</li>
+                                <li><strong>CSP restritivo</strong>: se o projeto Angular usa Content Security Policy, adicione <code class="docs-inline-code">https://seeb-widget.pages.dev</code> à diretiva <code class="docs-inline-code">script-src</code>.</li>
+                                <li><strong>Angular Universal / SSR</strong>: sempre use o guard <code class="docs-inline-code">isPlatformBrowser</code> antes de qualquer operação com <code class="docs-inline-code">document</code> ou <code class="docs-inline-code">window</code>. O código do widget não deve executar no contexto Node.js.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ============================================================
+                 SEÇÃO 6 — PROBLEMAS CONHECIDOS
+            ============================================================ -->
+            <section class="docs-section" aria-labelledby="problemas-title">
+                <span class="docs-section-anchor" id="problemas" aria-hidden="true"></span>
+                <h2 class="docs-h2" id="problemas-title">
+                    <span class="material-symbols-outlined section-icon" aria-hidden="true">bug_report</span>
+                    Problemas Conhecidos
+                </h2>
+                <p class="docs-p">
+                    Referência rápida para os erros mais frequentes durante a integração.
+                </p>
+
+                <div class="docs-problem-list">
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">Widget não aparece na tela</div>
+                        <p class="docs-problem-desc">
+                            <strong>Causa:</strong> O evento <code class="docs-inline-code">DOMContentLoaded</code> já disparou quando o script foi carregado. Comum em Next.js App Router com <code class="docs-inline-code">strategy="afterInteractive"</code> e em situações de lazy loading tardio.<br><br>
+                            <strong>Solução:</strong> Crie o elemento <code class="docs-inline-code">&lt;seeb-widget&gt;</code> manualmente no callback <code class="docs-inline-code">onload</code> do script, como demonstrado no guia do Next.js. O padrão de criação manual funciona em qualquer framework.
+                        </p>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title"><code class="docs-inline-code">removeChild</code> — The node is not a child of this node</div>
+                        <p class="docs-problem-desc">
+                            <strong>Causa:</strong> O widget chamou <code class="docs-inline-code">wrapContent()</code> e moveu nós DOM que o framework (React, Angular) ainda referencia internamente. Quando o framework tentou operar nesses nós, não os encontrou mais no <code class="docs-inline-code">&lt;body&gt;</code>.<br><br>
+                            <strong>Solução:</strong> Pré-crie o <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code> antes que o widget inicialize. Com o div existente, o widget não move nenhum nó.
+                        </p>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">Hydration mismatch no Next.js</div>
+                        <p class="docs-problem-desc">
+                            <strong>Causa:</strong> O componente <code class="docs-inline-code">&lt;Script&gt;</code> do Next.js com <code class="docs-inline-code">onLoad</code> gera atributos distintos no HTML do servidor e no cliente, causando divergência na hydration do React.<br><br>
+                            <strong>Solução:</strong> Use o padrão <code class="docs-inline-code">useEffect</code> + <code class="docs-inline-code">createElement</code>. O componente retorna <code class="docs-inline-code">null</code> no servidor, eliminando qualquer possibilidade de mismatch de atributos.
+                        </p>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">Widget aparece duplicado</div>
+                        <p class="docs-problem-desc">
+                            <strong>Causa:</strong> O script foi injetado ou o widget foi criado mais de uma vez. Acontece quando hooks de ciclo de vida executam múltiplas vezes (React StrictMode executa os efeitos duas vezes em desenvolvimento), ou quando o componente que inicia o widget é montado e desmontado durante a navegação.<br><br>
+                            <strong>Solução:</strong> Sempre verifique antes de criar: <code class="docs-inline-code">if (document.querySelector('seeb-widget')) return</code>. Todos os exemplos nesta documentação já incluem esse guard.
+                        </p>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">Script bloqueado por CSP</div>
+                        <p class="docs-problem-desc">
+                            <strong>Causa:</strong> O projeto tem uma Content Security Policy que não permite carregar scripts de domínios externos não listados.<br><br>
+                            <strong>Solução:</strong> Adicione <code class="docs-inline-code">https://seeb-widget.pages.dev</code> à diretiva <code class="docs-inline-code">script-src</code> do seu CSP. Como alternativa, faça o self-hosting do <code class="docs-inline-code">widget.js</code> a partir do repositório público.
+                        </p>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">Widget não funciona em páginas específicas</div>
+                        <p class="docs-problem-desc">
+                            <strong>Causa:</strong> Algumas páginas usam tecnologias proprietárias ou estruturas de DOM não convencionais que impedem o widget de aplicar seus estilos corretamente. É um comportamento esperado para casos extremos — não um bug.<br><br>
+                            <strong>Solução:</strong> Reporte a página no repositório via issue com o domínio e uma descrição do problema. A equipe avalia caso a caso.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- ============================================================
+                 SEÇÃO 7 — BOAS PRÁTICAS
+            ============================================================ -->
+            <section class="docs-section" aria-labelledby="boas-praticas-title">
+                <span class="docs-section-anchor" id="boas-praticas" aria-hidden="true"></span>
+                <h2 class="docs-h2" id="boas-praticas-title">
+                    <span class="material-symbols-outlined section-icon" aria-hidden="true">verified</span>
+                    Boas Práticas
+                </h2>
+
+                <ul class="docs-why-list">
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        <span><strong>Sempre use <code class="docs-inline-code">defer</code></strong>. Evita bloqueio de render e garante que o DOM está disponível quando o widget executa.</span>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        <span><strong>Em projetos com SSR, pré-crie o <code class="docs-inline-code">#seeb-content-wrapper</code></strong>. Isso previne a movimentação de nós DOM gerenciados pelo framework — o ajuste mais importante para Next.js, SvelteKit e Angular Universal.</span>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        <span><strong>Aplique sempre o guard de verificação antes de criar</strong>: <code class="docs-inline-code">if (document.querySelector('seeb-widget')) return</code>. Previne duplicações em hot reload, StrictMode e navegações em SPA.</span>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        <span><strong>Carregue o widget uma única vez no ponto de entrada</strong>. Em SPAs, não coloque a lógica de injeção em componentes que montam e desmontam durante a navegação. Use o layout raiz ou o arquivo de bootstrap.</span>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        <span><strong>Não manipule os filhos imediatos do <code class="docs-inline-code">&lt;body&gt;</code> manualmente</strong> ao mesmo tempo que o widget está ativo. Se o código da aplicação move, clona ou remove nós do body por fora do framework, pode conflitar com o wrapper do widget.</span>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        <span><strong>Valide em produção</strong>. O comportamento com SSR, hydration e carregamento assíncrono pode diferir entre desenvolvimento e produção. Teste que o widget aparece corretamente após o build, incluindo em rotas com SSR.</span>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        <span><strong>Em projetos com CSP</strong>, configure o allowlist antes de implantar em produção. Um CSP que bloqueia scripts externos silencia o widget sem gerar erros visíveis ao usuário.</span>
+                    </li>
+                </ul>
+            </section>
+
+
+            <!-- ============================================================
+                 SEÇÃO 8 — FILOSOFIA
+            ============================================================ -->
+            <section class="docs-section" aria-labelledby="filosofia-title">
+                <span class="docs-section-anchor" id="filosofia" aria-hidden="true"></span>
+                <h2 class="docs-h2" id="filosofia-title">
+                    <span class="material-symbols-outlined section-icon" aria-hidden="true">favorite</span>
+                    Filosofia do Projeto
+                </h2>
+                <p class="docs-p">
+                    O SeeB Widget existe porque acreditamos que acessibilidade não deveria ser um projeto paralelo — ela já deveria estar lá, embutida na experiência padrão da web.
+                </p>
+
+                <div class="docs-problem-list">
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">100% Gratuito, Para Sempre</div>
+                        <p class="docs-problem-desc">
+                            Não existe plano pago, tier premium, limite de uso ou intenção de monetização. O widget é gratuito para qualquer projeto — pessoal, comercial ou educacional. Não há roadmap de cobrança.
+                        </p>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">Zero Coleta de Dados</div>
+                        <p class="docs-problem-desc">
+                            O widget não faz nenhuma chamada externa durante o uso do usuário. Sem analytics, telemetria, rastreamento ou envio de informações a servidores. As preferências de acessibilidade são salvas apenas em <code class="docs-inline-code">localStorage</code> — no dispositivo do próprio usuário. Nenhum dado sai do navegador.
+                        </p>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">Client-Side Only</div>
+                        <p class="docs-problem-desc">
+                            Todo o processamento acontece no navegador. Não há backend, não há dependência de infraestrutura externa além do carregamento inicial do <code class="docs-inline-code">widget.js</code>. Uma vez carregado, funciona offline. Falhas de rede após o carregamento inicial não afetam o funcionamento.
+                        </p>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">Open Source e Auditável</div>
+                        <p class="docs-problem-desc">
+                            O código-fonte está disponível publicamente. Qualquer desenvolvedor pode auditar o que o widget faz, propor melhorias ou reportar problemas. Não há código ofuscado ou comportamento escondido. O que está documentado aqui reflete exatamente o que o código faz.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="docs-callout docs-callout-info" role="note">
+                    <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">open_in_new</span>
+                    <div class="docs-callout-body">
+                        <div class="docs-callout-title">Contribua com o projeto</div>
+                        <div class="docs-callout-text">
+                            O SeeB é desenvolvido por alunos da ETEC Parque Belém como projeto open source. Contribuições são bem-vindas: correções de bugs, novas funcionalidades, melhoria de compatibilidade com frameworks ou aprimoramentos desta documentação. Acesse o repositório em <a href="https://github.com/devrafcks/seeb-widget" target="_blank" rel="noopener noreferrer" style="color:var(--color-accent);font-weight:500;">github.com/devrafcks/seeb-widget</a>.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer nav -->
+            <div class="docs-footer-nav">
+                <a href="index.html#widget-section" class="docs-footer-nav-link" aria-label="Voltar para a página do widget SeeB">
+                    <span class="docs-footer-nav-dir">← Voltar</span>
+                    <span class="docs-footer-nav-page">Página do Widget</span>
+                </a>
+            </div>
+
+        </main>
+
+        <aside class="docs-sprites">
+            <img src="./src/assets/sprites-funny/image 50.png" alt="Sprite animado" class="sprite-clickable" data-msg="Aquele que tem um porquê para viver pode suportar quase qualquer como." data-author="Friedrich Nietzsche">
+            <img src="./src/assets/sprites-funny/image 52.png" alt="Sprite animado" class="sprite-clickable" data-msg="Onde há amor ao próximo, há também luz." data-author="Fyodor Dostoevsky">
+            <img src="./src/assets/sprites-funny/image 60.png" alt="Sprite animado" class="sprite-clickable" data-msg="Que a Força esteja com você." data-author="Star Wars">
+            <img src="./src/assets/sprites-funny/image 62.png" alt="Sprite animado" class="sprite-clickable" data-msg="Mesmo a menor pessoa pode mudar o curso do futuro." data-author="The Lord of the Rings: The Fellowship of the Ring">
+        </aside>
+    </div>
+
+    <div class="sprite-modal" id="sprite-modal" role="dialog" aria-modal="true" aria-labelledby="sprite-modal-msg">
+        <div class="sprite-modal-box">
+            <img class="sprite-modal-img" id="sprite-modal-img" src="" alt="">
+            <blockquote class="sprite-modal-quote">
+                <p class="sprite-modal-msg" id="sprite-modal-msg"></p>
+                <cite class="sprite-modal-author" id="sprite-modal-author"></cite>
+            </blockquote>
+            <button class="sprite-modal-close" id="sprite-modal-close" aria-label="Fechar">Fechar</button>
+        </div>
+    </div>
+    </div>
+
+
+    <script>
+        const htmlEl   = document.documentElement
+        const themeBtn = document.getElementById('docs-theme-toggle')
+        const themeIcon = document.getElementById('docs-theme-icon')
+
+        if (localStorage.getItem('theme') !== 'light') {
+            htmlEl.setAttribute('dark', '')
+            if (themeIcon) themeIcon.textContent = 'light_mode'
+        }
+
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                const isDark = htmlEl.hasAttribute('dark')
+                htmlEl[isDark ? 'removeAttribute' : 'setAttribute']('dark', '')
+                if (themeIcon) themeIcon.textContent = isDark ? 'dark_mode' : 'light_mode'
+                localStorage.setItem('theme', isDark ? 'light' : 'dark')
+            })
+        }
+
+        // ── Copy buttons ──────────────────────────────────────────────
+        document.querySelectorAll('.docs-code-copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const el   = document.getElementById(btn.getAttribute('data-copy-target') || '')
+                const text = el ? el.innerText : ''
+                if (!text) return
+
+                const restore = () => {
+                    const icon = btn.querySelector('.material-symbols-outlined')
+                    btn.classList.add('copied')
+                    if (icon) icon.textContent = 'check'
+                    btn.childNodes.forEach(n => {
+                        if (n.nodeType === Node.TEXT_NODE && n.textContent.trim())
+                            n.textContent = ' Copiado!'
+                    })
+                    setTimeout(() => {
+                        btn.classList.remove('copied')
+                        if (icon) icon.textContent = 'content_copy'
+                        btn.childNodes.forEach(n => {
+                            if (n.nodeType === Node.TEXT_NODE && n.textContent.trim())
+                                n.textContent = ' Copiar'
+                        })
+                    }, 2000)
+                }
+
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(restore).catch(() => { fallbackCopy(text); restore() })
+                } else {
+                    fallbackCopy(text); restore()
+                }
+            })
+        })
+
+        function fallbackCopy(text) {
+            const ta = document.createElement('textarea')
+            ta.value = text
+            ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;'
+            document.body.appendChild(ta)
+            ta.focus(); ta.select()
+            try { document.execCommand('copy') } catch (e) {}
+            document.body.removeChild(ta)
+        }
+
+        // ── Active sidebar link on scroll ─────────────────────────────
+        const anchors      = document.querySelectorAll('.docs-section-anchor[id]')
+        const sidebarLinks = document.querySelectorAll('.sidebar-link')
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return
+                const id = entry.target.id
+                sidebarLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === '#' + id)
+                })
+            })
+        }, { rootMargin: '-10% 0px -80% 0px' })
+
+        anchors.forEach(anchor => observer.observe(anchor))
+
+        const spriteModal      = document.getElementById('sprite-modal')
+        const spriteModalImg   = document.getElementById('sprite-modal-img')
+        const spriteModalMsg   = document.getElementById('sprite-modal-msg')
+        const spriteModalAuthor = document.getElementById('sprite-modal-author')
+        const spriteModalClose = document.getElementById('sprite-modal-close')
+
+        document.querySelectorAll('.sprite-clickable').forEach(img => {
+            img.addEventListener('click', () => {
+                spriteModalImg.src = img.src
+                spriteModalMsg.textContent = img.dataset.msg
+                spriteModalAuthor.textContent = '— ' + img.dataset.author
+                spriteModal.classList.add('open')
+            })
+        })
+
+        spriteModalClose.addEventListener('click', () => spriteModal.classList.remove('open'))
+
+        spriteModal.addEventListener('click', (e) => {
+            if (e.target === spriteModal) spriteModal.classList.remove('open')
+        })
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') spriteModal.classList.remove('open')
+        })
+    </script>
+        <script src="https://seeb-widget.pages.dev/widget.js" defer />
+</body>
+</html>
