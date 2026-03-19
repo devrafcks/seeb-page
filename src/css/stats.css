@@ -58,6 +58,30 @@
     margin-top: clamp(2rem, 4vw, 3rem);
 }
 
+.stat-card {
+    padding: clamp(1.5rem, 3vw, 2rem);
+    width: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(58, 214, 249, 0.18);
+    border-radius: 1rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat-card:hover {
+    border-color: rgba(62, 181, 208, 0.45);
+    box-shadow: 0 6px 24px rgba(62, 181, 208, 0.1);
+}
+
+html[dark] .stat-card {
+    background: rgba(26, 26, 26, 0.5);
+    border-color: rgba(77, 163, 255, 0.15);
+}
+
+html[dark] .stat-card:hover {
+    border-color: rgba(77, 163, 255, 0.35);
+    box-shadow: 0 6px 24px rgba(77, 163, 255, 0.08);
+}
+
 .stat-label {
     font-size: clamp(1rem, 2vw, 1.125rem);
     font-weight: 600;

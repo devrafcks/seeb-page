@@ -105,6 +105,51 @@
     background: none;
 }
 
+
+.feature-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.feature-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.875rem;
+    background: rgba(62, 181, 208, 0.07);
+    border: 1px solid rgba(62, 181, 208, 0.22);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-medium);
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+.feature-chip:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: rgba(62, 181, 208, 0.12);
+}
+
+.feature-chip .material-symbols-outlined {
+    font-size: 1.0625rem;
+    color: var(--color-accent);
+}
+
+html[dark] .feature-chip {
+    background: rgba(77, 163, 255, 0.07);
+    border-color: rgba(77, 163, 255, 0.2);
+}
+
+html[dark] .feature-chip:hover {
+    background: rgba(77, 163, 255, 0.13);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
 .features-image {
     padding: 2rem;
     display: flex;
