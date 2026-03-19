@@ -21,29 +21,6 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 })();
 
 
-(function galleryReveal() {
-    const mm = gsap.matchMedia();
-
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from(".gallery-title", {
-            y: 24, opacity: 0, duration: 0.65,
-            scrollTrigger: { trigger: ".gallery-section", start: "top 78%", once: true },
-        });
-
-        ScrollTrigger.batch(".gallery-item", {
-            onEnter: (els) =>
-                gsap.from(els, {
-                    opacity: 0,
-                    scale: 0.94,
-                    stagger: 0.08,
-                    duration: 0.6,
-                    ease: "power2.out",
-                }),
-            start: "top 85%",
-            once: true,
-        });
-    });
-})();
 
 
 (function sectionEntrances() {
@@ -121,19 +98,6 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
             once: true,
         });
 
-        
-        gsap.from(".faq-header", {
-            y: 22, opacity: 0, duration: 0.65,
-            scrollTrigger: { trigger: ".faq-section", start: "top 80%", once: true },
-        });
-        ScrollTrigger.batch(".faq-item", {
-            onEnter: (els) =>
-                gsap.from(els, { x: -18, opacity: 0, stagger: 0.07, duration: 0.5, ease: "power2.out" }),
-            start: "top 88%",
-            once: true,
-        });
-
-        
         gsap.from(".footer-cta-box", {
             y: 30, opacity: 0, duration: 0.7,
             scrollTrigger: { trigger: ".footer-cta-section", start: "top 82%", once: true },
