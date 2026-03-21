@@ -75,6 +75,32 @@
                 <div class="sidebar-divider" aria-hidden="true"></div>
 
                 <div class="sidebar-section">
+                    <div class="sidebar-section-title">Funcionalidades</div>
+                    <ul class="sidebar-nav" role="list">
+                        <li><a href="#daltonismo" class="sidebar-link">Daltonismo</a></li>
+                        <li><a href="#contraste" class="sidebar-link">Contraste</a></li>
+                        <li><a href="#ampliacao-leitura" class="sidebar-link">Ampliação e Leitura</a></li>
+                        <li><a href="#visibilidade" class="sidebar-link">Visibilidade</a></li>
+                        <li><a href="#interacao" class="sidebar-link">Interação</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-divider" aria-hidden="true"></div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-title">Configuração</div>
+                    <ul class="sidebar-nav" role="list">
+                        <li><a href="#aparencia" class="sidebar-link">Aparência</a></li>
+                        <li><a href="#posicao-widget" class="sidebar-link">Posição do Widget</a></li>
+                        <li><a href="#atalhos-teclado" class="sidebar-link">Atalhos de Teclado</a></li>
+                        <li><a href="#persistencia" class="sidebar-link">Persistência</a></li>
+                        <li><a href="#css-variables" class="sidebar-link">CSS Variables</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-divider" aria-hidden="true"></div>
+
+                <div class="sidebar-section">
                     <div class="sidebar-section-title">Guia por Framework</div>
                     <ul class="sidebar-nav" role="list">
                         <li><a href="#html-puro" class="sidebar-link">HTML Puro</a></li>
@@ -380,7 +406,404 @@
 
 
             <!-- ============================================================
-                 SEÇÃO 5 — GUIA POR FRAMEWORK
+                 SEÇÃO 5 — FUNCIONALIDADES
+            ============================================================ -->
+            <section class="docs-section" aria-labelledby="funcionalidades-title">
+                <span class="docs-section-anchor" id="funcionalidades" aria-hidden="true"></span>
+                <h2 class="docs-h2" id="funcionalidades-title">
+                    <span class="material-symbols-outlined section-icon" aria-hidden="true">tune</span>
+                    Funcionalidades
+                </h2>
+                <p class="docs-p">
+                    O widget expõe um painel completo de acessibilidade com controles agrupados em cinco categorias. Todas as preferências são salvas automaticamente em <code class="docs-inline-code">localStorage</code> e restauradas na próxima visita. Cada funcionalidade tem um atalho de teclado próprio com o modificador <code class="docs-inline-code">Alt +</code>.
+                </p>
+
+                <!-- Daltonismo -->
+                <span class="docs-section-anchor" id="daltonismo" aria-hidden="true"></span>
+                <h3 class="docs-h3">Daltonismo</h3>
+                <p class="docs-p">
+                    Aplica filtros SVG <code class="docs-inline-code">feColorMatrix</code> combinados com outros filtros ativos via inline style. Os filtros de daltonismo, contraste, inverter e modo escuro são sempre compostos numa única propriedade <code class="docs-inline-code">filter</code>, eliminando conflitos de especificidade CSS.
+                </p>
+
+                <div class="docs-table-wrapper" role="region" aria-label="Opções de filtro de daltonismo">
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Opção</th>
+                                <th scope="col">Atalho</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Normal</td><td><code class="docs-inline-code">Alt + 1</code></td></tr>
+                            <tr><td>Protanopia</td><td><code class="docs-inline-code">Alt + 2</code></td></tr>
+                            <tr><td>Deuteranopia</td><td><code class="docs-inline-code">Alt + 3</code></td></tr>
+                            <tr><td>Tritanopia</td><td><code class="docs-inline-code">Alt + 4</code></td></tr>
+                            <tr><td>Monocromático</td><td><code class="docs-inline-code">Alt + 5</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Contraste -->
+                <span class="docs-section-anchor" id="contraste" aria-hidden="true"></span>
+                <h3 class="docs-h3">Contraste</h3>
+                <p class="docs-p">
+                    Ativa alto contraste via <code class="docs-inline-code">contrast(1.5) saturate(1.5)</code>. Mutuamente combinável com os demais filtros na mesma propriedade <code class="docs-inline-code">filter</code>.
+                </p>
+
+                <div class="docs-table-wrapper" role="region" aria-label="Opções de contraste">
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Opção</th>
+                                <th scope="col">Atalho</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Normal</td><td>—</td></tr>
+                            <tr><td>Alto contraste</td><td><code class="docs-inline-code">Alt + C</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Ampliação e Leitura -->
+                <span class="docs-section-anchor" id="ampliacao-leitura" aria-hidden="true"></span>
+                <h3 class="docs-h3">Ampliação e Leitura</h3>
+                <p class="docs-p">
+                    Conjunto de controles que melhoram a legibilidade do conteúdo sem alterar o layout da página.
+                </p>
+
+                <div class="docs-table-wrapper" role="region" aria-label="Funcionalidades de ampliação e leitura">
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Funcionalidade</th>
+                                <th scope="col">Atalho</th>
+                                <th scope="col">Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ampliar Texto</strong></td>
+                                <td><code class="docs-inline-code">Alt + T</code></td>
+                                <td>Alterna <code class="docs-inline-code">font-size</code> entre 100% e 125% no <code class="docs-inline-code">&lt;html&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Espaçamento</strong></td>
+                                <td><code class="docs-inline-code">Alt + E</code></td>
+                                <td><code class="docs-inline-code">word-spacing: 2px</code>, <code class="docs-inline-code">letter-spacing: 0.12em</code>, <code class="docs-inline-code">line-height: 1.8</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Negrito</strong></td>
+                                <td><code class="docs-inline-code">Alt + B</code></td>
+                                <td><code class="docs-inline-code">font-weight: 700</code> em todos os elementos do conteúdo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sublinhar Links</strong></td>
+                                <td><code class="docs-inline-code">Alt + U</code></td>
+                                <td><code class="docs-inline-code">text-decoration: underline</code> com <code class="docs-inline-code">thickness: 2px</code> em todos os <code class="docs-inline-code">&lt;a&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Guia de Leitura</strong></td>
+                                <td><code class="docs-inline-code">Alt + G</code></td>
+                                <td>Régua horizontal que segue o mouse, com throttle via <code class="docs-inline-code">requestAnimationFrame</code>. Altura configurável via slider (10px a 200px)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Linha de Foco</strong></td>
+                                <td><code class="docs-inline-code">Alt + F</code></td>
+                                <td>Destaca o elemento sob o cursor com cor de fundo configurável via color picker</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Visibilidade -->
+                <span class="docs-section-anchor" id="visibilidade" aria-hidden="true"></span>
+                <h3 class="docs-h3">Visibilidade</h3>
+                <p class="docs-p">
+                    Controles que alteram a aparência visual da página inteira. Imagens e vídeos são re-invertidos automaticamente nos modos que aplicam inversão, para manter sua aparência natural.
+                </p>
+
+                <div class="docs-table-wrapper" role="region" aria-label="Funcionalidades de visibilidade">
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Funcionalidade</th>
+                                <th scope="col">Atalho</th>
+                                <th scope="col">Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Inverter Cores</strong></td>
+                                <td><code class="docs-inline-code">Alt + I</code></td>
+                                <td><code class="docs-inline-code">filter: invert(1)</code> no wrapper de conteúdo. Imagens e vídeos são re-invertidos para manter aparência natural</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Modo Escuro</strong></td>
+                                <td><code class="docs-inline-code">Alt + D</code></td>
+                                <td><code class="docs-inline-code">filter: invert(0.9) hue-rotate(180deg)</code>. Imagens e vídeos re-invertidos. Mutuamente exclusivo com Inverter Cores</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ocultar Imagens</strong></td>
+                                <td><code class="docs-inline-code">Alt + H</code></td>
+                                <td><code class="docs-inline-code">visibility: hidden</code> em <code class="docs-inline-code">img</code>, <code class="docs-inline-code">video</code> e <code class="docs-inline-code">picture</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Parar Animações</strong></td>
+                                <td><code class="docs-inline-code">Alt + P</code></td>
+                                <td><code class="docs-inline-code">animation-play-state: paused</code> e <code class="docs-inline-code">transition-duration: 0ms</code> em todos os elementos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Interação -->
+                <span class="docs-section-anchor" id="interacao" aria-hidden="true"></span>
+                <h3 class="docs-h3">Interação</h3>
+                <p class="docs-p">
+                    Recursos que modificam como o usuário interage com a página, facilitando a navegação por teclado e mouse.
+                </p>
+
+                <div class="docs-table-wrapper" role="region" aria-label="Funcionalidades de interação">
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Funcionalidade</th>
+                                <th scope="col">Atalho</th>
+                                <th scope="col">Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Cursor Grande</strong></td>
+                                <td><code class="docs-inline-code">Alt + M</code></td>
+                                <td>Substitui o cursor por um SVG de 32×32px via CSS custom cursor</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Links Destacados</strong></td>
+                                <td><code class="docs-inline-code">Alt + K</code></td>
+                                <td>Adiciona <code class="docs-inline-code">outline</code>, <code class="docs-inline-code">background</code> e <code class="docs-inline-code">underline</code> em todos os <code class="docs-inline-code">&lt;a&gt;</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+            <!-- ============================================================
+                 SEÇÃO 6 — CONFIGURAÇÃO
+            ============================================================ -->
+            <section class="docs-section" aria-labelledby="configuracao-title">
+                <span class="docs-section-anchor" id="configuracao" aria-hidden="true"></span>
+                <h2 class="docs-h2" id="configuracao-title">
+                    <span class="material-symbols-outlined section-icon" aria-hidden="true">settings</span>
+                    Configuração
+                </h2>
+
+                <!-- Aparência -->
+                <span class="docs-section-anchor" id="aparencia" aria-hidden="true"></span>
+                <h3 class="docs-h3">Aparência</h3>
+                <p class="docs-p">
+                    As cores do widget são configuráveis diretamente no painel pelo usuário final e salvas no <code class="docs-inline-code">localStorage</code>. As variáveis CSS internas do widget também podem ser sobrescritas via tema.
+                </p>
+
+                <div class="docs-table-wrapper" role="region" aria-label="Configurações de aparência">
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Campo</th>
+                                <th scope="col">CSS Variable</th>
+                                <th scope="col">Padrão</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cor do Ícone e Cabeçalho</td>
+                                <td><code class="docs-inline-code">--cor-principal</code>, <code class="docs-inline-code">--cor-fundo-icone</code></td>
+                                <td><code class="docs-inline-code">#003667</code></td>
+                            </tr>
+                            <tr>
+                                <td>Cor do Fundo do Painel</td>
+                                <td><code class="docs-inline-code">--cor-fundo-panel</code></td>
+                                <td><code class="docs-inline-code">#E6EDF3</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Posição do Widget -->
+                <span class="docs-section-anchor" id="posicao-widget" aria-hidden="true"></span>
+                <h3 class="docs-h3">Posição do Widget</h3>
+                <p class="docs-p">
+                    O ícone flutuante pode ser reposicionado de duas formas: arrastando livremente ou escolhendo um preset na grade 3×3 dentro do painel.
+                </p>
+
+                <div class="docs-problem-list">
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">Arrastar</div>
+                        <p class="docs-problem-desc">
+                            Clique e arraste o ícone para qualquer lugar da tela. O drag usa throttle com <code class="docs-inline-code">requestAnimationFrame</code> para performance. Se o usuário soltar sem mover mais de 5px, o painel abre normalmente — o clique e o drag coexistem sem conflito.
+                        </p>
+                    </div>
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">Presets (grade 3×3)</div>
+                        <p class="docs-problem-desc">
+                            Oito posições predefinidas acessíveis pelo painel. O preset padrão é <code class="docs-inline-code">right-center</code>.
+                        </p>
+                        <div class="docs-table-wrapper" role="region" aria-label="Presets de posição disponíveis" style="margin-top:1rem;">
+                            <table class="docs-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Preset</th>
+                                        <th scope="col">Posição</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><code class="docs-inline-code">top-left</code></td><td>Superior Esquerdo</td></tr>
+                                    <tr><td><code class="docs-inline-code">top-center</code></td><td>Superior Centro</td></tr>
+                                    <tr><td><code class="docs-inline-code">top-right</code></td><td>Superior Direito</td></tr>
+                                    <tr><td><code class="docs-inline-code">left-center</code></td><td>Esquerdo Centro</td></tr>
+                                    <tr><td><code class="docs-inline-code">right-center</code></td><td>Direito Centro <span class="docs-badge docs-badge-yes" style="font-size:0.7rem;">padrão</span></td></tr>
+                                    <tr><td><code class="docs-inline-code">bottom-left</code></td><td>Inferior Esquerdo</td></tr>
+                                    <tr><td><code class="docs-inline-code">bottom-center</code></td><td>Inferior Centro</td></tr>
+                                    <tr><td><code class="docs-inline-code">bottom-right</code></td><td>Inferior Direito</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Atalhos de Teclado -->
+                <span class="docs-section-anchor" id="atalhos-teclado" aria-hidden="true"></span>
+                <h3 class="docs-h3">Atalhos de Teclado</h3>
+                <p class="docs-p">
+                    Todos os controles do widget têm atalho de teclado usando <code class="docs-inline-code">Alt +</code> como modificador. Os atalhos funcionam globalmente na página, independentemente do foco atual.
+                </p>
+
+                <div class="docs-table-wrapper" role="region" aria-label="Tabela completa de atalhos de teclado">
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Atalho</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code class="docs-inline-code">Alt + A</code></td><td>Abrir/Fechar painel</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + T</code></td><td>Ampliar texto</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + E</code></td><td>Espaçamento de texto</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + B</code></td><td>Negrito</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + U</code></td><td>Sublinhar links</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + G</code></td><td>Guia de leitura</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + F</code></td><td>Linha de foco</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + C</code></td><td>Alternar contraste alto/normal</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + I</code></td><td>Inverter cores</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + D</code></td><td>Modo escuro</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + H</code></td><td>Ocultar imagens</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + M</code></td><td>Cursor grande</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + K</code></td><td>Links destacados</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + P</code></td><td>Parar animações</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + R</code></td><td>Redefinir tudo</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + 1</code></td><td>Daltonismo: Normal</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + 2</code></td><td>Daltonismo: Protanopia</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + 3</code></td><td>Daltonismo: Deuteranopia</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + 4</code></td><td>Daltonismo: Tritanopia</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + 5</code></td><td>Daltonismo: Monocromático</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Persistência -->
+                <span class="docs-section-anchor" id="persistencia" aria-hidden="true"></span>
+                <h3 class="docs-h3">Persistência</h3>
+                <p class="docs-p">
+                    Todas as configurações são salvas em <code class="docs-inline-code">localStorage</code> na chave <code class="docs-inline-code">seeb.settings</code>. O objeto completo de estado persistido:
+                </p>
+
+                <div class="docs-code-block" role="region" aria-label="Schema do localStorage seeb.settings">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">js</span>
+                        <span class="docs-code-filename">localStorage — chave: seeb.settings</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-localstorage" aria-label="Copiar schema do localStorage">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-localstorage"><span class="tok-punct">{</span>
+  fontSize<span class="tok-punct">:</span> <span class="tok-number">100</span><span class="tok-punct">,</span>
+  fontSizeIncreased<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  textSpacing<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  boldText<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  underlineLinks<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  readingGuide<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  rulerHeight<span class="tok-punct">:</span> <span class="tok-number">50</span><span class="tok-punct">,</span>
+  focusLine<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  focusLineColor<span class="tok-punct">:</span> <span class="tok-string">'#AED5F2'</span><span class="tok-punct">,</span>
+  colorBlindness<span class="tok-punct">:</span> <span class="tok-string">'normal'</span><span class="tok-punct">,</span>
+  contrast<span class="tok-punct">:</span> <span class="tok-string">'normal'</span><span class="tok-punct">,</span>
+  invertColors<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  darkMode<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  hideImages<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  bigCursor<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  highlightLinks<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  pauseAnimations<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  widgetIconColor<span class="tok-punct">:</span> <span class="tok-string">'#003667'</span><span class="tok-punct">,</span>
+  widgetPanelColor<span class="tok-punct">:</span> <span class="tok-string">'#E6EDF3'</span><span class="tok-punct">,</span>
+  widgetPositionPreset<span class="tok-punct">:</span> <span class="tok-string">'right-center'</span><span class="tok-punct">,</span>
+  widgetPositionX<span class="tok-punct">:</span> <span class="tok-keyword">null</span><span class="tok-punct">,</span>
+  widgetPositionY<span class="tok-punct">:</span> <span class="tok-keyword">null</span><span class="tok-punct">,</span>
+<span class="tok-punct">}</span></pre>
+                    </div>
+                </div>
+
+                <div class="docs-callout docs-callout-info" role="note">
+                    <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">info</span>
+                    <div class="docs-callout-body">
+                        <div class="docs-callout-title">Redefinir Tudo</div>
+                        <div class="docs-callout-text">
+                            O atalho <code class="docs-inline-code">Alt + R</code> remove a chave <code class="docs-inline-code">seeb.settings</code> do <code class="docs-inline-code">localStorage</code> e restaura todos os valores para o estado padrão listado acima. Nenhum outro dado do <code class="docs-inline-code">localStorage</code> da aplicação é afetado.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSS Variables -->
+                <span class="docs-section-anchor" id="css-variables" aria-hidden="true"></span>
+                <h3 class="docs-h3">CSS Variables</h3>
+                <p class="docs-p">
+                    As variáveis CSS internas do widget operam dentro do Shadow DOM. Elas controlam a aparência do painel e do ícone flutuante e podem ser alteradas programaticamente via JavaScript após a criação do elemento <code class="docs-inline-code">&lt;seeb-widget&gt;</code>.
+                </p>
+
+                <div class="docs-code-block" role="region" aria-label="CSS Variables do widget">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">css</span>
+                        <span class="docs-code-filename">Variáveis internas do widget</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-css-vars" aria-label="Copiar CSS variables">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-css-vars"><span class="tok-tag">:root</span> <span class="tok-punct">{</span>
+  <span class="tok-attr">--cor-principal</span><span class="tok-punct">:</span> <span class="tok-value">#003667</span><span class="tok-punct">;</span>
+  <span class="tok-attr">--cor-destaque</span><span class="tok-punct">:</span> <span class="tok-value">#014C83</span><span class="tok-punct">;</span>
+  <span class="tok-attr">--cor-neutra-clara</span><span class="tok-punct">:</span> <span class="tok-value">#E6EDF3</span><span class="tok-punct">;</span>
+  <span class="tok-attr">--cor-neutra-escura</span><span class="tok-punct">:</span> <span class="tok-value">#1A4975</span><span class="tok-punct">;</span>
+  <span class="tok-attr">--cor-fundo-panel</span><span class="tok-punct">:</span> <span class="tok-value">var(--cor-neutra-clara)</span><span class="tok-punct">;</span>
+  <span class="tok-attr">--cor-fundo-icone</span><span class="tok-punct">:</span> <span class="tok-value">var(--cor-principal)</span><span class="tok-punct">;</span>
+  <span class="tok-attr">--cor-texto-claro</span><span class="tok-punct">:</span> <span class="tok-value">#FFFFFF</span><span class="tok-punct">;</span>
+  <span class="tok-attr">--cor-borda-padrao</span><span class="tok-punct">:</span> <span class="tok-value">#C3D2E0</span><span class="tok-punct">;</span>
+  <span class="tok-attr">--cor-borda-foco</span><span class="tok-punct">:</span> <span class="tok-value">#315A81</span><span class="tok-punct">;</span>
+  <span class="tok-attr">--cor-fundo-hover</span><span class="tok-punct">:</span> <span class="tok-value">#D6E6F2</span><span class="tok-punct">;</span>
+  <span class="tok-attr">--fonte-principal</span><span class="tok-punct">:</span> <span class="tok-value">'Atkinson Hyperlegible', sans-serif</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span></pre>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ============================================================
+                 SEÇÃO 7 — GUIA POR FRAMEWORK
             ============================================================ -->
             <section class="docs-section" aria-labelledby="frameworks-title">
                 <span class="docs-section-anchor" id="frameworks" aria-hidden="true"></span>
@@ -1145,20 +1568,57 @@ document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><spa
         }
 
         // ── Active sidebar link on scroll ─────────────────────────────
-        const anchors      = document.querySelectorAll('.docs-section-anchor[id]')
-        const sidebarLinks = document.querySelectorAll('.sidebar-link')
+        const allAnchors   = [...document.querySelectorAll('.docs-section-anchor[id]')]
+        const sidebarLinks = [...document.querySelectorAll('.sidebar-link')]
 
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return
-                const id = entry.target.id
-                sidebarLinks.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href') === '#' + id)
-                })
+        function activateLink(id) {
+            let matched = null
+            sidebarLinks.forEach(link => {
+                const isMatch = link.getAttribute('href') === '#' + id
+                link.classList.toggle('active', isMatch)
+                if (isMatch) matched = link
             })
-        }, { rootMargin: '-10% 0px -80% 0px' })
+            // auto-scroll active chip into view on mobile horizontal nav
+            if (matched) matched.scrollIntoView({ inline: 'nearest', block: 'nearest' })
+        }
 
-        anchors.forEach(anchor => observer.observe(anchor))
+        function updateActive() {
+            const threshold = 110 // header 60px + safety buffer
+            let current = null
+            for (const anchor of allAnchors) {
+                if (anchor.getBoundingClientRect().top <= threshold) {
+                    current = anchor
+                } else {
+                    break
+                }
+            }
+            if (current) activateLink(current.id)
+        }
+
+        window.addEventListener('scroll', updateActive, { passive: true })
+
+        // smooth-scroll with header offset on sidebar link click
+        sidebarLinks.forEach(link => {
+            const href = link.getAttribute('href')
+            if (!href || !href.startsWith('#')) return
+            link.addEventListener('click', e => {
+                const target = document.getElementById(href.slice(1))
+                if (!target) return
+                e.preventDefault()
+                const top = target.getBoundingClientRect().top + window.scrollY - 80
+                window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
+                history.pushState(null, '', href)
+                activateLink(href.slice(1))
+            })
+        })
+
+        // activate on page load (hash in URL or first section)
+        const initHash = location.hash.slice(1)
+        if (initHash) {
+            requestAnimationFrame(() => activateLink(initHash))
+        } else {
+            updateActive()
+        }
 
         const spriteModal      = document.getElementById('sprite-modal')
         const spriteModalImg   = document.getElementById('sprite-modal-img')
