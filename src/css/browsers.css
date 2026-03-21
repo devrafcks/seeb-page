@@ -46,26 +46,21 @@
     justify-content: center;
     gap: clamp(0.75rem, 1.5vw, 1rem);
     opacity: 0.85;
-    transition: all 0.3s ease;
-    cursor: pointer;
+    cursor: default;
 }
 
 .browser-icon:hover {
     opacity: 1;
-    transform: translateY(-8px);
 }
 
 .browser-icon img {
     width: clamp(60px, 10vw, 80px);
     height: clamp(60px, 10vw, 80px);
     object-fit: contain;
-    filter: grayscale(0%) brightness(1);
-    transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .browser-icon:hover img {
     filter: drop-shadow(0 4px 12px rgba(58, 214, 249, 0.4));
-    transform: scale(1.08);
 }
 
 .browser-label {
@@ -74,7 +69,6 @@
     font-weight: 600;
     letter-spacing: 0.3px;
     font-family: var(--font-family-primary);
-    transition: color 0.3s ease;
 }
 
 .browser-icon:hover .browser-label {
