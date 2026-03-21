@@ -747,6 +747,7 @@ html[dark] .docs-callout-success {
 
 .docs-table-wrapper {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     margin: 1.25rem 0;
     border-radius: 0.625rem;
     border: 1px solid rgba(58, 214, 249, 0.18);
@@ -782,6 +783,8 @@ html[dark] .docs-table th {
     color: var(--color-text-medium);
     border-bottom: 1px solid rgba(58, 214, 249, 0.08);
     vertical-align: middle;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 html[dark] .docs-table td {
@@ -1150,10 +1153,21 @@ html[dark] .docs-footer-nav-link:hover {
         padding: 0.625rem 0.75rem;
     }
 
-    
+
+    /* shortcut/atalho column stays compact, description gets room */
+    .docs-table th:nth-child(2),
+    .docs-table td:nth-child(2) {
+        white-space: nowrap;
+        min-width: 90px;
+    }
+
     .docs-table th:nth-child(3),
     .docs-table td:nth-child(3) {
-        min-width: 130px;
+        min-width: 180px;
+    }
+
+    .docs-table td .docs-inline-code {
+        word-break: break-all;
     }
 
     .docs-callout {
