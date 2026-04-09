@@ -80,6 +80,7 @@
                         <li><a href="#daltonismo" class="sidebar-link">Daltonismo</a></li>
                         <li><a href="#contraste" class="sidebar-link">Contraste</a></li>
                         <li><a href="#ampliacao-leitura" class="sidebar-link">Ampliação e Leitura</a></li>
+                        <li><a href="#leitor-de-voz" class="sidebar-link">Leitor de Voz</a></li>
                         <li><a href="#visibilidade" class="sidebar-link">Visibilidade</a></li>
                         <li><a href="#interacao" class="sidebar-link">Interação</a></li>
                     </ul>
@@ -105,6 +106,7 @@
                     <ul class="sidebar-nav" role="list">
                         <li><a href="#html-puro" class="sidebar-link">HTML Puro</a></li>
                         <li><a href="#vite" class="sidebar-link">Vite</a></li>
+                        <li><a href="#nextjs-pages" class="sidebar-link">Next.js (Pages Router)</a></li>
                         <li>
                             <a href="#nextjs" class="sidebar-link">Next.js (App Router)</a>
                             <ul class="sidebar-nav-sub" role="list">
@@ -112,6 +114,7 @@
                                 <li><a href="#nextjs-solucao" class="sidebar-link">Solução completa</a></li>
                             </ul>
                         </li>
+                        <li><a href="#nuxtjs" class="sidebar-link">Nuxt.js</a></li>
                         <li><a href="#vue" class="sidebar-link">Vue</a></li>
                         <li><a href="#angular" class="sidebar-link">Angular</a></li>
                     </ul>
@@ -193,11 +196,15 @@
                     </li>
                     <li>
                         <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
-                        SPAs com React, Vue ou Svelte via Vite ou CRA
+                        SPAs com React, Vue ou Svelte via Vite, CRA ou Vue CLI
                     </li>
                     <li>
                         <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
-                        Next.js App Router — com os dois ajustes documentados neste guia
+                        Next.js Pages Router e App Router — com os ajustes documentados neste guia
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
+                        Nuxt.js — com guard de SSR para evitar execução no servidor
                     </li>
                     <li>
                         <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
@@ -298,21 +305,31 @@
                 <div class="docs-problem-list">
                     <div class="docs-problem-card">
                         <div class="docs-problem-title">
+                            <div class="docs-problem-number" aria-label="Passo 0">0</div>
+                            Guard de SSR e proteção contra carregamento duplo
+                        </div>
+                        <p class="docs-problem-desc">
+                            Antes de qualquer coisa, o widget verifica se <code class="docs-inline-code">window</code> e <code class="docs-inline-code">document</code> existem. Se não existirem (ambiente Node.js / SSR), o script inteiro é ignorado — zero execução no servidor. Além disso, a flag <code class="docs-inline-code">window._seebLoaded</code> garante que, mesmo que o script seja injetado duas vezes (por exemplo, via hot reload ou StrictMode do React), o widget só inicializa uma vez.
+                        </p>
+                    </div>
+
+                    <div class="docs-problem-card">
+                        <div class="docs-problem-title">
                             <div class="docs-problem-number" aria-label="Passo 1">1</div>
                             Aguarda o <code class="docs-inline-code">DOMContentLoaded</code>
                         </div>
                         <p class="docs-problem-desc">
-                            O widget registra um listener para o evento <code class="docs-inline-code">DOMContentLoaded</code>. Quando dispara, ele verifica se um <code class="docs-inline-code">&lt;seeb-widget&gt;</code> já existe no DOM. Se não existir, cria e injeta no <code class="docs-inline-code">&lt;body&gt;</code>. Em HTML estático e SPAs com Vite, esse evento sempre dispara antes da execução do widget — não há problema. Em Next.js com SSR e carregamento tardio do script, o evento pode já ter disparado quando o script é finalmente executado.
+                            O widget registra um listener para o evento <code class="docs-inline-code">DOMContentLoaded</code>. Quando dispara, ele verifica se um <code class="docs-inline-code">&lt;seeb-widget&gt;</code> já existe no DOM. Se não existir, cria e injeta no <code class="docs-inline-code">&lt;body&gt;</code>. Em HTML estático e SPAs com Vite, esse evento sempre dispara antes da execução do widget — não há problema. Em Next.js App Router com carregamento tardio do script, o evento pode já ter disparado quando o script é finalmente executado.
                         </p>
                     </div>
 
                     <div class="docs-problem-card">
                         <div class="docs-problem-title">
                             <div class="docs-problem-number" aria-label="Passo 2">2</div>
-                            Cria o wrapper <code class="docs-inline-code">#seeb-content-wrapper</code>
+                            Cria o wrapper <code class="docs-inline-code">#seeb-content-wrapper</code> (com detecção de framework)
                         </div>
                         <p class="docs-problem-desc">
-                            O widget chama <code class="docs-inline-code">wrapContent()</code>, que verifica se existe um <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code> no body. Se não existir, ele cria esse div e <strong>move todos os filhos atuais do <code class="docs-inline-code">&lt;body&gt;</code> para dentro dele</strong>. Isso isola o conteúdo da página para que estilos de acessibilidade possam ser aplicados de forma controlada. O problema surge quando os nós movidos são gerenciados por um framework — o React ou Angular ainda referencia as posições originais e falha ao tentar operá-los depois.
+                            O widget chama <code class="docs-inline-code">wrapContent()</code>, que primeiro verifica se existe um <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code>. Se já existir, não faz nada. Se não existir, ele procura por raízes de framework conhecidas nesta ordem: <code class="docs-inline-code">#__next</code> (Next.js), <code class="docs-inline-code">#__nuxt</code> (Nuxt.js), <code class="docs-inline-code">#app</code> (Vue / SPAs genéricos), <code class="docs-inline-code">[ng-version]</code> ou <code class="docs-inline-code">getAllAngularRootElements()[0]</code> (Angular). Se encontrar uma dessas raízes, cria o wrapper e move <strong>apenas esse elemento raiz</strong> para dentro dele — sem tocar em outros nós do body. Sem framework detectado, move todos os filhos do body como antes.
                         </p>
                     </div>
 
@@ -330,9 +347,9 @@
                 <div class="docs-callout docs-callout-info" role="note">
                     <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">lightbulb</span>
                     <div class="docs-callout-body">
-                        <div class="docs-callout-title">O ponto crítico de todos os conflitos</div>
+                        <div class="docs-callout-title">Por que a maioria dos frameworks funciona sem ajuste manual</div>
                         <div class="docs-callout-text">
-                            A maioria dos problemas de integração vem do passo 2. A solução universal é <strong>pré-criar o <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code> antes que o widget inicialize</strong>. Com o div já existente, o widget encontra a condição <code class="docs-inline-code">if (!wrapper)</code> como <strong>false</strong> e não move nenhum nó do DOM.
+                            A detecção automática de raízes de framework no passo 2 resolve a maioria dos conflitos: Next.js Pages Router (<code class="docs-inline-code">#__next</code>), Nuxt.js (<code class="docs-inline-code">#__nuxt</code>), Vue CLI e SPAs genéricos (<code class="docs-inline-code">#app</code>) e Angular (<code class="docs-inline-code">[ng-version]</code>) são todos detectados. O widget envolve apenas o elemento raiz do framework, sem mover os demais nós do body. A exceção é o <strong>Next.js App Router</strong>, cujo ciclo de vida SSR/hydration exige os ajustes adicionais documentados abaixo.
                         </div>
                     </div>
                 </div>
@@ -381,8 +398,8 @@
                             </tr>
                             <tr>
                                 <td><strong>Next.js Pages Router</strong></td>
-                                <td><span class="docs-badge docs-badge-partial">~ Com ajuste</span></td>
-                                <td>Pre-criar o <code class="docs-inline-code">#seeb-content-wrapper</code> no <code class="docs-inline-code">_document.tsx</code></td>
+                                <td><span class="docs-badge docs-badge-yes">✓ Sim</span></td>
+                                <td>O widget detecta <code class="docs-inline-code">#__next</code> automaticamente e envolve apenas esse nó — sem ajustes manuais na maioria dos casos</td>
                             </tr>
                             <tr>
                                 <td><strong>Next.js App Router</strong></td>
@@ -390,9 +407,19 @@
                                 <td>Requer componente Client + wrapper no layout — veja o guia completo abaixo</td>
                             </tr>
                             <tr>
+                                <td><strong>Nuxt.js</strong></td>
+                                <td><span class="docs-badge docs-badge-yes">✓ Sim</span></td>
+                                <td>O widget detecta <code class="docs-inline-code">#__nuxt</code> automaticamente; em SSR, o guard interno bloqueia execução no servidor</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vue CLI</strong></td>
+                                <td><span class="docs-badge docs-badge-yes">✓ Sim</span></td>
+                                <td>O widget detecta <code class="docs-inline-code">#app</code> automaticamente</td>
+                            </tr>
+                            <tr>
                                 <td><strong>Angular</strong></td>
                                 <td><span class="docs-badge docs-badge-partial">~ Com ajuste</span></td>
-                                <td>Funciona na maioria dos casos; com SSR requer guard de plataforma</td>
+                                <td>O widget detecta <code class="docs-inline-code">[ng-version]</code> automaticamente; com Angular Universal (SSR) requer guard de plataforma</td>
                             </tr>
                             <tr>
                                 <td><strong>SvelteKit (SSR)</strong></td>
@@ -516,6 +543,52 @@
                     </table>
                 </div>
 
+                <!-- Leitor de Voz -->
+                <span class="docs-section-anchor" id="leitor-de-voz" aria-hidden="true"></span>
+                <h3 class="docs-h3">Leitor de Voz</h3>
+                <p class="docs-p">
+                    Utiliza a API <code class="docs-inline-code">SpeechSynthesis</code> do navegador para ler em voz alta o texto selecionado pelo usuário ou, se não houver seleção, todo o texto visível da página. Não requer nenhuma dependência externa ou backend.
+                </p>
+
+                <div class="docs-table-wrapper" role="region" aria-label="Funcionalidades do leitor de voz">
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Recurso</th>
+                                <th scope="col">Atalho</th>
+                                <th scope="col">Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Iniciar / Parar Leitura</strong></td>
+                                <td><code class="docs-inline-code">Alt + V</code></td>
+                                <td>Lê o texto selecionado ou todo o conteúdo da página. Clique novamente para interromper.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Voz Feminina / Masculina</strong></td>
+                                <td>—</td>
+                                <td>Filtra as vozes disponíveis no sistema por gênero. Fallback automático se não houver voz do gênero escolhido.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Velocidade de Leitura</strong></td>
+                                <td>—</td>
+                                <td>Slider de <code class="docs-inline-code">0.5x</code> a <code class="docs-inline-code">2.0x</code>. Trocar velocidade enquanto lendo reinicia o áudio de forma fluida (sem fechar o painel).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="docs-callout docs-callout-warning" role="note">
+                    <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">warning</span>
+                    <div class="docs-callout-body">
+                        <div class="docs-callout-title">Disponibilidade de vozes</div>
+                        <div class="docs-callout-text">
+                            A lista de vozes disponíveis depende do sistema operacional e do navegador. Nem todos os navegadores expõem vozes em português. O widget tenta primeiro vozes com <code class="docs-inline-code">lang</code> iniciando em <code class="docs-inline-code">pt</code> e faz fallback para qualquer voz disponível. Em ambientes SSR, o leitor de voz nunca é executado — a API <code class="docs-inline-code">SpeechSynthesis</code> não existe no Node.js.
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Visibilidade -->
                 <span class="docs-section-anchor" id="visibilidade" aria-hidden="true"></span>
                 <h3 class="docs-h3">Visibilidade</h3>
@@ -549,9 +622,34 @@
                                 <td><code class="docs-inline-code">visibility: hidden</code> em <code class="docs-inline-code">img</code>, <code class="docs-inline-code">video</code> e <code class="docs-inline-code">picture</code></td>
                             </tr>
                             <tr>
+                                <td><strong>Ocultar Fundos</strong></td>
+                                <td>—</td>
+                                <td>Remove todas as <code class="docs-inline-code">background-image</code> CSS da página via <code class="docs-inline-code">background-image: none</code>. Imagens <code class="docs-inline-code">&lt;img&gt;</code> permanecem visíveis. Útil para leitura sem distrações visuais.</td>
+                            </tr>
+                            <tr>
                                 <td><strong>Parar Animações</strong></td>
                                 <td><code class="docs-inline-code">Alt + P</code></td>
                                 <td><code class="docs-inline-code">animation-play-state: paused</code> e <code class="docs-inline-code">transition-duration: 0ms</code> em todos os elementos</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Realçar Foco</strong></td>
+                                <td><code class="docs-inline-code">Alt + J</code></td>
+                                <td>Adiciona outline laranja visível (<code class="docs-inline-code">3px solid #FF6B00</code>) em todos os elementos focados via teclado (<code class="docs-inline-code">:focus</code> / <code class="docs-inline-code">:focus-visible</code>). Essencial para navegação sem mouse.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Reduzir Transparência</strong></td>
+                                <td>—</td>
+                                <td>Força <code class="docs-inline-code">opacity: 1</code> e remove <code class="docs-inline-code">backdrop-filter</code> em todos os elementos, tornando sobreposições semi-transparentes completamente opacas.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Controle de Brilho</strong></td>
+                                <td>—</td>
+                                <td>Slider de 50% a 150%. Aplica <code class="docs-inline-code">brightness()</code> na cadeia de filtros CSS do wrapper de conteúdo. Composto com demais filtros ativos.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Controle de Saturação</strong></td>
+                                <td>—</td>
+                                <td>Slider de 0% a 200%. Aplica <code class="docs-inline-code">saturate()</code> na cadeia de filtros CSS. Útil para pessoas com sensibilidade a cores saturadas.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -694,6 +792,8 @@
                             <tr><td><code class="docs-inline-code">Alt + E</code></td><td>Espaçamento de texto</td></tr>
                             <tr><td><code class="docs-inline-code">Alt + B</code></td><td>Negrito</td></tr>
                             <tr><td><code class="docs-inline-code">Alt + U</code></td><td>Sublinhar links</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + V</code></td><td>Leitor de Voz (iniciar/parar)</td></tr>
+                            <tr><td><code class="docs-inline-code">Alt + J</code></td><td>Realçar Foco do Teclado</td></tr>
                             <tr><td><code class="docs-inline-code">Alt + G</code></td><td>Guia de leitura</td></tr>
                             <tr><td><code class="docs-inline-code">Alt + F</code></td><td>Linha de foco</td></tr>
                             <tr><td><code class="docs-inline-code">Alt + C</code></td><td>Alternar contraste alto/normal</td></tr>
@@ -745,9 +845,16 @@
   invertColors<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
   darkMode<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
   hideImages<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  hideBgImages<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
   bigCursor<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
   highlightLinks<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
   pauseAnimations<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  highlightFocus<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  reduceTransparency<span class="tok-punct">:</span> <span class="tok-keyword">false</span><span class="tok-punct">,</span>
+  brightness<span class="tok-punct">:</span> <span class="tok-number">100</span><span class="tok-punct">,</span>
+  saturation<span class="tok-punct">:</span> <span class="tok-number">100</span><span class="tok-punct">,</span>
+  voiceRate<span class="tok-punct">:</span> <span class="tok-number">1</span><span class="tok-punct">,</span>
+  voiceGender<span class="tok-punct">:</span> <span class="tok-string">'female'</span><span class="tok-punct">,</span>
   widgetIconColor<span class="tok-punct">:</span> <span class="tok-string">'#003667'</span><span class="tok-punct">,</span>
   widgetPanelColor<span class="tok-punct">:</span> <span class="tok-string">'#E6EDF3'</span><span class="tok-punct">,</span>
   widgetPositionPreset<span class="tok-punct">:</span> <span class="tok-string">'right-center'</span><span class="tok-punct">,</span>
@@ -884,9 +991,59 @@
                 </div>
 
 
-                <!-- ── 5.3 NEXT.JS APP ROUTER ─────────────────────────── -->
+                <!-- ── 5.3 NEXT.JS PAGES ROUTER ──────────────────────── -->
+                <span class="docs-section-anchor" id="nextjs-pages" aria-hidden="true"></span>
+                <h3 class="docs-h3">5.3 — Next.js (Pages Router)</h3>
+                <p class="docs-p">
+                    Com o Pages Router, o widget detecta automaticamente o elemento <code class="docs-inline-code">#__next</code> e o envolve no wrapper — sem mover outros nós do body. Na maioria dos casos, adicionar o script no <code class="docs-inline-code">_document.tsx</code> é suficiente.
+                </p>
+
+                <div class="docs-code-block" role="region" aria-label="Next.js Pages Router via _document.tsx">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">tsx</span>
+                        <span class="docs-code-filename">pages/_document.tsx</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-nextjs-pages" aria-label="Copiar código Next.js Pages Router">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-nextjs-pages"><span class="tok-keyword">import</span> <span class="tok-punct">{</span> Html<span class="tok-punct">,</span> Head<span class="tok-punct">,</span> Main<span class="tok-punct">,</span> NextScript <span class="tok-punct">}</span> <span class="tok-keyword">from</span> <span class="tok-string">'next/document'</span>
+
+<span class="tok-keyword">export default function</span> <span class="tok-fn">Document</span><span class="tok-punct">() {</span>
+  <span class="tok-keyword">return</span> <span class="tok-punct">(</span>
+    <span class="tok-tag">&lt;Html</span> <span class="tok-attr">lang</span><span class="tok-punct">=</span><span class="tok-value">"pt-BR"</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;Head&gt;</span>
+        <span class="tok-comment">{/* O widget detecta #__next automaticamente — sem ajuste extra */}</span>
+        <span class="tok-tag">&lt;script</span>
+          <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-value">"https://seeb-widget.pages.dev/widget.js"</span>
+          <span class="tok-attr">defer</span>
+        <span class="tok-tag">/&gt;</span>
+      <span class="tok-tag">&lt;/Head&gt;</span>
+      <span class="tok-tag">&lt;body&gt;</span>
+        <span class="tok-tag">&lt;Main</span> <span class="tok-tag">/&gt;</span>
+        <span class="tok-tag">&lt;NextScript</span> <span class="tok-tag">/&gt;</span>
+      <span class="tok-tag">&lt;/body&gt;</span>
+    <span class="tok-tag">&lt;/Html&gt;</span>
+  <span class="tok-punct">)</span>
+<span class="tok-punct">}</span></pre>
+                    </div>
+                </div>
+
+                <div class="docs-callout docs-callout-success" role="note">
+                    <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">check_circle</span>
+                    <div class="docs-callout-body">
+                        <div class="docs-callout-title">Por que funciona sem ajuste</div>
+                        <div class="docs-callout-text">
+                            O widget detecta <code class="docs-inline-code">#__next</code> em <code class="docs-inline-code">wrapContent()</code> e envolve apenas esse elemento — sem mover os scripts e outros nós do body. O React mantém todas as referências DOM intactas. Se o <code class="docs-inline-code">DOMContentLoaded</code> já tiver disparado quando o script carregar, o widget ainda inicializa via o caminho de fallback imediato.
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ── 5.4 NEXT.JS APP ROUTER ─────────────────────────── -->
                 <span class="docs-section-anchor" id="nextjs" aria-hidden="true"></span>
-                <h3 class="docs-h3">5.3 — Next.js (App Router)</h3>
+                <h3 class="docs-h3">5.4 — Next.js (App Router)</h3>
                 <p class="docs-p">
                     O App Router do Next.js tem um ciclo de vida que entra em conflito com a forma como o widget inicializa. São três problemas independentes — cada um com uma causa clara e uma solução pontual.
                 </p>
@@ -925,10 +1082,10 @@
                     <div class="docs-problem-card">
                         <div class="docs-problem-title">
                             <div class="docs-problem-number" aria-label="Problema 2">2</div>
-                            Widget move nós gerenciados pelo React
+                            Widget não detecta a raiz do App Router e move nós gerenciados pelo React
                         </div>
                         <p class="docs-problem-desc">
-                            Quando o widget chama <code class="docs-inline-code">wrapContent()</code>, ele move todos os filhos do <code class="docs-inline-code">&lt;body&gt;</code> para dentro de um novo <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code>. Esses nós incluem o que o React criou e ainda referencia internamente. Quando o React tenta operar nesses nós (por exemplo, ao navegar entre rotas), não os encontra mais onde esperava:
+                            No App Router, o Next.js não cria um elemento <code class="docs-inline-code">#__next</code> — por isso a detecção automática de framework do widget não encontra a raiz. O widget cai no comportamento padrão: move todos os filhos do <code class="docs-inline-code">&lt;body&gt;</code> para dentro de um novo <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code>. Esses nós incluem o que o React criou e ainda referencia internamente. Quando o React tenta operar nesses nós (por exemplo, ao navegar entre rotas), não os encontra mais onde esperava:
                         </p>
                         <div class="docs-code-block" role="region" aria-label="Código wrapContent interno">
                             <div class="docs-code-header">
@@ -941,13 +1098,27 @@
                             </div>
                             <div class="docs-code-body">
                                 <pre id="code-nextjs-interno-2"><span class="tok-fn">wrapContent</span><span class="tok-punct">() {</span>
-  <span class="tok-keyword">let</span> wrapper <span class="tok-punct">=</span> document<span class="tok-punct">.</span><span class="tok-fn">getElementById</span><span class="tok-punct">(</span><span class="tok-string">"seeb-content-wrapper"</span><span class="tok-punct">)</span>
-  <span class="tok-keyword">if</span> <span class="tok-punct">(!</span>wrapper<span class="tok-punct">) {</span>
-    wrapper <span class="tok-punct">=</span> document<span class="tok-punct">.</span><span class="tok-fn">createElement</span><span class="tok-punct">(</span><span class="tok-string">"div"</span><span class="tok-punct">)</span>
-    wrapper<span class="tok-punct">.</span>id <span class="tok-punct">=</span> <span class="tok-string">"seeb-content-wrapper"</span>
-    <span class="tok-class">Array</span><span class="tok-punct">.</span><span class="tok-fn">from</span><span class="tok-punct">(</span>document<span class="tok-punct">.</span>body<span class="tok-punct">.</span>childNodes<span class="tok-punct">).</span><span class="tok-fn">forEach</span><span class="tok-punct">(</span>node <span class="tok-punct">=></span> <span class="tok-punct">{</span>
-      wrapper<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>node<span class="tok-punct">)</span> <span class="tok-comment">// move nós gerenciados pelo React</span>
-    <span class="tok-punct">})</span>
+  <span class="tok-keyword">if</span> <span class="tok-punct">(</span>document<span class="tok-punct">.</span><span class="tok-fn">getElementById</span><span class="tok-punct">(</span><span class="tok-string">"seeb-content-wrapper"</span><span class="tok-punct">))</span> <span class="tok-keyword">return</span>
+
+  <span class="tok-keyword">const</span> wrapper <span class="tok-punct">=</span> document<span class="tok-punct">.</span><span class="tok-fn">createElement</span><span class="tok-punct">(</span><span class="tok-string">"div"</span><span class="tok-punct">)</span>
+  wrapper<span class="tok-punct">.</span>id <span class="tok-punct">=</span> <span class="tok-string">"seeb-content-wrapper"</span>
+
+  <span class="tok-comment">// Detecta raiz de framework conhecida</span>
+  <span class="tok-keyword">const</span> frameworkRoot <span class="tok-punct">=</span>
+    document<span class="tok-punct">.</span><span class="tok-fn">getElementById</span><span class="tok-punct">(</span><span class="tok-string">"__next"</span><span class="tok-punct">)</span>  <span class="tok-comment">// Next.js Pages Router</span>
+    <span class="tok-punct">||</span> document<span class="tok-punct">.</span><span class="tok-fn">getElementById</span><span class="tok-punct">(</span><span class="tok-string">"__nuxt"</span><span class="tok-punct">)</span> <span class="tok-comment">// Nuxt.js</span>
+    <span class="tok-punct">||</span> document<span class="tok-punct">.</span><span class="tok-fn">getElementById</span><span class="tok-punct">(</span><span class="tok-string">"app"</span><span class="tok-punct">)</span>    <span class="tok-comment">// Vue / SPAs genéricos</span>
+    <span class="tok-punct">||</span> document<span class="tok-punct">.</span><span class="tok-fn">querySelector</span><span class="tok-punct">(</span><span class="tok-string">"[ng-version]"</span><span class="tok-punct">)</span>  <span class="tok-comment">// Angular</span>
+
+  <span class="tok-keyword">if</span> <span class="tok-punct">(</span>frameworkRoot<span class="tok-punct">) {</span>
+    <span class="tok-comment">// Envolve apenas o elemento raiz — sem mover outros nós do body</span>
+    frameworkRoot<span class="tok-punct">.</span>parentNode<span class="tok-punct">.</span><span class="tok-fn">insertBefore</span><span class="tok-punct">(</span>wrapper<span class="tok-punct">,</span> frameworkRoot<span class="tok-punct">)</span>
+    wrapper<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>frameworkRoot<span class="tok-punct">)</span>
+  <span class="tok-punct">} else {</span>
+    <span class="tok-comment">// Fallback: move todos os filhos do body (App Router cai aqui)</span>
+    <span class="tok-class">Array</span><span class="tok-punct">.</span><span class="tok-fn">from</span><span class="tok-punct">(</span>document<span class="tok-punct">.</span>body<span class="tok-punct">.</span>childNodes<span class="tok-punct">).</span><span class="tok-fn">forEach</span><span class="tok-punct">(</span>node <span class="tok-punct">=></span>
+      wrapper<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>node<span class="tok-punct">)</span>
+    <span class="tok-punct">)</span>
     document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>wrapper<span class="tok-punct">)</span>
   <span class="tok-punct">}</span>
 <span class="tok-punct">}</span></pre>
@@ -1118,8 +1289,8 @@ didn't match the client properties.</pre>
                             </tr>
                             <tr>
                                 <td><code class="docs-inline-code">removeChild</code> — node is not a child</td>
-                                <td>Widget move nós gerenciados pelo React para dentro do wrapper</td>
-                                <td>Pre-criar <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code> no layout</td>
+                                <td>App Router não gera <code class="docs-inline-code">#__next</code> — widget cai no fallback e move todos os nós do body</td>
+                                <td>Pre-criar <code class="docs-inline-code">&lt;div id="seeb-content-wrapper"&gt;</code> no layout (o widget encontra o div e não move nada)</td>
                             </tr>
                             <tr>
                                 <td>Hydration mismatch de atributos</td>
@@ -1131,9 +1302,79 @@ didn't match the client properties.</pre>
                 </div>
 
 
-                <!-- ── 5.4 VUE ─────────────────────────────────────────── -->
+                <!-- ── 5.5 NUXT.JS ────────────────────────────────────── -->
+                <span class="docs-section-anchor" id="nuxtjs" aria-hidden="true"></span>
+                <h3 class="docs-h3">5.5 — Nuxt.js</h3>
+                <p class="docs-p">
+                    O widget detecta automaticamente o elemento <code class="docs-inline-code">#__nuxt</code> e o envolve no wrapper. Além disso, o guard interno de SSR impede qualquer execução no servidor Node.js — o script é completamente ignorado em contextos sem <code class="docs-inline-code">window</code> ou <code class="docs-inline-code">document</code>.
+                </p>
+                <p class="docs-p">
+                    Em Nuxt 3 com configuração padrão, adicione o script via <code class="docs-inline-code">nuxt.config.ts</code>:
+                </p>
+
+                <div class="docs-code-block" role="region" aria-label="Nuxt.js via nuxt.config.ts">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">ts</span>
+                        <span class="docs-code-filename">nuxt.config.ts</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-nuxt-config" aria-label="Copiar código Nuxt.js config">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-nuxt-config"><span class="tok-keyword">export default</span> <span class="tok-fn">defineNuxtConfig</span><span class="tok-punct">({</span>
+  app<span class="tok-punct">: {</span>
+    head<span class="tok-punct">: {</span>
+      script<span class="tok-punct">: [</span>
+        <span class="tok-punct">{</span>
+          src<span class="tok-punct">:</span> <span class="tok-string">'https://seeb-widget.pages.dev/widget.js'</span><span class="tok-punct">,</span>
+          defer<span class="tok-punct">:</span> <span class="tok-keyword">true</span><span class="tok-punct">,</span>
+        <span class="tok-punct">},</span>
+      <span class="tok-punct">],</span>
+    <span class="tok-punct">},</span>
+  <span class="tok-punct">},</span>
+<span class="tok-punct">})</span></pre>
+                    </div>
+                </div>
+
+                <p class="docs-p">Ou via plugin client-only, se precisar de mais controle:</p>
+
+                <div class="docs-code-block" role="region" aria-label="Nuxt.js via plugin client-side">
+                    <div class="docs-code-header">
+                        <span class="docs-code-lang">ts</span>
+                        <span class="docs-code-filename">plugins/seeb-widget.client.ts</span>
+                        <button class="docs-code-copy-btn" data-copy-target="code-nuxt-plugin" aria-label="Copiar código Nuxt.js plugin">
+                            <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                            Copiar
+                        </button>
+                    </div>
+                    <div class="docs-code-body">
+                        <pre id="code-nuxt-plugin"><span class="tok-comment">// O sufixo .client.ts garante que este plugin só executa no browser</span>
+<span class="tok-keyword">export default</span> <span class="tok-fn">defineNuxtPlugin</span><span class="tok-punct">(() => {</span>
+  <span class="tok-keyword">if</span> <span class="tok-punct">(</span>document<span class="tok-punct">.</span><span class="tok-fn">querySelector</span><span class="tok-punct">(</span><span class="tok-string">'seeb-widget'</span><span class="tok-punct">))</span> <span class="tok-keyword">return</span>
+
+  <span class="tok-keyword">const</span> script <span class="tok-punct">=</span> document<span class="tok-punct">.</span><span class="tok-fn">createElement</span><span class="tok-punct">(</span><span class="tok-string">'script'</span><span class="tok-punct">)</span>
+  script<span class="tok-punct">.</span>src <span class="tok-punct">=</span> <span class="tok-string">'https://seeb-widget.pages.dev/widget.js'</span>
+  script<span class="tok-punct">.</span>defer <span class="tok-punct">=</span> <span class="tok-keyword">true</span>
+  document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><span class="tok-fn">appendChild</span><span class="tok-punct">(</span>script<span class="tok-punct">)</span>
+<span class="tok-punct">})</span></pre>
+                    </div>
+                </div>
+
+                <div class="docs-callout docs-callout-success" role="note">
+                    <span class="material-symbols-outlined docs-callout-icon" aria-hidden="true">check_circle</span>
+                    <div class="docs-callout-body">
+                        <div class="docs-callout-title">Dupla proteção SSR</div>
+                        <div class="docs-callout-text">
+                            Mesmo que o script seja incluído no <code class="docs-inline-code">&lt;head&gt;</code> e o Nuxt renderize no servidor, o widget tem um guard inicial que verifica <code class="docs-inline-code">typeof window === 'undefined'</code> e para imediatamente — zero execução no Node.js. No cliente, detecta <code class="docs-inline-code">#__nuxt</code> e envolve apenas esse elemento.
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ── 5.6 VUE ─────────────────────────────────────────── -->
                 <span class="docs-section-anchor" id="vue" aria-hidden="true"></span>
-                <h3 class="docs-h3">5.4 — Vue</h3>
+                <h3 class="docs-h3">5.6 — Vue</h3>
                 <p class="docs-p">
                     A maioria dos projetos Vue usa Vite. Nesses casos, a abordagem mais simples e confiável é adicionar o script diretamente no <code class="docs-inline-code">index.html</code> da raiz.
                 </p>
@@ -1197,9 +1438,9 @@ document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><spa
                 </div>
 
 
-                <!-- ── 5.5 ANGULAR ────────────────────────────────────── -->
+                <!-- ── 5.7 ANGULAR ────────────────────────────────────── -->
                 <span class="docs-section-anchor" id="angular" aria-hidden="true"></span>
-                <h3 class="docs-h3">5.5 — Angular</h3>
+                <h3 class="docs-h3">5.7 — Angular</h3>
                 <p class="docs-p">
                     A abordagem com menor risco é adicionar o script diretamente no <code class="docs-inline-code">src/index.html</code> do projeto Angular. O widget inicializa antes do bootstrap do framework, o que evita conflitos com o ciclo de vida do Angular.
                 </p>
@@ -1351,7 +1592,7 @@ document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><spa
                         <div class="docs-problem-title">Widget aparece duplicado</div>
                         <p class="docs-problem-desc">
                             <strong>Causa:</strong> O script foi injetado ou o widget foi criado mais de uma vez. Acontece quando hooks de ciclo de vida executam múltiplas vezes (React StrictMode executa os efeitos duas vezes em desenvolvimento), ou quando o componente que inicia o widget é montado e desmontado durante a navegação.<br><br>
-                            <strong>Solução:</strong> Sempre verifique antes de criar: <code class="docs-inline-code">if (document.querySelector('seeb-widget')) return</code>. Todos os exemplos nesta documentação já incluem esse guard.
+                            <strong>Solução:</strong> O widget tem proteção interna via <code class="docs-inline-code">window._seebLoaded</code> que impede inicializações duplicadas mesmo se o script for carregado duas vezes. Nos exemplos com <code class="docs-inline-code">useEffect</code>, sempre verifique antes de criar: <code class="docs-inline-code">if (document.querySelector('seeb-widget')) return</code>.
                         </p>
                     </div>
 
@@ -1392,7 +1633,7 @@ document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><spa
                     </li>
                     <li>
                         <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
-                        <span><strong>Em projetos com SSR, pré-crie o <code class="docs-inline-code">#seeb-content-wrapper</code></strong>. Isso previne a movimentação de nós DOM gerenciados pelo framework — o ajuste mais importante para Next.js, SvelteKit e Angular Universal.</span>
+                        <span><strong>No Next.js App Router, pré-crie o <code class="docs-inline-code">#seeb-content-wrapper</code> no layout</strong>. O widget detecta automaticamente <code class="docs-inline-code">#__next</code> (Pages Router), <code class="docs-inline-code">#__nuxt</code> (Nuxt.js), <code class="docs-inline-code">#app</code> (Vue / SPAs) e <code class="docs-inline-code">[ng-version]</code> (Angular) — esses frameworks não precisam do pré-create manual. Apenas o App Router, que não gera <code class="docs-inline-code">#__next</code>, requer o wrapper no layout.</span>
                     </li>
                     <li>
                         <span class="material-symbols-outlined check-icon" aria-hidden="true">check_circle</span>
@@ -1501,7 +1742,6 @@ document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><spa
             </blockquote>
             <button class="sprite-modal-close" id="sprite-modal-close" aria-label="Fechar">Fechar</button>
         </div>
-    </div>
     </div>
 
 
@@ -1645,6 +1885,6 @@ document<span class="tok-punct">.</span>body<span class="tok-punct">.</span><spa
             if (e.key === 'Escape') spriteModal.classList.remove('open')
         })
     </script>
-    <script src="https://seeb-widget.pages.dev/widget.js" defer>  
+    <script src="https://seeb-widget.pages.dev/widget.js" defer></script>
 </body>
 </html>
